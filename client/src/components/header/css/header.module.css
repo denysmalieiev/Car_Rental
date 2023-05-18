@@ -1,0 +1,55 @@
+.carRentalNevBar{
+    background-color: black;
+    display: flex;
+}
+
+.carRentalNevBar a{
+    color: white;
+    text-decoration: none;
+}
+
+    .navBarWebName{
+        width: 30%;
+        float: left;
+        text-align: center;
+    }
+        .navBarWebName h2{
+            font-weight: 800;
+            padding: 2% 0%;
+        }
+        .navBarWebName a:hover{
+            color: red;
+        }
+
+    .navBarWebNavigation{
+        width: 70%;
+        display: flex;
+    }
+        .navBarWebNavigation li{
+            display: inline;
+        }
+        .navBarWebNavigation p{
+            font-weight: 800;
+            display: inline-flex;
+
+        }
+        .navBarWebNavigation a:hover{
+            color: yellow;
+        }
+        .navBarWebNavigationLeft{
+            width: 60%;
+            float: left;
+            text-align: center;
+        }
+            .navBarWebNavigationLeft p{
+                padding: 2.3% 4%;
+            }
+        .navBarWebNavigationRight{
+            width: 40%;
+            float: left;
+            padding: 0% 0% 0% 5%;
+        }
+            .navBarWebNavigationRight p{
+                padding: 3.5% 4%;
+            } 
+
