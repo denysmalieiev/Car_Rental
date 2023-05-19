@@ -20,7 +20,7 @@ import ResetPassword from '../user/profile/userPassword/ResetPassword';
 
 // Car
 import CarsHome from '../car/CarsHome';
-import CarDetail from '../car/CarDetail';
+import UserCartBook from '../car/UserCartBook';
 
 // Booking
 import CarBooking from '../booking/CarBooking';
@@ -50,11 +50,11 @@ const PageRoutes = () => {
 
                 {/* Crs */}
                 <Route exact path='/cars' element={<CarsHome/>} />
-                <Route exact path='/cars/detail' element={<CarDetail/>} />
+                <Route exact path='/car/booking/:id' element={<UserCartBook/>} />
 
                 {/* Booking */}
-                <Route exact path='/car/booking' element={<CarBooking/>} />
-                <Route exact path='/car/booking/payment' element={<BookingPayment/>} />
+                <Route exact path='/car/bo' element={<CarBooking/>} />
+                <Route exact path='/car/rent/payment/:id/:range/:price' element={<BookingPayment/>} />
                 <Route exact path='/cars/booking/history' element={<BookingHistory/>} />
             </Routes>
         </div>

@@ -16,7 +16,7 @@ const Header = () => {
               <li><p><Link to='/cars'>Cars</Link></p></li>
               <li><p><Link to='/about'>About</Link></p></li>
               <li><p><Link to='/gallery'>Gallery</Link></p></li>
-              <li><p><Link to='/car/booking'>Cart</Link></p></li>
+              <li><p><Link to='/cars/booking/history'>Booking</Link></p></li>
             </ul>
           </div>
           <div className={headerCSS.navBarWebNavigationRight}>
