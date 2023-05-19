@@ -7,7 +7,7 @@
     .carsHomeBoxLeft{
         background-color: red;
         color: white;
-        width: 24%;
+        width: 25%;
         height: 400px;
         float: left;
         padding: 1% 0%;
@@ -61,7 +61,7 @@
 
 
     .carsHomeBoxMid{
-        width: 45%;   
+        width: 48%;   
         height: 400px;     
         float: left;
         padding: 1% 1%;
@@ -75,7 +75,7 @@
 
     .carsHomeBoxRight{
         background-color: red;
-        width: 29%;  
+        width: 25%;  
         height: 400px;      
         float: left;
         padding: 1% 0%;
@@ -87,6 +87,24 @@
             font-weight: 600;
             text-align: left;
         }
+        .carsHomeBoxRightContent button{
+            background-color: black;
+            color: white;
+            margin: 3% 0% 0%;
+            padding: 3% 5%;
+            text-align: center;
+            font-weight: 600;
+            border: 3px solid yellow;
+            border-top: 0;
+            border-left: 0;
+        }
+        .carsHomeBoxRightContent button:hover{
+            background-color: black;
+            color: yellow;
+            border: 2px solid white;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+        }
         .carsHomeBoxRightDivContent{
             margin: 0% 0% 4%;
         }
@@ -94,11 +112,11 @@
             background-color: blue;
             color: white;
             width: 50%;
-            padding: 1% 10%
+            padding: 1% 5%
         }
         .carsHomeBoxRightDivContent h5{
             background-color: white;
             color: black;
-            padding: 1% 10%;
+            padding: 1% 5%;
             font-weight: 500;
         }

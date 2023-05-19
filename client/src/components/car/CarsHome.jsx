@@ -7,7 +7,6 @@ const CarsHome = () => {
   const carContect = useContext(DataContext);
   const [category, setCategory] = useState('SUV') // Sedan
   const [cars, setCars] = useState(carContect.carsData)
-  const [loading, setLoading] = useState(true)
   const [car, setCar] = useState(cars[0])
 
   const handleCarCategoryFilter = (e, type) => {
@@ -23,6 +22,11 @@ const CarsHome = () => {
     })
     console.log(fetchCar[0])
     setCar(fetchCar[0])
+  }
+
+  const handleCarBookingClick = (e, id)=>{
+    e.preventDefault()
+    alert(id)
   }
 
   return (
@@ -50,13 +54,12 @@ const CarsHome = () => {
         </div>
         <div className={carsHomeCSS.carsHomeBoxRight}>
           <div className={carsHomeCSS.carsHomeBoxRightContent}>
+            <button onClick={(e)=>handleCarBookingClick(e, car._id)}><h4>Book now</h4></button><br/><br/>
             {car? <><div className={carsHomeCSS.carsHomeBoxRightDivContent}><h6>Company</h6><h5>{car.carCompany}</h5></div></>:<></>}
             {car? <><div className={carsHomeCSS.carsHomeBoxRightDivContent}><h6>Car Model</h6><h5>{car.carName+' '+car.carModel}</h5></div></>:<></>}
-            {car? <><div className={carsHomeCSS.carsHomeBoxRightDivContent}><h6>Car Category</h6><h5>{car.carCategory}</h5></div></>:<></>}
-            {car? <><div className={carsHomeCSS.carsHomeBoxRightDivContent}><h6>Car Engine</h6><h5>{car.carEngine}</h5></div></>:<></>}
-            {car? <><div className={carsHomeCSS.carsHomeBoxRightDivContent}><h6>Car Milage</h6><h5>{car.carMileage}</h5></div></>:<></>}
+            {car? <><div className={carsHomeCSS.carsHomeBoxRightDivContent}><h6>Car Category & Seats</h6><h5>{car.carCategory+", "+car.carSeatCapacity}</h5></div></>:<></>}
+            {car? <><div className={carsHomeCSS.carsHomeBoxRightDivContent}><h6>Engine & Milage</h6><h5>{car.carEngine+', '+car.carMileage}</h5></div></>:<></>}
             {car? <><div className={carsHomeCSS.carsHomeBoxRightDivContent}><h6>Fuel & Transmission</h6><h5>{car.carFuelType+', '+car.carTransmission}</h5></div></>:<></>}
-            {car? <><div className={carsHomeCSS.carsHomeBoxRightDivContent}><h6>Seat Capacity</h6><h5>{car.carSeatCapacity}</h5></div></>:<></>}
             {car? <><div className={carsHomeCSS.carsHomeBoxRightDivContent}><h6>Car Rent per km</h6><h5>{car.rentalPriceCharge}</h5></div></>:<></>}
           </div>
         </div>

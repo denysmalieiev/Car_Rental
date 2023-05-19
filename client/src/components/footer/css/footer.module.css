@@ -1,21 +1,82 @@
 .footerContainer{
     width: 100%;
-    height: 200px;
-    background-color: rgb(255, 170, 170);
+    min-height: 200px;
+    height: auto;
 }
+.footerContainerTop{
+    width: 100%;
+    min-height: 170px;
+    height: auto;
+    float: left;
+    /* background-color: rgb(7, 18, 218); */
+    background-color: rgb(55, 53, 46);
+    color: white;
+}
+    .footerContainerTop p{
+        margin: 0% 0% 2%;
+        font-weight: 500;
+    }
+    .footerContainerLeft{
+        width: 40%;
+        float: left;
+        margin: 2% 0% 2% 10%;
+    }
+        .footerContainerLeft hr{
+            width: 15%;
+            height: 5px;
+            border: none;
+            background-color: red;
+            border-radius: 5px;
+            margin: 0.5% 0% 2%;
+        }
+        .footerContainerLeftContent{
+            width: 90%;
+            margin: 0% 5%;
+        }
+    .footerContainerMid{
+        width: 20%;
+        float: left;
+        margin: 2% 0% 2%;
+    }
+        .footerContainerMid hr{
+            width: 15%;
+            height: 5px;
+            border: none;
+            background-color: red;
+            border-radius: 5px;
+            margin: 2% 0% 5%;
+        }
+        .footerContainerMidContent{
+            width: 90%;
+            margin: 0% 5%;
+        }
+    .footerContainerRight{
+        width: 20%;
+        float: left;
+        margin: 2% 10% 2% 0%;
+    }
+        .footerContainerRight hr{
+            width: 10%;
+            height: 5px;
+            border: none;
+            background-color: red;
+            border-radius: 5px;
+            margin: 2% 0% 5%;
+        }
+        .footerContainerRightContent{
+            width: 90%;
+            margin: 0% 5%;
+        }
 
-.footerContainerLeft{
-    width: 35%;
+.footerContainerBottom{
+    width: 100%;
+    min-height: 30px;
+    height: auto;
     float: left;
-    margin: 2% 0% 2% 10%;
+    background-color: black;
+    color: white;
+    text-align: center;
 }
-.footerContainerMid{
-    width: 25%;
-    float: left;
-    margin: 2% 0% 2%;
-}
-.footerContainerRight{
-    width: 20%;
-    float: left;
-    margin: 2% 10% 2% 0%;
+.footerContainerBottom h5{
+    padding: 1% 0% 1.5%;
 }
