@@ -1,6 +1,8 @@
 .carRentalNevBar{
     background-color: black;
     display: flex;
+    position: sticky;
+    top:0;
 }
 
 .carRentalNevBar a{

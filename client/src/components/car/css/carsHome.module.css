@@ -1,0 +1,32 @@
+.carsHomeBox{
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+    .carsHomeBoxLeft{
+        background-color: red;
+        width: 25%;
+        height: 400px;
+        float: left;
+        padding: 1% 0%;
+        border-radius: 10px 0px 0px 10px;
+    }
+
+    .carsHomeBoxMid{
+        background-color: white;
+        width: 50%;   
+        height: 400px;     
+        float: left;
+        padding: 1% 0%;
+
+    }
+
+    .carsHomeBoxRight{
+        background-color: red;
+        width: 25%;  
+        height: 400px;      
+        float: left;
+        padding: 1% 0%;
+        border-radius: 0px 10px 10px 0px;
+    }

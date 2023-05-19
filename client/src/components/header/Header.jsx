@@ -13,24 +13,23 @@ const Header = () => {
           <div className={headerCSS.navBarWebNavigationLeft}>
             <ul>
               <li><p><Link to='/'>Home</Link></p></li>
-              <li><p><Link to='/'>Cars</Link></p></li>
-              <li><p><Link to='/'>About</Link></p></li>
-              <li><p><Link to='/'>Gallery</Link></p></li>
-              <li><p><Link to='/'>Cart</Link></p></li>
+              <li><p><Link to='/cars'>Cars</Link></p></li>
+              <li><p><Link to='/about'>About</Link></p></li>
+              <li><p><Link to='/gallery'>Gallery</Link></p></li>
+              <li><p><Link to='/car/booking'>Cart</Link></p></li>
             </ul>
           </div>
           <div className={headerCSS.navBarWebNavigationRight}>
             <ul>
-                <li><p><Link to='/'>^</Link></p></li>
-                <li><p><Link to='/'>SignIn</Link></p></li>
-                <li><p><Link to='/'>SignUp</Link></p></li>
+                <li><p><Link to='/user/profile'>^</Link></p></li>
+                <li><p><Link to='/user/signin'>SignIn</Link></p></li>
+                <li><p><Link to='/user/signup'>SignUp</Link></p></li>
 
               </ul>
           </div>
 
         </div>
       </div>
-      Header
     </>
   )
 }
