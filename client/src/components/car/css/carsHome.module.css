@@ -6,27 +6,99 @@
 
     .carsHomeBoxLeft{
         background-color: red;
-        width: 25%;
+        color: white;
+        width: 24%;
         height: 400px;
         float: left;
         padding: 1% 0%;
         border-radius: 10px 0px 0px 10px;
     }
+        .carsHomeBoxLeftCarCategory{
+            width: 70%;
+            margin: 5% 15%;
+        }
+        .carsHomeBoxLeftCarCategory button{
+            background-color: rgb(0, 47, 177);
+            color: white;
+            width: 40%;
+            padding: 3% 0%;
+            margin: 0% 5%;
+            text-align: center;
+            border-radius: 2px;
+            border: 2px solid white;
+            border-top: 0;
+            border-left: 0;
+        }
+        .carsHomeBoxLeftCarCategory button:hover{
+            border: 2px solid rgb(100, 105, 255);
+            border-top: 0;
+            border-left: 0;
+        }
+        .carsHomeBoxLeftCarOptions{
+            width: 70%;
+            margin: 5% 15%;
+            text-align: center;
+        }
+
+        .carsHomeBoxLeftCarOptions button{
+            background-color: white;
+            color: rgb(0, 47, 177);
+            width: 80%;
+            margin: 5% 10%;
+            padding: 4% 0%;
+            text-align: center;
+            font-weight: 600;
+            border: 3px solid rgb(0, 47, 177);
+            border-top: 0;
+            border-left: 0;
+        }
+        .carsHomeBoxLeftCarOptions button:hover{
+            color: black;
+            border: 3px solid black;
+            border-top: 0;
+            border-left: 0;
+        }
+
 
     .carsHomeBoxMid{
-        background-color: white;
-        width: 50%;   
+        width: 45%;   
         height: 400px;     
         float: left;
-        padding: 1% 0%;
-
+        padding: 1% 1%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .carsHomeBoxMid img{
+        width: 100%;
     }
 
     .carsHomeBoxRight{
         background-color: red;
-        width: 25%;  
+        width: 29%;  
         height: 400px;      
         float: left;
         padding: 1% 0%;
         border-radius: 0px 10px 10px 0px;
     }
+        .carsHomeBoxRightContent{
+            width:80%;
+            margin: 5% 10% 0%;
+            font-weight: 600;
+            text-align: left;
+        }
+        .carsHomeBoxRightDivContent{
+            margin: 0% 0% 4%;
+        }
+        .carsHomeBoxRightDivContent h6{
+            background-color: blue;
+            color: white;
+            width: 50%;
+            padding: 1% 10%
+        }
+        .carsHomeBoxRightDivContent h5{
+            background-color: white;
+            color: black;
+            padding: 1% 10%;
+            font-weight: 500;
+        }

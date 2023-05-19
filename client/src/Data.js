@@ -51,17 +51,17 @@ export const userData = [
 export const carData = [
     {
         _id: '1CD45CDF09L31',
-        carName: 'Harrier',
+        carName: 'Tata Harrier',
         carModel: 'XE',
         carCompany: 'Tata',
         carPicture: [
-            'https://cars.tatamotors.com/images/kaziranga/range/harrier.png',
-            'https://images.carandbike.com/car-images/colors/tata/harrier/tata-harrier-atlas-black.png?v=1586485028'
+            require('./components/car/img/harrier1.png'),
+            require('./components/car/img/harrier2.png'),
         ],
         carCategory: 'SUV',
         carEngine: '1956 cc',
         carMileage: '13.1 to 16.35 kmpl',
-        carSeatCapacity: [5],
+        carSeatCapacity: 5,
         carFuelType: 'Disel',
         carTransmission: 'Automatic',
         rentalPriceCharge: '12.5₹/km',
@@ -69,7 +69,7 @@ export const carData = [
     },
     {
         _id: '1CD45CDF09L32',
-        carName: 'Scorpio N',
+        carName: 'Mahindra Scorpio N',
         carModel: 'Z2',
         carCompany: 'Mahindra',
         carPicture: [
@@ -78,7 +78,7 @@ export const carData = [
         carCategory: 'SUV',
         carEngine: '2198 cc',
         carMileage: '14.6 to 16.35 kmpl',
-        carSeatCapacity: [6,7],
+        carSeatCapacity: 7,
         carFuelType: 'Disel',
         carTransmission: 'Automatic',
         rentalPriceCharge: '12₹/km',
@@ -104,7 +104,7 @@ export const carData = [
     },
     {
         _id: '1CD45CDF09L34',
-        carName: 'Thar',
+        carName: 'Mahindra Thar',
         carModel: 'AX(O)',
         carCompany: 'Mahindra',
         carPicture: [
@@ -114,7 +114,7 @@ export const carData = [
         carCategory: 'SUV',
         carEngine: '2184 cc',
         carMileage: '11.6 to 15.7 kmpl',
-        carSeatCapacity: [4],
+        carSeatCapacity: 4,
         carFuelType: 'Disel',
         carTransmission: 'Manual',
         rentalPriceCharge: '14.5₹/km',
@@ -122,7 +122,7 @@ export const carData = [
     },
     {
         _id: '1CD45CDF09L35',
-        carName: 'Tigor',
+        carName: 'Tata Tigor',
         carModel: 'XM',
         carCompany: 'Tata',
         carPicture: [
@@ -132,7 +132,7 @@ export const carData = [
         carCategory: 'Sedan',
         carEngine: '1199 cc',
         carMileage: '19.1 to 20.35 kmpl',
-        carSeatCapacity: [5],
+        carSeatCapacity: 5,
         carFuelType: 'Petrol',
         carTransmission: 'Automatic',
         rentalPriceCharge: '10₹/km',
@@ -140,7 +140,7 @@ export const carData = [
     },
     {
         _id: '1CD45CDF09L36',
-        carName: 'Verna',
+        carName: 'Hyundai Verna',
         carModel: 'SX',
         carCompany: 'Hyundai',
         carPicture: [
@@ -169,7 +169,7 @@ export const carData = [
         carCategory: 'Sedan',
         carEngine: '1998 cc',
         carMileage: '13.5 to 17.1 kmpl',
-        carSeatCapacity: [5],
+        carSeatCapacity: 5,
         carFuelType: 'Petrol',
         carTransmission: 'Automatic',
         rentalPriceCharge: '15₹/km',

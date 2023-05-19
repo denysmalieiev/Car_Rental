@@ -1,0 +1,10 @@
+.aboutContainer{
+    width:67%;
+    height: 400px;
+    margin: 0% 10%;
+    padding: 3% 5%;
+    border-radius: 5px;
+}
+.aboutContainer h2{
+    color: red;
+}
