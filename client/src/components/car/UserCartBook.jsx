@@ -1,33 +1,39 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import DataContext from '../../DataContext';
-import userCartBookCSS from './css/UserCartBook.module.css';
 import ContainerCSS from '../css/container.module.css';
+import userCartBookCSS from './css/UserCartBook.module.css';
+
 
 const CarDetail = () => {
-  const carContect = useContext(DataContext);
+  const carContext = useContext(DataContext);
   const navigate = useNavigate()
   const params = useParams()
   const [car, setCar] = useState()
   const [selectVal, setSelectVal] = useState([]);
 
   useEffect(()=>{
-    const fetchCar = carContect.carsData.filter((data)=>{
+    const fetchCar = carContext.carsData.filter((data)=>{
       if(params.id===data._id)
       return data
     })
     setCar(fetchCar[0])
   }, [])
-  console.log(parseInt(selectVal))
 
   function handleSelectChange(e) {
     e.preventDefault()
     setSelectVal(e.target.value.split(' ')[0]);
+    // onChange={handleSelectChange}
   }
 
-  function handlePrcedForBooking(e, id, range, price){
+  function handleProceedForBooking(e, id, range, price){
     e.preventDefault()
-    navigate(`/car/rent/payment/${id}/${range}/${price}`)
+    var tempCar = car;
+    tempCar.tripPrice = price;
+    tempCar.tripRange = parseInt(range);
+    setCar(tempCar)
+    carContext.setCarForBooking(car)
+    navigate(`/car/rent/payment`)
   }
 
 
@@ -58,6 +64,14 @@ const CarDetail = () => {
               <option value={'800 km'}>800 km</option>
               <option value={'900 km'}>900 km</option>
               <option value={'1000 km'}>1000 km</option>
+            </select>&nbsp;&nbsp;&nbsp;
+            <label htmlFor="RentalCity">Choose City:</label>
+            <select id="RentalCity">
+              <option value={'Lucknow'}>Lucknow</option>
+              <option value={'Kanpur'}>Kanpur</option>
+              <option value={'Delhi'}>Delhi</option>
+              <option value={'Pune'}>Pune</option>
+              <option value={'Bangalore'}>Bangalore</option>
             </select>
           </div>
           <div className={userCartBookCSS.cartBookingDetailRightPrice}>
@@ -65,7 +79,7 @@ const CarDetail = () => {
               <p>{car? <>{selectVal * car.rentalPrice +'₹'}</>:<>-</>}</p>
             </div>
             <div className={userCartBookCSS.cartBookingDetailRightButton}>
-              <button onClick={(e)=>handlePrcedForBooking(e, car._id, selectVal, car.rentalPrice)}>Book Now</button>
+              <button onClick={(e)=>handleProceedForBooking(e, car._id, selectVal, car.rentalPrice)}>Book Now</button>
             </div>
           </div>
           <h5>Note: 18₹/km charge is applicable for number of km (km*18₹/km) drove above 1000 km are applicable.</h5>

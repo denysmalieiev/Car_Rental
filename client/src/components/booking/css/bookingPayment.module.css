@@ -1,0 +1,160 @@
+.paymentBoxContainer{
+    width: 99%;
+    overflow: auto;
+    height: auto;
+    border: 2px solid rgb(168, 249, 255);
+    border-radius: 10px;
+}
+    .paymentBoxLeft{
+        width: 50%;
+        min-height: 450px;
+        height: auto;
+        overflow: auto;
+        float: left;
+    }
+        .paymentBoxLeftContent{
+            width: 100%;
+            text-align: center;
+        }
+            .paymentBoxLeftContent img{
+                width: 70%;
+                margin: 10% 15% 5%;
+            }
+    .paymentBoxRight{
+        width: 50%;
+        min-height: 450px;
+        height: auto;
+        overflow: auto;
+        float: left;
+    }
+        .paymentBoxRightContent{
+            width: 90%;
+            float: left;
+            margin: 5% 10% 5% 0%;
+        }
+            .paymentBoxRightContent hr{
+                width: 40%;
+                height: 4px;
+                background-color: red;
+                border: none;
+                border-radius: 5px;
+                margin: 1% 0% 3%;
+            }
+            .userBookingCarDetails{
+                display: flex;
+                background-color: rgb(219, 252, 253);
+                margin: 1% 0% 1%;
+            }
+                .userBookingCarDetails b{
+                    width: 20%;
+                    background-color: blue;
+                    color: white;
+                    font-weight: 500;
+                    padding: 0.5% 3%;
+                    border: none;
+                }
+                .userBookingCarDetails p{
+                    width: 68%;
+                    padding: 0.5% 3%;
+                    color: blue;
+                    font-weight: 300;
+                    border: none;
+                    border-radius: 5px;
+                }
+
+            .userPaymentCardDetails{
+                background-color: black;
+                background-image: linear-gradient(to bottom right, rgb(28, 8, 120), rgb(5, 2, 70));
+                color: white;
+                width: 60%;
+                min-height: 150px;
+                height: auto;
+                overflow: auto;
+                margin: 4% 10% 2%;
+                padding: 2% 10%;
+                border-radius: 15px;
+            }
+                .userPaymentCardDetails h3{
+                    margin: 0% 0% 2%;
+                }
+                .userPaymentCardInput{
+                    display: flex;
+                    margin: 2% 0% 4%;
+                }
+                    .userPaymentCardInput input{
+                        outline: none;
+                        border: none;
+                        text-align: center;
+                        padding: 1% 2%;
+                    }
+                .userPaymentCardDetails p{
+                    width: 15%;
+                    font-size: 0.8em;
+                    font-weight: 300;
+                }
+                    .userPaymentCardSecurityInput{
+                        display: flex;
+                        width: 100%;
+                        margin: 2% 0% 2%;
+                    }
+                        .paymentCardSecurityDiv{
+                            width: 70%;
+                            float: left;
+                        }
+                            .paymentCardSecurityDiv b{
+                                font-size: 0.8em;
+                                font-weight: 300;
+                            }
+                            .userPaymentCardSecurityInput input{
+                                width: 60%;
+                                outline: none;
+                                border: none;
+                                text-align: center;
+                                padding: 2% 1%;
+                                font-size: 0.9em;
+                            }
+
+                .sendPaymentOTPButton{
+                    background-color: red;
+                    color: white;
+                    padding: 0.5% 2%;
+                    margin: 3% 0% 1%;
+                    font-size: 0.8em;
+                    font-weight: 600;
+                    border: 1px solid rgb(217, 200, 89);
+                    border-top: 0;
+                    border-left: 0;
+                    border-radius: 3px;
+                }
+
+            .paymentProceedBox{
+                width: 80%;
+                margin: 5% 10%;
+            }
+                .paymentProceedBox input{
+                    background-color:rgb(225, 238, 249);
+                    color: rgb(116, 10, 10);
+                    width: 15%;
+                    border: none;
+                    outline: none;
+                    padding: 1% 3%;
+                    margin: 0% 10% 0% 0%;
+                    font-size: 1.15em;
+                    text-align: center;  
+                }
+                .paymentProceedBox button{
+                    background-color: rgb(16, 16, 113);
+                    color: white;
+                    padding: 2% 6%;
+                    font-weight: 600;
+                    border: 2px solid rgb(217, 200, 89);
+                    border-top: 0;
+                    border-left: 0;
+                    border-radius: 3px;
+                }
+                    .paymentProceedBox button:hover{
+                        color: yellow;
+                        border: 2px solid rgb(93, 91, 79);
+                        border-top: 0;
+                        border-left: 0;
+                    }

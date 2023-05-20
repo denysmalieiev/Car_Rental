@@ -36,6 +36,7 @@ const PageRoutes = () => {
                 <Route path='/about' element={<About/>} />
                 <Route path='/gallery' element={<Gallery/>} />
                 {/* Admin */}
+                
                 <Route exact path='/admin' element={<AdminDashBoard/>} />
                 <Route exact path='/admin/orders' element={<AdminCarOrders/>} />
                 <Route exact path='/admin/order/action' element={<AdminOrderAction/>} />
@@ -54,7 +55,7 @@ const PageRoutes = () => {
 
                 {/* Booking */}
                 <Route exact path='/car/bo' element={<CarBooking/>} />
-                <Route exact path='/car/rent/payment/:id/:range/:price' element={<BookingPayment/>} />
+                <Route exact path='/car/rent/payment' element={<BookingPayment/>} />
                 <Route exact path='/cars/booking/history' element={<BookingHistory/>} />
             </Routes>
         </div>

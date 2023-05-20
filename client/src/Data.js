@@ -1,11 +1,19 @@
-export const status = false
+export const authenticated = false
+
+export const carToBeRent = false
+
+export const carRented = false
+
+export const carBookings = false
+
+export const paymentHistory = false
 
 export const userData = [
     {
         _id: '1UD45CDF09K45',
         firstName: 'Rohan',
         lastName: 'Kumar',
-        email: 'rohank1@gmail.com',
+        email: 'user1@gmail.com',
         password: '123456',
         address: '1B, Vijay khand 1',
         city: 'Lucknow',
@@ -20,7 +28,7 @@ export const userData = [
         _id: '1UD45CDF09K46',
         firstName: 'John',
         lastName: 'White',
-        email: 'wjohn1@gmail.com',
+        email: 'user21@gmail.com',
         password: '123456',
         address: '119A swaroop nagar, sector 4',
         city: 'Kanpur',
@@ -35,7 +43,7 @@ export const userData = [
         _id: '1UD45CDF09K47',
         firstName: 'Ishaan',
         lastName: 'Sharma',
-        email: 'ishsharma@gmail.com',
+        email: 'user3@gmail.com',
         password: '123456',
         address: '234, Badarka',
         city: 'Azamgarh',
@@ -45,6 +53,54 @@ export const userData = [
         contact: 1233919401,
         profilePicture: 'https://i.pinimg.com/originals/59/fd/1f/59fd1ff8c1e5619f8e96121c194b3c20.jpg',
         occupation: 'Engineer',
+    },
+]
+
+export const cityAvailable =[
+    {
+        _id: '1UD45CDF0CY21',
+        address: '2b, Car-Rental Office, Gomati Nagar block-B sector-F',
+        city: 'Lucknow',
+        state: 'Uttar Pradesh',
+        country: 'India',
+        pin: 226001,
+        contact: 3452817321,
+    },
+    {
+        _id: '1UD45CDF0CY22',
+        address: '112, Car-Rental Office, Jhakarkati block-2D sector-B',
+        city: 'Kanpur',
+        state: 'Uttar Pradesh',
+        country: 'India',
+        pin: 236001,
+        contact: 3452817332,
+    },
+    {
+        _id: '1UD45CDF0CY23',
+        address: '11B, Car-Rental Office, Canaught Palace block-3N sector-Q',
+        city: 'New Delhi',
+        state: 'Delhi',
+        country: 'India',
+        pin: 116001,
+        contact: 3452817343,
+    },
+    {
+        _id: '1UD45CDF0CY24',
+        address: '123, Car-Rental Office, Indira Nagar block-5E sector-G',
+        city: 'Bangalore',
+        state: 'Karnataka',
+        country: 'India',
+        pin: 336001,
+        contact: 3452817355,
+    },
+    {
+        _id: '1UD45CDF0CY25',
+        address: '23-B, Car-Rental Office, Bandra block-8H sector-B',
+        city: 'Mumbai',
+        state: 'Maharastra',
+        country: 'India',
+        pin: 146001,
+        contact: 3452817773,
     },
 ]
 

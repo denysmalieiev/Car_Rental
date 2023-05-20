@@ -22,7 +22,6 @@ const CarsHome = () => {
       if(id===data._id)
       return data
     })
-    console.log(fetchCar[0])
     setCar(fetchCar[0])
   }
 
