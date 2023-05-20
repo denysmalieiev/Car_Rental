@@ -48,8 +48,14 @@ const CarDetail = () => {
     tempCar.tripRange = parseInt(range);
     tempCar.citySelect = city;
     setCar(tempCar)
-    carContext.setCarForBooking(car)
-    navigate(`/car/rent/payment`)
+    if(carContext.isAuthenticated===true){
+      carContext.setCarForBooking(car)
+      navigate(`/car/rent/payment`)
+    } else{
+      carContext.setCarForBooking(car)
+      alert('You are not logged in, Please login.')
+      navigate(`/user/signin`)
+    }
   }
 
   return (
@@ -106,7 +112,7 @@ const CarDetail = () => {
               <button onClick={(e)=>handleProceedForBooking(e, car._id, selectRangeVal, selectCityVal, car.rentalPrice)}>Book Now</button>
             </div>
           </div>
-          <h5>Note: 18₹/km charge is applicable for number of km (km*18₹/km) drove above 1000 km are applicable.</h5>
+          <h5>Note: Car's per/km charge is applicable for number of km's (price/km) drove above selected range.</h5>
         </div>
       </div>
     </div>

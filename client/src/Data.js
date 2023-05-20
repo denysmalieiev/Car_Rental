@@ -28,7 +28,7 @@ export const userData = [
         _id: '1UD45CDF09K46',
         firstName: 'John',
         lastName: 'White',
-        email: 'user21@gmail.com',
+        email: 'user2@gmail.com',
         password: '123456',
         address: '119A swaroop nagar, sector 4',
         city: 'Kanpur',

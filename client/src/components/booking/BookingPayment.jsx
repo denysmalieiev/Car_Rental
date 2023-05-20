@@ -11,7 +11,6 @@ const BookingPayment = () => {
 
   return (
     <div className={ContainerCSS.carRentalPageContainer}>
-
       <div className={bookingPaymentCSS.paymentBoxContainer}>
         {/* Left Start */}
         <div className={bookingPaymentCSS.paymentBoxLeft}>
@@ -31,8 +30,8 @@ const BookingPayment = () => {
               { carContext.carToRent
                 ? 
                   <>
-                    <h2>Rental Price: ₹{carContext.carToRent.tripRange * carContext.carToRent.rentalPrice}</h2>
-                    <p style={{width: '90%', margin: '2% 5%'}}> <b>Car Pick up Address: </b>
+                    <h2>Rental Price: ₹{carContext.carToRent.tripRange * carContext.carToRent.rentalPrice}, Range: {carContext.carToRent.tripRange}</h2>
+                    <p style={{width: '84%', margin: '2% 8%'}}> <b>Car Pick up Address: </b>
                       { carContext.carToRent.citySelect[0].address+' '+carContext.carToRent.citySelect[0].city+', '+carContext.carToRent.citySelect[0].state
                        +' '+carContext.carToRent.citySelect[0].country+', '+carContext.carToRent.citySelect[0].pin+", Contact: "+carContext.carToRent.citySelect[0].contact }
                     </p>
@@ -135,16 +134,16 @@ const BookingPayment = () => {
               {/* Expire and CVV */}
               <div className={bookingPaymentCSS.userPaymentCardSecurityInput}>
                 <div className={bookingPaymentCSS.paymentCardSecurityDiv}>
-                  <b>Expire </b>
+                  <b>Expire&nbsp;&nbsp;&nbsp;</b>
                   <input style={{padding: '0.5% 2%'}} type='date' placeholder='00/00/0000'/>
                 </div>
                 <div className={bookingPaymentCSS.paymentCardSecurityDiv} style={{width: '40%'}}>
-                  <b>CVV </b>
+                  <b>CVV&nbsp;&nbsp;&nbsp;</b>
                   <input type='number' placeholder='000'/></div>
               </div>
 
               {/* OTP Button */}
-              <button className={bookingPaymentCSS.sendPaymentOTPButton}>Send OTP</button>
+              <button className={bookingPaymentCSS.sendPaymentOTPButton}>Get OTP</button>
             </div>
             {/* Payment Card End */}
 

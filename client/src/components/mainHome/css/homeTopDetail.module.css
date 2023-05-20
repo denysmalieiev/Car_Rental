@@ -41,12 +41,12 @@
         min-height: 550px;
         float: left;
         display: flex;
-        justify-content: center;
+        justify-content:flex-start;
         align-items: center;
     }
         .homeTopBoxRight img{
-            width: 90%;
+            width: 80%;
             display: flex;
-            justify-content: center;
+            justify-content:center;
             align-items: center;
         }
