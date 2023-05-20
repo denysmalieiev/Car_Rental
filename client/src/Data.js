@@ -56,7 +56,7 @@ export const userData = [
     },
 ]
 
-export const cityAvailable =[
+export const cityOptionAvailable =[
     {
         _id: '1UD45CDF0CY21',
         address: '2b, Car-Rental Office, Gomati Nagar block-B sector-F',

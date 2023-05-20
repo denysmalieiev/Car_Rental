@@ -10,7 +10,8 @@ const CarDetail = () => {
   const navigate = useNavigate()
   const params = useParams()
   const [car, setCar] = useState()
-  const [selectVal, setSelectVal] = useState([]);
+  const [selectRangeVal, setSelectRangeVal] = useState([]);
+  const [selectCityVal, setSelectCityVal] = useState([]);
 
   useEffect(()=>{
     const fetchCar = carContext.carsData.filter((data)=>{
@@ -20,22 +21,36 @@ const CarDetail = () => {
     setCar(fetchCar[0])
   }, [])
 
-  function handleSelectChange(e) {
+  function handleSelectChangeRange(e) {
     e.preventDefault()
-    setSelectVal(e.target.value.split(' ')[0]);
-    // onChange={handleSelectChange}
+    setSelectRangeVal(e.target.value.split(' ')[0]);
   }
 
-  function handleProceedForBooking(e, id, range, price){
+  function handleSelectChangeCity(e) {
     e.preventDefault()
+    var citySel = e.target.value;
+    const tempCity = carContext.cityAvailable.filter((data)=>{
+      if(data.city.toString().toLowerCase()===citySel.toString().toLowerCase()){
+        return data
+      }
+    })
+    setSelectCityVal(tempCity);
+  }
+
+  function handleProceedForBooking(e, id, range, city, price){
+    e.preventDefault()
+    if(selectCityVal.length===0 || selectRangeVal.length===0){
+      alert('Please select range and city')
+      return
+    }
     var tempCar = car;
     tempCar.tripPrice = price;
     tempCar.tripRange = parseInt(range);
+    tempCar.citySelect = city;
     setCar(tempCar)
     carContext.setCarForBooking(car)
     navigate(`/car/rent/payment`)
   }
-
 
   return (
     <div className={ContainerCSS.carRentalPageContainer}>
@@ -53,7 +68,8 @@ const CarDetail = () => {
           {car? <div className={userCartBookCSS.cartBookingDetailRight}><p>Rental Price per km</p><h3>{car.rentalPriceCharge}</h3></div>:<>-</>}
           <div className={userCartBookCSS.cartBookingRightOption}>
             <label htmlFor="rentRange">Choose Range:</label>
-            <select id="rentRange" onChange={handleSelectChange}>
+            <select id="rentRange" onChange={handleSelectChangeRange} required>
+              <option value={'0 km'} default>0 km</option>
               <option value={'100 km'}>100 km</option>
               <option value={'200 km'}>200 km</option>
               <option value={'300 km'}>300 km</option>
@@ -65,21 +81,29 @@ const CarDetail = () => {
               <option value={'900 km'}>900 km</option>
               <option value={'1000 km'}>1000 km</option>
             </select>&nbsp;&nbsp;&nbsp;
+
             <label htmlFor="RentalCity">Choose City:</label>
-            <select id="RentalCity">
-              <option value={'Lucknow'}>Lucknow</option>
-              <option value={'Kanpur'}>Kanpur</option>
-              <option value={'Delhi'}>Delhi</option>
-              <option value={'Pune'}>Pune</option>
-              <option value={'Bangalore'}>Bangalore</option>
+            <select id="RentalCity" onChange={handleSelectChangeCity} required>
+              { carContext.cityAvailable
+                ? 
+                  <>
+                  <option value={'City'} default>City</option>
+                  { carContext.cityAvailable.map((data)=>{
+                    return (
+                      <option key={data._id} value={data.city}>{data.city}</option>
+                    )
+                  }) }
+                  </>
+                : <></>
+              }
             </select>
           </div>
           <div className={userCartBookCSS.cartBookingDetailRightPrice}>
             <div className={userCartBookCSS.cartBookingDetailRightTextArea}>
-              <p>{car? <>{selectVal * car.rentalPrice +'₹'}</>:<>-</>}</p>
+              <p>{car? <>{selectRangeVal * car.rentalPrice +'₹'}</>:<>-</>}</p>
             </div>
             <div className={userCartBookCSS.cartBookingDetailRightButton}>
-              <button onClick={(e)=>handleProceedForBooking(e, car._id, selectVal, car.rentalPrice)}>Book Now</button>
+              <button onClick={(e)=>handleProceedForBooking(e, car._id, selectRangeVal, selectCityVal, car.rentalPrice)}>Book Now</button>
             </div>
           </div>
           <h5>Note: 18₹/km charge is applicable for number of km (km*18₹/km) drove above 1000 km are applicable.</h5>

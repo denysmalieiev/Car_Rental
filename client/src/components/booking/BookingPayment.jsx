@@ -32,8 +32,9 @@ const BookingPayment = () => {
                 ? 
                   <>
                     <h2>Rental Price: ₹{carContext.carToRent.tripRange * carContext.carToRent.rentalPrice}</h2>
-                    <p> <b>Car: </b>
-                      { carContext.carToRent.carName+' '+carContext.carToRent.carCategory+', '+carContext.carToRent.carSeatCapacity }
+                    <p style={{width: '90%', margin: '2% 5%'}}> <b>Car Pick up Address: </b>
+                      { carContext.carToRent.citySelect[0].address+' '+carContext.carToRent.citySelect[0].city+', '+carContext.carToRent.citySelect[0].state
+                       +' '+carContext.carToRent.citySelect[0].country+', '+carContext.carToRent.citySelect[0].pin+", Contact: "+carContext.carToRent.citySelect[0].contact }
                     </p>
                     <p> <b>Car: </b>
                       { carContext.carToRent.carName+' '+carContext.carToRent.carCategory+', '+carContext.carToRent.carSeatCapacity }

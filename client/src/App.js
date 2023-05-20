@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import carDataContext from './DataContext';
-import { authenticated, carToBeRent, carRented, carBookings, paymentHistory, userData, carData} from './Data';
+import { authenticated, carToBeRent, carRented, carBookings, paymentHistory, userData, cityOptionAvailable, carData} from './Data';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import PageRoutes from './components/mainHome/PageRoutes';
@@ -14,6 +14,7 @@ function App() {
   const [paymentsHistory, setPaymentsHistory] = useState(paymentHistory); 
   const [users, setUsers] = useState(userData);
   const [user, setUser] = useState(userData[0]);
+  const [cityAvailable, setCityAvailable] =useState(cityOptionAvailable)
   const [carsData, setCarsData] = useState(carData);
 
   function login(email, password){
@@ -32,7 +33,7 @@ function App() {
 
   return (
     <div className="App">
-      <carDataContext.Provider value={{isAuthenticated, carToRent, rentedCar, carBookingHistory, paymentsHistory, user, users, carsData, 
+      <carDataContext.Provider value={{isAuthenticated, carToRent, rentedCar, carBookingHistory, paymentsHistory, user, users, cityAvailable, carsData, 
         login, logout, setCarForBooking }}>
         <Header/>
         <PageRoutes/>
