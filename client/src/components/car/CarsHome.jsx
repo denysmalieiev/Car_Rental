@@ -36,7 +36,6 @@ const CarsHome = () => {
       alert('Please login to proceed')
       navigate('/user/signin')
     } else {
-      alert(id)
       dispatch(carRental_Get_Single_car(id))
       navigate(`/car/booking/${id}`)
     }

@@ -7,7 +7,10 @@ import userCartBookCSS from './css/UserCartBook.module.css';
 
 
 const CarDetail = () => {
+
+  const { isAuthenticated } = useSelector(state=> state.auth);
   const { cars, loading, error } = useSelector(state=> state.cars);
+
   // const { car } = useSelector(state=> state.car);
   const carContext = useContext(DataContext);
   const navigate = useNavigate()
@@ -16,7 +19,6 @@ const CarDetail = () => {
   const [selectRangeVal, setSelectRangeVal] = useState([]);
   const [selectCityVal, setSelectCityVal] = useState([]);
   
-  console.log(cars)
   
   useEffect(()=>{
     const fetchCar = cars.filter((data)=>{
@@ -53,7 +55,7 @@ const CarDetail = () => {
     tempCar.tripRange = parseInt(range);
     tempCar.citySelect = city;
     setCar(tempCar)
-    if(carContext.isAuth===true){
+    if(isAuthenticated){
       carContext.setCarForBooking(car)
       navigate(`/car/rent/payment`)
     } else{
@@ -111,7 +113,7 @@ const CarDetail = () => {
           </div>
           <div className={userCartBookCSS.cartBookingDetailRightPrice}>
             <div className={userCartBookCSS.cartBookingDetailRightTextArea}>
-              <p>{car? <>{selectRangeVal * car.rentalPrice +'₹'}</>:<>-</>}</p>
+              <p>{car? <>{selectRangeVal * car.rentalPriceCharge +'₹'}</>:<>-</>}</p>
             </div>
             <div className={userCartBookCSS.cartBookingDetailRightButton}>
               <button onClick={(e)=>handleProceedForBooking(e, car._id, selectRangeVal, selectCityVal, car.rentalPrice)}>Book Now</button>
