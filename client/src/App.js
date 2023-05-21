@@ -63,6 +63,10 @@ function App() {
     setCarToRent(data)
   } 
 
+  function handlePaymentCompletion(){
+    
+  }
+
   useEffect(()=>{
     alert('Use any email: user1@gmail.com, user2@gmail.com, user3@gmail.com: 123456 ||| Password: 123456')
   },[])

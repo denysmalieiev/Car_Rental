@@ -32,7 +32,7 @@ const CarsHome = () => {
   }
 
   return (
-    <div className={containerCSS.carRentalPageContainer}>
+    <div className={containerCSS.carRentalPageContainer} id='carsN'>
       <div className={carsHomeCSS.carsHomeBox}>
         <div className={carsHomeCSS.carsHomeBoxLeft}>
           <div className={carsHomeCSS.carsHomeBoxLeftCarCategory}>

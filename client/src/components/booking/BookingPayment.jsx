@@ -151,7 +151,7 @@ const BookingPayment = () => {
             <div className={bookingPaymentCSS.paymentProceedBox}>
               <label htmlFor='payOtp'>OTP&nbsp;&nbsp;</label>
               <input type='number' id='payOtp' placeholder='0000' display="none"/>
-              <button>Pay</button>
+              <button onClick={(e)=>carContext.handlePaymentCompletion()}>Pay</button>
             </div>
             
           </div>

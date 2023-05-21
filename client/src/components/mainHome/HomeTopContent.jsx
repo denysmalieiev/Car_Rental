@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import homeTopDetailCSS from './css/homeTopDetail.module.css';
-import homeCarImage from './img/homeCarImage.png'
+import homeCarImage from './img/homeCarImage.png';
+import { AiOutlineArrowDown } from 'react-icons/ai';
 
 const HomeTopContent = () => {
   return (
@@ -11,7 +13,7 @@ const HomeTopContent = () => {
             <h1>Self Drive</h1><br/>
             <h2>Your next advanture is just a click away. <br/>To start, simply browse the car and pick the one that's right for you.</h2>
             <br/>
-            <button><h3>Book Now</h3></button>
+            <h1 className={homeTopDetailCSS.headingH1Style}><AiOutlineArrowDown/></h1>
           </div>
         </div>
       </div>
