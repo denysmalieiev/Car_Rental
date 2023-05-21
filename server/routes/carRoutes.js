@@ -10,8 +10,8 @@ const router = express.Router();
 
 // Cars routes
 router.route('/register').post(authToken.isUserAuthenticated, carRental_Car_Registration);
-router.route('/all').get(authToken.isUserAuthenticated, carRental_get_All_Cars);
-router.route('/:id').get(authToken.isUserAuthenticated, carRental_get_Single_Car);
+router.route('/all').get(carRental_get_All_Cars);
+router.route('/:id').get(carRental_get_Single_Car);
 
 
 export default router;

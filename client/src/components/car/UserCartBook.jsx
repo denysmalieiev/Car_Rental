@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useSelector} from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import DataContext from '../../DataContext';
 import ContainerCSS from '../css/container.module.css';
@@ -6,15 +7,19 @@ import userCartBookCSS from './css/UserCartBook.module.css';
 
 
 const CarDetail = () => {
+  const { cars, loading, error } = useSelector(state=> state.cars);
+  // const { car } = useSelector(state=> state.car);
   const carContext = useContext(DataContext);
   const navigate = useNavigate()
   const params = useParams()
   const [car, setCar] = useState()
   const [selectRangeVal, setSelectRangeVal] = useState([]);
   const [selectCityVal, setSelectCityVal] = useState([]);
-
+  
+  console.log(cars)
+  
   useEffect(()=>{
-    const fetchCar = carContext.carsData.filter((data)=>{
+    const fetchCar = cars.filter((data)=>{
       if(params.id===data._id)
       return data
     })
@@ -48,7 +53,7 @@ const CarDetail = () => {
     tempCar.tripRange = parseInt(range);
     tempCar.citySelect = city;
     setCar(tempCar)
-    if(carContext.isAuthenticated===true){
+    if(carContext.isAuth===true){
       carContext.setCarForBooking(car)
       navigate(`/car/rent/payment`)
     } else{

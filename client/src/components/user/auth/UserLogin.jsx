@@ -1,12 +1,19 @@
-import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react';
+import {Link, useNavigate} from 'react-router-dom';
+import { useDispatch, useSelector} from 'react-redux';
+import {carRental_Sign_In, carRental_Load_User, clearErrors} from '../../../utils/actions/UserAction';
 import DataContext from '../../../DataContext';
 import carContainerCSS from  '../../css/container.module.css';
 import userAuthCSS from './css/userAuth.module.css';
 
 const UserLogin = () => {
   const carContext = useContext(DataContext);
-  const navigate = useNavigate()
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const {error, loading, isAuthenticated } =  useSelector((state)=> state.auth);
+  const { user } =  useSelector((state)=> state.user);
+
   const [formData, setFromData] = useState({
     email: '',
     password: '',
@@ -19,16 +26,18 @@ const UserLogin = () => {
       [e.target.name]: e.target.value
     })
   }
-  const handleSubmitAuth = (e, formData)=>{
+  const handleSubmitAuth = async (e, formData)=>{
     e.preventDefault()
-    const authStatus = carContext.login(formData)
-    if(authStatus){
-      navigate('/')
-    } else{
-      navigate('/user/signin')
-    }
-    // console.log(authStatus)
+    // const authStatus = carContext.login(formData)
+    dispatch(carRental_Sign_In(formData.email, formData.password)).then(()=>dispatch(carRental_Load_User))
+    .then(()=> navigate('/'))
   }
+
+  useEffect(()=>{
+    if(error){
+      dispatch(clearErrors)
+    }
+  },[dispatch, error, isAuthenticated, loading])
 
   return (
     <div className={carContainerCSS.carRentalPageContainer}>

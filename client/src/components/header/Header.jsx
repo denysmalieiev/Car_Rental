@@ -1,10 +1,51 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector} from 'react-redux';
+import { carRental_Get_All_Cars, carRental_Get_Single_car, clearError } from '../../utils/actions/CarsAction.js';
+import { carRental_Sign_Out, clearErrors} from '../../utils/actions/UserAction.js';
 import DataContext from '../../DataContext';
 import headerCSS from './css/header.module.css';
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+  const { isAuthenticated } = useSelector(state=> state.auth);
+  const { cars, loading, error } = useSelector(state=> state.cars);
   const carContext = useContext(DataContext);
+
+  const handleLogout =(e) =>{
+    e.preventDefault();
+    alert('Logout')
+    dispatch(carRental_Sign_Out).then(()=>navigate('/'))
+  }
+
+  useEffect(()=>{
+    if(!isAuthenticated){
+      <Navigate to='/'/>
+    }
+  }, [isAuthenticated])
+
+  useEffect(()=>{
+    if(error){
+      dispatch(clearError)
+    }
+
+  }, [dispatch])
+
+  
+  useEffect(()=>{
+    if(!cars || Object.keys(cars).length===0){
+      dispatch(carRental_Get_All_Cars)
+    }
+
+  }, [dispatch])
+
+  useEffect(()=>{
+    if(error){
+      dispatch(clearErrors)
+    }
+  },[dispatch, error, isAuthenticated, loading])
 
   return (
     <>
@@ -16,10 +57,9 @@ const Header = () => {
           <div className={headerCSS.navBarWebNavigationLeft}>
             <ul>
               <li><p><Link to='/'>Home</Link></p></li>
-              <li><p><Link to='/about'>About</Link></p></li>
               <li><p><Link to='/gallery'>Gallery</Link></p></li>
               <li><p><Link to='/cars'>Cars</Link></p></li>
-              { carContext.isAuthenticated ===true
+              { isAuthenticated
                 ? <><li><p><Link to='/car/rent/payment'>Cart</Link></p></li></>
                 : <></>
               }
@@ -27,11 +67,11 @@ const Header = () => {
           </div>
           <div className={headerCSS.navBarWebNavigationRight}>
             <ul>
-              { carContext.isAuthenticated ===true
+              { isAuthenticated
                 ? 
                   <>
                     <li><p><Link to='/user/profile'>^</Link></p></li>
-                    <li><p style={{color: 'white'}} onClick={carContext.logout}><Link>Logout</Link></p></li>
+                    <li><p style={{color: 'white'}} onClick={handleLogout}><Link>Logout</Link></p></li>
                   </>
                 : 
                   <>

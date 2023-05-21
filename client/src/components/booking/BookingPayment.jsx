@@ -1,13 +1,26 @@
-import React, { useContext } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useContext } from 'react';
+import { useNavigate, Link, useParams } from 'react-router-dom';
+import { useDispatch, useSelector} from 'react-redux';
+import { clearErrors } from '../../utils/actions/UserAction';
+
 import DataContext from '../../DataContext';
 import ContainerCSS from '../css/container.module.css';
 import bookingPaymentCSS from './css/bookingPayment.module.css';
 
 const BookingPayment = () => {
+
+  const dispatch = useDispatch();
+  const { user, loading, error } =  useSelector((state)=> state.user);
+
   const carContext = useContext(DataContext);
   const navigate = useNavigate()
   const params = useParams()
+
+  useEffect(()=>{
+    if(error){
+      dispatch(clearErrors)
+    }
+  },[dispatch, user, error, loading])
 
   return (
     <div className={ContainerCSS.carRentalPageContainer}>
@@ -52,9 +65,9 @@ const BookingPayment = () => {
           <div className={bookingPaymentCSS.paymentBoxRightContent}>
             {/* User Name */}
             <h2>
-              { carContext.user 
+              {user 
                 ?
-                  <>{ carContext.user.firstName+ ' ' + carContext.user.lastName }</>
+                  <>{ user.firstName+ ' ' + user.lastName }</>
                 :
                   <>-</>
               }
@@ -64,9 +77,9 @@ const BookingPayment = () => {
             <div className={bookingPaymentCSS.userBookingCarDetails}>
               <b>Address</b>
               <p>
-                { carContext.user 
+                { user 
                   ?
-                    <>{ carContext.user.address }</>
+                    <>{ user.address }</>
                   :
                     <>-</>
                 }
@@ -76,9 +89,9 @@ const BookingPayment = () => {
             <div className={bookingPaymentCSS.userBookingCarDetails}>
               <b>Address</b>
               <p>
-                { carContext.user 
+                { user 
                   ?
-                    <> { carContext.user.city } </>
+                    <> { user.city } </>
                   :
                     <>-</>
                 }
@@ -88,9 +101,9 @@ const BookingPayment = () => {
             <div className={bookingPaymentCSS.userBookingCarDetails}>
               <b>State</b>
               <p>
-                { carContext.user 
+                { user 
                   ?
-                    <> { carContext.user.state } </>
+                    <> { user.state } </>
                   :
                     <>-</>
                 }
@@ -100,9 +113,9 @@ const BookingPayment = () => {
             <div className={bookingPaymentCSS.userBookingCarDetails}>
               <b>Country</b>
               <p>
-                { carContext.user 
+                { user 
                 ?
-                  <> { carContext.user.country } </>
+                  <> { user.country } </>
                 :
                   <>-</>
                 }
@@ -112,9 +125,9 @@ const BookingPayment = () => {
             {/* Payment Car Start */}
             <div className={bookingPaymentCSS.userPaymentCardDetails}>
               <h3>
-                { carContext.user 
+                { user 
                   ?
-                    <>{carContext.user.firstName+ ' ' + carContext.user.lastName}</>
+                    <>{user.firstName+ ' ' + user.lastName}</>
                   :
                     <>-</>
                 }
