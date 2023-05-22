@@ -14,7 +14,19 @@ const CarsHome = () => {
   // const { car } = useSelector(state=> state.car);
   // const carContect = useContext(DataContext);
   const [category, setCategory] = useState('SUV') // Sedan
-  const [carTa, setCarTa] = useState(cars[0])
+  const [carTa, setCarTa] = useState()
+
+  useEffect(()=>{
+    if(!cars){
+      console.log('No')
+    } else if( cars && Object.keys(cars).length>0){
+      setCarTa(cars[0])
+    } else {
+      navigate('/')
+    }
+  }, [])
+
+
 
   const handleCarCategoryFilter = (e, type) => {
     e.preventDefault()

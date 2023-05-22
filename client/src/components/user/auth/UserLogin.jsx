@@ -14,18 +14,19 @@ const UserLogin = () => {
   const {error, loading, isAuthenticated } =  useSelector((state)=> state.auth);
   const { user } =  useSelector((state)=> state.user);
 
-  const [formData, setFromData] = useState({
+  const [formData, setFormData] = useState({
     email: '',
     password: '',
   })
 
   const handleOnChangeValue = (e)=>{
     e.preventDefault()
-    setFromData({
+    setFormData({
       ...formData,
       [e.target.name]: e.target.value
     })
   }
+
   const handleSubmitAuth = async (e, formData)=>{
     e.preventDefault()
     // const authStatus = carContext.login(formData)

@@ -20,6 +20,8 @@ const UserProfileShow = () => {
   return (
     <div className={ContainerCSS.carRentalPageContainer}>
       <div className={userProfileCSS.userCardContainer}>
+      {loading? <></>
+      :<>
         <div className={userProfileCSS.userCardLeft}>
           <div className={userProfileCSS.userCardLeftContentTop}>
             {user? <><img src={user.profilePicture} alt='User Profile'/></>:<><img src='' alt='User Profile'/></>}
@@ -30,7 +32,7 @@ const UserProfileShow = () => {
         </div>
         <div className={userProfileCSS.userCardRight}>
           <div className={userProfileCSS.userCardRightBox}>
-            <h1>{user.firstName +" "+ user.lastName}</h1>
+            <h1>{user? <>{user.firstName +" "+ user.lastName}</>: <></>}</h1>
             <hr/>
 
             <div className={userProfileCSS.userCardRightDetails}>
@@ -75,7 +77,7 @@ const UserProfileShow = () => {
 
           </div>
         </div>
-
+      </>}
       </div>
     </div>
   )

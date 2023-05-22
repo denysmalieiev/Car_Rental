@@ -5,56 +5,67 @@ const carSchema = new mongoose.Schema(
     {
         carName: {
             type: String,
-            require: true,
+            required: true,
         },
         carModel: {
             type: String,
-            require: true,
+            required: true,
         },
         carCompany: {
             type: String,
-            require: true,
+            required: true,
         },
         carPicture: [
             {
                 type: String,
-                require: true,
+                required: true,
             },
         ],
         carCategory: {
             type: String,
-            require: true,
+            required: true,
         },
         carEngine: {
             type: String,
-            require: true,
+            required: true,
         },
         carMileage: {
             type: String,
-            require: true,
+            required: true,
         },
         carSeatCapacity: {
             type: Number,
-            require: true,
+            required: true,
         },
         carFuelType: {
             type: String,
-            require: true,
+            required: true,
         },
         carTransmission: {
             type: String,
-            require: true,
+            required: true,
         },
         rentalPriceCharge: {
             type: Number,
-            require: true,
+            required: true,
         },
         carBookings: [
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'Booking',
+                ref: 'Order',
             },
-        ]
+        ],
+        carBookingPayment: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Payment',
+            },
+        ],
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: true
+        },
     },
     {
         timeStamps: true,        

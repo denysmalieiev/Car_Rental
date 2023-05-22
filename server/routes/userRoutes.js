@@ -9,7 +9,15 @@ import {
     carRental_User_Password_Update,
     carRental_User_Password_Forgot,
     carRental_User_Password_Reset,
-} from '../controller/authController.js';
+} from '../controller/userController.js';
+
+import {
+    carRental_Admin_Get_All_User,
+    carRental_Admin_Get_Single_User,
+    carRental_Admin_User_Role_Update,
+    carRental_Admin_Delete_User_Account
+} from '../controller/adminController.js';
+
 import authToken from '../utils/authToken.js';
 
 const router = express.Router();
@@ -27,7 +35,14 @@ router.route('/profile/delete').delete(authToken.isUserAuthenticated, carRental_
 // User Password routes
 router.route('/password/update').put(authToken.isUserAuthenticated, carRental_User_Password_Update);
 router.route('/password/forgot').post(authToken.isUserAuthenticated, carRental_User_Password_Forgot);
-router.route('/password/reset/:code').post(authToken.isUserAuthenticated, carRental_User_Password_Reset);
+router.route('/password/reset/:token').post(authToken.isUserAuthenticated, carRental_User_Password_Reset);
+
+// Admin
+router.route("/admin/users").get(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Get_All_User);
+router.route("/admin/user/:id")
+    .get(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Get_Single_User)
+    .put(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_User_Role_Update)
+    .delete(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Delete_User_Account);
 
 
 export default router;

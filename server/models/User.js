@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
 
 const userSchema = new mongoose.Schema(
     {
@@ -27,17 +28,41 @@ const userSchema = new mongoose.Schema(
             min: 5,
             select: false
         },
-        address: String,
-        city: String,
-        state: String,
-        country: String,
-        pin: Number,
-        contact: Number,
-        profilePicture: {
-            type: String,
-            default: 'https://yt3.ggpht.com/a/AATXAJyuoSvqXQn2lBeh1uo_CGeQtCtIEp4Ea76r2A=s900-c-k-c0xffffffff-no-rj-mo',
+        address: {
+            type:String,
+            default: ''
         },
-        occupation: String,
+        city: {
+            type:String,
+            default: ''
+        },
+        state: {
+            type:String,
+            default: ''
+        },
+        country: {
+            type:String,
+            default: ''
+        },
+        pin: {
+            type: Number,
+        },
+        contact: {
+            type: Number,
+        },
+        profilePicture: {
+            public_id:{
+                type: String
+            },
+            url:{
+                type: String,
+                default: 'https://yt3.ggpht.com/a/AATXAJyuoSvqXQn2lBeh1uo_CGeQtCtIEp4Ea76r2A=s900-c-k-c0xffffffff-no-rj-mo',
+            }
+        },
+        occupation: {
+            type: String,
+            default: ''
+        },
         role: {
             type: String,
             default: 'user',
@@ -48,7 +73,9 @@ const userSchema = new mongoose.Schema(
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'Booking',
             },
-        ]
+        ],
+        resetPasswordToken: String,
+        resetPasswordExpire: Date,
     },
     {
         timestamps: true,
@@ -66,6 +93,14 @@ userSchema.methods.correctPassword = async function(passwordProvided){
     return await bcrypt.compare(passwordProvided, this.password);
 }
 
-const User = mongoose.model('User', userSchema);
+userSchema.methods.getResetPasswordToken = async function () {
+    // generate token
+    const resetToken = crypto.randomBytes(20).toString("hex");
+    // generate hash token and add to db
+    this.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+    this.resetPasswordExpire = Date.now() + 15 * 60 * 1000;
+    return resetToken;
+}
 
+const User = mongoose.model('User', userSchema);
 export default User;

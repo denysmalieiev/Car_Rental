@@ -12,7 +12,7 @@ const Header = () => {
 
   const { isAuthenticated } = useSelector(state=> state.auth);
   const { cars, loading, error } = useSelector(state=> state.cars);
-  const carContext = useContext(DataContext);
+  // const carContext = useContext(DataContext);
 
   const handleLogout =(e) =>{
     e.preventDefault();
@@ -58,7 +58,8 @@ const Header = () => {
             <ul>
               <li><p><Link to='/'>Home</Link></p></li>
               <li><p><Link to='/gallery'>Gallery</Link></p></li>
-              <li><p><Link to='/cars'>Cars</Link></p></li>
+              { cars? <><li><p><Link to='/cars'>Cars</Link></p></li></>: <> </>}
+              
               { isAuthenticated
                 ? <><li><p><Link to='/car/rent/payment'>Cart</Link></p></li></>
                 : <></>

@@ -80,7 +80,6 @@ export const carRental_Load_User = async(dispath)=>{
         dispath({type: LOAD_USER_REQUEST})
 
         const {data} = await axios.get(`/user/profile`);
-        console.log(data)
         dispath({
             type: LOAD_USER_SUCCESS,
             payload: data.user
