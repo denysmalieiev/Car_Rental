@@ -2,32 +2,16 @@ import mongoose from 'mongoose';
 
 const orderSchema = new mongoose.Schema(
     {
-        carPickLocation: {
+        carPickLocationID: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "OfficeLocation",
             required: true
         },
-        carBookedInfo: [
-            {
-                name: {
-                    type: String,
-                    required: true
-                },
-                price: {
-                    type: Number,
-                    required: true
-                },
-                image: {
-                    type: String,
-                    required: true
-                },
-                carId: {
-                    type: mongoose.Schema.Types.ObjectId,
-                    ref: "Car",
-                    required: true
-                },
-            },
-        ],
+        carBookedInfoID: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Car",
+            required: true
+        },
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",

@@ -1,29 +1,26 @@
-import User from '../models/User.js';
-import OfficeLocation from '../models/OfficeLocation.js';
 import Order from '../models/Order.js';
-import Car from '../models/Car.js';
 import ErrorHandler from '../utils/errorHandler.js';
 import CatchAsync from '../middlewares/catchAsync.js'
 import mail from '../utils/sendEmail.js';
 
 // 1) --------------| Order Creation |--------------
 export const carRental_User_Order_Creation = CatchAsync( async(req, res, next) =>{
-    const { carPickLocation, carBookedInfo, paymentInfo, totalPrice } = req.body;
+    const { carPickLocationID, carBookedInfoID, paymentInfo, totalPrice } = req.body;
     
     const orderExist = await Order.findOne({ paymentInfo });
     if (orderExist) {
         return next(new ErrorHandler("Order Already Placed", 400));
     }
     const order = await Order.create({
-        carPickLocation,
-        carBookedInfo,
+        carPickLocationID,
+        carBookedInfoID,
         paymentInfo,
         totalPrice,
         paidAt: Date.now(),
         user: req.user._id,
     });
 
-    const message = `Dear ${req.user.name},\n\n Greeting of the Day, \n\nYou booking for renting a car is successful, below are the order details:\n\n ${PickLocationAddress}, \n${carBookedInfo}, \n ${totalPrice}, \n\nThanks\n\nWishing for your happy journey!`;
+    const message = `Dear ${req.user.name},\n\n Greeting of the Day, \n\nYou booking ${order._id} for renting a car is successful. \n\nThanks\n\nWishing for your happy journey!`;
 
     try{
         await mail.sendEmail({
