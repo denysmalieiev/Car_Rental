@@ -32,11 +32,12 @@
 |  02 | Admin, Single User        | GET    |http://localhost:5000/api/v1/user/admin/user/:id         |
 |  03 | Admin, User Role Update   | PUT    |http://localhost:5000/api/v1/user/admin/user/:id         |
 |  04 | Admin, User Account Delete| DELETE |http://localhost:5000/api/v1/user/admin/user/:id         |
-|  05 | Admin, Office Location    | POST   |http://localhost:5000/api/v1/car/admin/register          |
-|  06 | Admin, New Car Details    | POST   |http://localhost:5000/api/v1/car/admin/detail/update/:id |
-|  07 | Admin, Office Location    | POST   |http://localhost:5000/api/v1/car/admin/detail/delete/:id |
-|  08 | Admin, All Orders         | GET    |http://localhost:5000/api/v1/order/admin/all             |
-|  09 | Admin, Order Update       | PATCH  |http://localhost:5000/api/v1/order/admin/update/:id      |
-|  10 | Admin, Order Delete       | DELETE |http://localhost:5000/api/v1/car/order/admin/delete/:id  |
+|  05 | Admin, Office Locations   | POST   |http://localhost:5000/api/v1/user/admin/office/register  |
+|  06 | Admin, New Car Details    | POST   |http://localhost:5000/api/v1/car/admin/register          |
+|  07 | Admin, Car Details Update | PATCH  |http://localhost:5000/api/v1/car/admin/detail/update/:id |
+|  08 | Admin, Car Details Delete | DELETE |http://localhost:5000/api/v1/car/admin/detail/delete/:id |
+|  09 | Admin, All Orders         | GET    |http://localhost:5000/api/v1/order/admin/all             |
+|  10 | Admin, Order Update       | PATCH  |http://localhost:5000/api/v1/order/admin/update/:id      |
+|  11 | Admin, Order Delete       | DELETE |http://localhost:5000/api/v1/car/order/admin/delete/:id  |
 
 -----------------------------------------------------------------------
