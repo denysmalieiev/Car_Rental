@@ -20,10 +20,10 @@
 |  08 | User Password Forgot      | POST   |http://localhost:5000/api/v1/user/password/forgot        |
 |  09 | User Password Reset Token | POST   |http://localhost:5000/api/v1/user/password/reset/:token  |
 |  10 | Get All Cars              | GET    |http://localhost:5000/api/v1/car/all                     |
-|  14 | car Single Car            | GET    |http://localhost:5000/api/v1/car/:id                     |
-|  11 | Car Rent New Order        | POST   |http://localhost:5000/api/v1/order/car/new               |
-|  12 | All Cars Booking Details  | GET    |http://localhost:5000/api/v1/order/car/all               |
-|  13 | Single Car Booking Detail | GET    |http://localhost:5000/api/v1/order/car/:id               |
+|  11 | car Single Car            | GET    |http://localhost:5000/api/v1/car/:id                     |
+|  12 | Car Rent New Order        | POST   |http://localhost:5000/api/v1/order/car/new               |
+|  13 | All Cars Booking Details  | GET    |http://localhost:5000/api/v1/order/car/all               |
+|  14 | Single Car Booking Detail | GET    |http://localhost:5000/api/v1/order/car/:id               |
 
 #### Admin
 | No. | API Route                 | Method | EndPoints                                               |
