@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "paytmchecksum": "^1.5.0"
+  }
+}

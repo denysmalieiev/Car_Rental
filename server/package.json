@@ -26,6 +26,8 @@
     "multer-gridfs-storage": "^5.0.2",
     "nodemailer": "^6.9.2",
     "nodemon": "^2.0.22",
+    "paytmchecksum": "^1.5.0",
+    "uuid": "^9.0.0",
     "validator": "^13.9.0"
   },
   "description": ""

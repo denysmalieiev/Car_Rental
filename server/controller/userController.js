@@ -6,7 +6,6 @@ import mail from '../utils/sendEmail.js';
 import crypto from 'crypto';
 import cloudinary from 'cloudinary';
 
-
 // 1) --------------| User Registration |--------------
 export const carRental_User_Registration = CatchAsync(async(req, res, next)=>{
     // a) Destructuring of data

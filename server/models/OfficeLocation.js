@@ -7,6 +7,10 @@ const locationSchema = new mongoose.Schema(
             ref: "User",
             required: true
         },
+        email: {
+            type: String,
+            required: true
+        },
         address: {
             type: String,
             required: true,
@@ -39,5 +43,5 @@ const locationSchema = new mongoose.Schema(
     }
 )
 
-const Location = mongoose.model('Location', locationSchema)
-export default Location;
+const OfficeLocation = mongoose.model('OfficeLocation', locationSchema)
+export default OfficeLocation;

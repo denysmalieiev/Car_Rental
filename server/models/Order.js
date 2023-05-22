@@ -4,10 +4,10 @@ const orderSchema = new mongoose.Schema(
     {
         carPickLocation: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Location",
+            ref: "OfficeLocation",
             required: true
         },
-        orderItems: [
+        carBookedInfo: [
             {
                 name: {
                     type: String,
@@ -21,7 +21,7 @@ const orderSchema = new mongoose.Schema(
                     type: String,
                     required: true
                 },
-                product: {
+                carId: {
                     type: mongoose.Schema.Types.ObjectId,
                     ref: "Car",
                     required: true
@@ -57,6 +57,8 @@ const orderSchema = new mongoose.Schema(
             required: true,
             default: "Processing",
         },
+        pickedAt: Date,
+        returnedAt: Date,
     },
     {
         timestamps: true,

@@ -83,6 +83,7 @@ export const carRental_get_Single_Car = CatchAsync(async(req, res, next)=>{
 
     const carID = req.params.id
     const car = await Car.findById({_id: carID});
+
     if(!car){
         return next(new ErrorHandler(`Car doesn't exist`, 400))
     }

@@ -11,6 +11,8 @@ import errorMiddleware from './middlewares/error.js';
 // Project Routes
 import userAuthRoutes from './routes/userRoutes.js';
 import carRoutes from './routes/carRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
+import paymentRoutes from './routes/paymentRoutes.js';
 
 const app = express();
 
@@ -32,6 +34,8 @@ app.use(cors({credentials: true, origin:`http://localhost:3000`}));
 // App route
 app.use('/api/v1/user', userAuthRoutes);
 app.use('/api/v1/cars', carRoutes);
+app.use('/api/v1/order', orderRoutes);
+app.use('/api/v1/payment', paymentRoutes);
 app.all('*', (req, res)=>{
     return res.send(`OPs something went wrong ${404}`);
 })

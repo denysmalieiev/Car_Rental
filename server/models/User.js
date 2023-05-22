@@ -71,7 +71,7 @@ const userSchema = new mongoose.Schema(
         carBooked: [
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'Booking',
+                ref: 'Order',
             },
         ],
         resetPasswordToken: String,

@@ -1,4 +1,5 @@
 import express from 'express';
+const router = express.Router();
 import {
     carRental_Car_Details_Upload_By_Admin,
     carRental_get_All_Cars,
@@ -7,8 +8,6 @@ import {
     carRental_Delate_A_Car_Uploaded,
 } from '../controller/carController.js';
 import authToken from '../utils/authToken.js';
-
-const router = express.Router();
 
 // Cars routes
 router.route('/register').post(authToken.isUserAuthenticated, authToken.authorizedRoles('admin') , carRental_Car_Details_Upload_By_Admin);
