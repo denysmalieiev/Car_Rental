@@ -31,7 +31,7 @@ router.route('/logout').get(authToken.isUserAuthenticated, carRental_User_Logout
 // User Profile routes
 router.route('/profile').get(authToken.isUserAuthenticated, carRental_User_Profile);
 router.route('/profile/update').patch(authToken.isUserAuthenticated, carRental_User_Profile_Update);
-router.route('/profile/delete').delete(authToken.isUserAuthenticated, carRental_User_Profile_Delete);
+router.route('/account/delete').delete(authToken.isUserAuthenticated, carRental_User_Profile_Delete);
 
 // User Password routes
 router.route('/password/update').put(authToken.isUserAuthenticated, carRental_User_Password_Update);
@@ -44,7 +44,7 @@ router.route("/admin/user/:id")
     .get(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Get_Single_User)
     .put(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_User_Role_Update)
     .delete(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Delete_User_Account);
-router.route("/admin/office/register").get(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Office_Location_Register);
+router.route("/admin/office/register").post(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Office_Location_Register);
 
 
 export default router;
