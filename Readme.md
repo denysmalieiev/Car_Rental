@@ -10,9 +10,9 @@
 #### User
 | No. | API Route                 | Method | EndPoints                                               | Status |
 | --- | ------------------------- | ------ | ------------------------------------------------------- | ------ |
-|  01 | User Sign Up              | POST   |http://localhost:5000/api/v1/user/signup                 | - [x]  | 
-|  02 | User Sign In              | POST   |http://localhost:5000/api/v1/user/login                  | - [x]  | 
-|  03 | User Sign Out             | GET    |http://localhost:5000/api/v1/user/logout                 | - [x]  | 
+|  01 | User Sign Up              | POST   |http://localhost:5000/api/v1/user/signup                 | -[x]  | 
+|  02 | User Sign In              | POST   |http://localhost:5000/api/v1/user/login                  | -[x]  | 
+|  03 | User Sign Out             | GET    |http://localhost:5000/api/v1/user/logout                 | -[x]  | 
 |  04 | User Profile View         | Get    |http://localhost:5000/api/v1/user/profile                | - [x]  | 
 |  05 | User Profile Update       | PATCH  |http://localhost:5000/api/v1/user/profile/update         | - [x]  | 
 |  06 | User Account Delete       | DELETE |http://localhost:5000/api/v1/user/account/delete         | - [x]  | 
