@@ -10,7 +10,7 @@
 #### User
 | No. | API Route                 | Method | EndPoints                                               | |
 | --- | ------------------------- | ------ | ------------------------------------------------------- |-|
-|  01 | User Sign Up              | POST   |http://localhost:5000/api/v1/user/signup                 | []| 
+|  01 | User Sign Up              | POST   |http://localhost:5000/api/v1/user/signup                 | - []| 
 |  02 | User Sign In              | POST   |http://localhost:5000/api/v1/user/login                  | | 
 |  03 | User Sign Out             | GET    |http://localhost:5000/api/v1/user/logout                 | | 
 |  04 | User Profile View         | Get    |http://localhost:5000/api/v1/user/profile                | | 
