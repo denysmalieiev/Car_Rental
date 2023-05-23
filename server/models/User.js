@@ -65,8 +65,7 @@ const userSchema = new mongoose.Schema(
         },
         role: {
             type: String,
-            default: 'user',
-            select: false
+            default: 'Customer',
         },
         carBooked: [
             {

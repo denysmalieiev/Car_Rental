@@ -32,8 +32,6 @@ export const carRental_Admin_Get_Single_User = CatchAsync(async(req, res, next)=
 // 3) --------------| Admin: User Role Update |--------------
 export const carRental_Admin_User_Role_Update = CatchAsync(async(req, res, next)=>{
     const newUserData = {
-        name: req.body.name,
-        email: req.body.email,
         role: req.body.role,
     }
 

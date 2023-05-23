@@ -26,6 +26,7 @@ import UserLogin from './components/user/auth/UserLogin';
 import UserSignUp from './components/user/auth/UserSignUp';
 import UserProfileShow from './components/user/profile/userProfile/UserProfileShow';
 import UserProfileUpdate from './components/user/profile/userProfile/UserProfileUpdate';
+import UserPasswordUpdate from './components/user/profile/userPassword/UserPasswordUpdate';
 import ForgotPassword from './components/user/profile/userPassword/ForgotPassword';
 import ResetPassword from './components/user/profile/userPassword/ResetPassword';
 
@@ -88,6 +89,7 @@ function App() {
                 {/* User */}
                 <Route exact path='/user/profile' element={<UserProfileShow/>} />
                 <Route exact path='/user/profile/update' element={<UserProfileUpdate/>} />
+                <Route exact path='/password/update' element={<UserPasswordUpdate/>} />
 
                 {/* Car */}
                 <Route exact path='/cars' element={<CarsHome/>} />

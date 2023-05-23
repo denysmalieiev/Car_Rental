@@ -30,7 +30,6 @@ const UserProfileUpdate = () => {
   const handleOnChange = (e)=>{
     e.preventDefault()
     setFormData({...formData, [e.target.name]: e.target.value})
-    // console.log(e.target.value)
   }
 
   const handleOnSubmitForm = async (e)=>{
@@ -38,7 +37,6 @@ const UserProfileUpdate = () => {
     console.log(formData)
     dispatch(carRental_User_Profile_Update(formData))
     dispatch(carRental_Load_User)
-    // alert('Profile updated')
     navigate('/user/profile')
   }
 
@@ -60,7 +58,7 @@ const UserProfileUpdate = () => {
       <div className={userProfileCSS.userCardContainer}>
         <div className={userProfileCSS.userCardLeft}>
           <div className={userProfileCSS.userCardLeftContentTop}>
-            {user? <><img src={user.profilePicture} alt='User Profile'/></>:<><img src='' alt='User Profile'/></>}
+            {user? <><img src={user.profilePicture.url} alt='User Profile'/></>:<><img src='' alt='User Profile'/></>}
           </div>
           <div className={userProfileCSS.userCardLeftContentBottom}>
             <button><Link>Upload Image</Link></button><br/><button><Link to='/user/profile'>Go To Profile</Link></button>

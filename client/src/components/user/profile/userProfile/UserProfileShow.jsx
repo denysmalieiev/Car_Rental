@@ -24,7 +24,7 @@ const UserProfileShow = () => {
       :<>
         <div className={userProfileCSS.userCardLeft}>
           <div className={userProfileCSS.userCardLeftContentTop}>
-            {user? <><img src={user.profilePicture} alt='User Profile'/></>:<><img src='' alt='User Profile'/></>}
+            {user? <><img src={user.profilePicture.url} alt='User Profile'/></>:<><img src='' alt='User Profile'/></>}
           </div>
           <div className={userProfileCSS.userCardLeftContentBottom}>
             <button><Link>Upload Image</Link></button><br/><button><Link to='/user/profile/update'>Edit Profile</Link></button>

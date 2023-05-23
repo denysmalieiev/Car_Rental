@@ -20,6 +20,11 @@ const Header = () => {
     dispatch(carRental_Sign_Out).then(()=>navigate('/'))
   }
 
+  const handleOnChange =(e) =>{
+    e.preventDefault();
+    navigate(`${e.target.value}`)
+  }
+
   useEffect(()=>{
     if(!isAuthenticated){
       <Navigate to='/'/>
@@ -71,7 +76,12 @@ const Header = () => {
               { isAuthenticated
                 ? 
                   <>
-                    <li><p><Link to='/user/profile'>^</Link></p></li>
+                    <select name='profileNav' id='propt' onClick={handleOnChange}>
+                    <option value='/' default>Car Rentals</option>
+                      <option value='/user/profile'><li><p><Link to='/user/profile'>Profile</Link></p></li></option>
+                      <option value='/password/update'><li><p><Link to='/password/update'>Password</Link></p></li></option>
+                    </select>
+                    {/* <li><p><Link to='/user/profile'>^</Link></p></li> */}
                     <li><p style={{color: 'white'}} onClick={handleLogout}><Link>Logout</Link></p></li>
                   </>
                 : 

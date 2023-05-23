@@ -101,7 +101,7 @@ export const carRental_User_Profile_Update = (state = {}, action) => {
       return {
         ...state,
         loading: false,
-        isProfileUpdated: action.payload,
+        isProfileUpdated: true,
       };
 
     case UPDATE_USER_PROFILE_FAIL:

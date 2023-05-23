@@ -104,7 +104,7 @@ const CarsHome = () => {
           </div>
         </div>
         <div className={carsHomeCSS.carsHomeBoxMid}>
-          {  carTa ? <><img src={carTa.carPicture[0]} alt='car image'/></>: <><img src='' alt='car image'/></> }
+          {  carTa ? <><img src={carTa.carPicture[0].url} alt='car image'/></>: <><img src='' alt='car image'/></> }
         </div>
         <div className={carsHomeCSS.carsHomeBoxRight}>
           <div className={carsHomeCSS.carsHomeBoxRightContent}>

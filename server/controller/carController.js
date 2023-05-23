@@ -1,6 +1,7 @@
 import ErrorHandler from '../utils/errorHandler.js';
 import CatchAsync from '../middlewares/catchAsync.js'
 import Car from '../models/Car.js';
+import cloudinary from 'cloudinary';
 
 
 // 1) --------------| Car Upload By Admin |--------------
@@ -21,8 +22,8 @@ export const carRental_Car_Details_Upload_By_Admin = CatchAsync(async(req, res, 
         carPicture = carImage;
     }
     const imagesLink = [];
-    for (let i = 0; i < images.length; i++) {
-        const result = await cloudinary.v2.uploader.upload(images[i], {
+    for (let i = 0; i < carPicture.length; i++) {
+        const result = await cloudinary.v2.uploader.upload(carPicture[i], {
             folder: "products",
         });
 
@@ -31,10 +32,6 @@ export const carRental_Car_Details_Upload_By_Admin = CatchAsync(async(req, res, 
             url: result.secure_url,
         });
     }
-
-    const result = await cloudinary.v2.uploader.upload(req.body.logo, {
-        folder: "brands",
-    });
 
     req.body.carPicture = imagesLink
     req.body.user = req.user.id;
@@ -52,6 +49,7 @@ export const carRental_Car_Details_Upload_By_Admin = CatchAsync(async(req, res, 
         carFuelType: req.body.carFuelType,
         carTransmission: req.body.carTransmission,
         rentalPriceCharge: req.body.rentalPriceCharge,
+        user: req.body.user
     })
     // e) Sending response
     return res.status(200).json({

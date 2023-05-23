@@ -20,7 +20,7 @@ const authToken = {
         }
         // 3) Cookie seting in response
         res.cookie('token', token, options);
-        console.log(token)
+
         // 4) Sending response
         return res.status(statusCode).json({
             success: true,

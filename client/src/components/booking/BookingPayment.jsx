@@ -32,7 +32,7 @@ const BookingPayment = () => {
             <div>
               { carContext.carToRent
                 ? 
-                  <img src={carContext.carToRent.carPicture[0]} alt='Car Image'/>
+                  <img src={carContext.carToRent.carPicture[0].url} alt='Car Image'/>
                 : 
                   <img src='https://cdn.dribbble.com/users/2374064/screenshots/4732016/car-jump.gif' alt='Car Image'/>
               }

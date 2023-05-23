@@ -17,9 +17,15 @@ const carSchema = new mongoose.Schema(
         },
         carPicture: [
             {
-                type: String,
-                required: true,
-            },
+                public_id: {
+                    type: String,
+                    required: true
+                },
+                url: {
+                    type: String,
+                    required: true
+                }
+            }
         ],
         carCategory: {
             type: String,

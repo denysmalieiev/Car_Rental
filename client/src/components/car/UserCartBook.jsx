@@ -69,7 +69,7 @@ const CarDetail = () => {
     <div className={ContainerCSS.carRentalPageContainer}>
       <div className={userCartBookCSS.userCarBookBook}>
         <div className={userCartBookCSS.userCarBookCartLeft}>
-          {car? <><img src={car.carPicture[0]} alt='Car Image'/></>:<><img src='' alt='Car Image'/></>}
+          {car? <><img src={car.carPicture[0].url} alt='Car Image'/></>:<><img src='' alt='Car Image'/></>}
         </div>
         <div className={userCartBookCSS.userCarBookCartRight}>
           {car? <h2>{car.carName}</h2>:<>-</>}
