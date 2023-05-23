@@ -1,5 +1,4 @@
 import React from 'react';
-import dashBoardCSS from './css/dashBoard.module.css';
 
 const AdminDashBoard = () => {
   return (

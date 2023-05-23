@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 
-import { carRental_Get_All_Cars, clearError } from './utils/actions/CarsAction.js';
+import { clearError } from './utils/actions/CarsAction.js';
 import carDataContext from './DataContext';
 import { carToBeRent, cityOptionAvailable } from './Data';
 
@@ -18,8 +18,18 @@ import Gallery from './components/mainHome/Gallery';
 
 // Admin
 import AdminDashBoard from './components/admin/AdminDashBoard';
-import AdminCarOrders from './components/admin/AdminCarOrders';
-import AdminOrderAction from './components/admin/AdminOrderAction';
+import AdminSingleUsers from './components/admin/user/AdminSingleUser';
+import AdminAllUsers from './components/admin/user/AdminAllUsers';
+import AdminUserRoleUpdate from './components/admin/user/AdminUserRoleUpdate';
+import AdminUserAccountDelete from './components/admin/user/AdminUserAccountDelete';
+import AdminNewOffice from './components/admin/cars/AdminNewOffice';
+import AdminNewCarDetail from './components/admin/cars/NewCarDetail';
+import AdminUpdateCarDetails from './components/admin/cars/UpdateCarDetails';
+import AdminDeleteCarDetail from './components/admin/cars/DeleteCarDetail';
+import AdminUsersAllOrders from './components/admin/orders/AdminAllOrders';
+import AdminUserOrderUpdate from './components/admin/orders/AdminOrderUpdate';
+import AdminUserOrderDelete from './components/admin/orders/AdminOrderDelete';
+
 
 // User
 import UserLogin from './components/user/auth/UserLogin';
@@ -82,9 +92,18 @@ function App() {
             ?
               <>
                 {/* Admin */}
-                <Route exact path='/admin' element={<AdminDashBoard/>} />
-                <Route exact path='/admin/orders' element={<AdminCarOrders/>} />
-                <Route exact path='/admin/order/action' element={<AdminOrderAction/>} />
+                <Route exact path='/admin/dashboard' element={<AdminDashBoard/>} />
+                <Route exact path='/admin/user/:id' element={<AdminSingleUsers/>} />
+                <Route exact path='/admin/user/all' element={<AdminAllUsers/>} />
+                <Route exact path='/admin/user/role/:id' element={<AdminUserRoleUpdate/>} />
+                <Route exact path='/admin/user/account/:id' element={<AdminUserAccountDelete/>} />
+                <Route exact path='/admin/office/new' element={<AdminNewOffice/>} />
+                <Route exact path='/admin/car/new' element={<AdminNewCarDetail/>} />
+                <Route exact path='/admin/car/update/:id' element={<AdminUpdateCarDetails/>} />
+                <Route exact path='/admin/car/delete/:id' element={<AdminDeleteCarDetail/>} />
+                <Route exact path='/admin/order/all' element={<AdminUsersAllOrders/>} />
+                <Route exact path='/admin/order/update/:id' element={<AdminUserOrderUpdate/>} />
+                <Route exact path='/admin/order/delete/:id' element={<AdminUserOrderDelete/>} />
 
                 {/* User */}
                 <Route exact path='/user/profile' element={<UserProfileShow/>} />
