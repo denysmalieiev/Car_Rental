@@ -25,6 +25,7 @@ import AdminUserAccountDelete from './components/admin/user/AdminUserAccountDele
 import AdminNewOffice from './components/admin/cars/AdminNewOffice';
 import AdminOfficesDetails from './components/admin/cars/AdminOfficesDetails';
 import AdminNewCarDetail from './components/admin/cars/NewCarDetail';
+import CarDetails from './components/admin/cars/CarDetails';
 import AdminUpdateCarDetails from './components/admin/cars/UpdateCarDetails';
 import AdminDeleteCarDetail from './components/admin/cars/DeleteCarDetail';
 import AdminUsersAllOrders from './components/admin/orders/AdminAllOrders';
@@ -49,21 +50,21 @@ import UserCartBook from './components/car/UserCartBook';
 import CarBooking from './components/booking/CarBooking';
 import BookingPayment from './components/booking/BookingPayment';
 import BookingHistory from './components/booking/BookingHistory';
-import { carRental_Load_User } from './utils/actions/UserAction';
+// import { carRental_Load_User } from './utils/actions/UserAction';
 
 function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isAuthenticated } = useSelector(state=> state.auth);
-  const { user } = useSelector(state=> state.user);
-  const { isProfileUpdated } = useSelector(state=> state.profileUpdate);
-  const { isPasswordUpdated } = useSelector(state=> state.passwordUpdate);
-  const { cars, loading, error } = useSelector(state=> state.cars);
-  const { car } = useSelector(state=> state.car);
+  const { isAuthenticated, error } = useSelector(state=> state.auth);
+  // const { user } = useSelector(state=> state.user);
+  // const { isProfileUpdated } = useSelector(state=> state.profileUpdate);
+  // const { isPasswordUpdated } = useSelector(state=> state.passwordUpdate);
+  // const { cars, loading } = useSelector(state=> state.cars);
+  // const { car } = useSelector(state=> state.car);
 
   const [carToRent, setCarToRent] = useState(carToBeRent); // Object
-  const [cityAvailable, setCityAvailable] =useState(cityOptionAvailable)
+  const [cityAvailable, setCityAvailable] = useState(cityOptionAvailable)
 
   function setCarForBooking(data){
     setCarToRent(data)
@@ -73,7 +74,7 @@ function App() {
     if(error){
       dispatch(clearError)
     }
-  }, [dispatch])
+  }, [dispatch, error])
 
   useEffect(()=>{
     if(!isAuthenticated){
@@ -115,6 +116,7 @@ function App() {
 
                 {/* Car */}
                 <Route exact path='/cars' element={<CarsHome/>} />
+                <Route exact path='/car/:id' element={<CarDetails/>} />
                 <Route exact path='/car/booking/:id' element={<UserCartBook/>} />
                 <Route exact path='/car/rent/payment' element={<BookingPayment/>} />
                 <Route exact path='/cars/booking/history' element={<BookingHistory/>} />
