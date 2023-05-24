@@ -7,11 +7,9 @@ import carContainerCSS from  '../../css/container.module.css';
 import userAuthCSS from './css/userAuth.module.css';
 
 const UserLogin = () => {
-  const carContext = useContext(DataContext);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {error, loading, isAuthenticated } =  useSelector((state)=> state.auth);
+  const { loading, isAuthenticated, error } =  useSelector((state)=> state.auth);
   const { user } =  useSelector((state)=> state.user);
 
   const [formData, setFormData] = useState({
@@ -27,17 +25,19 @@ const UserLogin = () => {
     })
   }
 
-  const handleSubmitAuth = async (e, formData)=>{
+  const handleSubmitAuth = async (e)=>{
     e.preventDefault()
-    // const authStatus = carContext.login(formData)
-    dispatch(carRental_Sign_In(formData.email, formData.password)).then(()=>dispatch(carRental_Load_User))
-    .then(()=> navigate('/'))
+    dispatch(carRental_Sign_In(formData.email, formData.password))
+    dispatch(carRental_Load_User)
   }
 
   useEffect(()=>{
     if(error){
       dispatch(clearErrors)
     }
+    if (isAuthenticated) {
+      navigate(`/`)
+  }
   },[dispatch, error, isAuthenticated, loading])
 
   return (

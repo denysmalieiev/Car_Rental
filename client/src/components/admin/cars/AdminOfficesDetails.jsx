@@ -1,9 +1,16 @@
-import React from 'react'
+import React from 'react';
 
-const AdminOfficesDetails = () => {
+import containerCSS from '../../css/container.module.css';
+import adminCarDetailCSS from './css/adminCarDetail.module.css';
+
+const AdminOfficeDetails = () => {
   return (
-    <div>AdminOfficesDetails</div>
+    <div className={containerCSS.carRentalPageContainer}>
+        <div className={adminCarDetailCSS.adminCarDetailContainer}>
+        AdminOfficeDetail
+      </div>
+    </div>
   )
 }
 
-export default AdminOfficesDetails
+export default AdminOfficeDetails

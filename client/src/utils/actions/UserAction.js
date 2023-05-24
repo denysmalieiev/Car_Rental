@@ -42,11 +42,11 @@ export const carRental_Sign_In = (email, password) => async(dispath)=>{
 
         const config = {headers: { "Content-Type": "application/json"}};
 
-        await axios.post(`/user/login`, { email, password }, config);
-
+        const {data} = await axios.post(`/user/login`, { email, password }, config);
+        console.log(data)
         dispath({
             type: LOGIN_SUCCESS,
-            // payload: data.user
+            // payload: data.success
         })
 
     } catch(error){

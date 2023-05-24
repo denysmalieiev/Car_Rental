@@ -18,19 +18,19 @@ import Gallery from './components/mainHome/Gallery';
 
 // Admin
 import AdminDashBoard from './components/admin/AdminDashBoard';
-import AdminSingleUsers from './components/admin/user/AdminSingleUser';
+// import AdminSingleUsers from './components/admin/user/AdminSingleUser';
 import AdminAllUsers from './components/admin/user/AdminAllUsers';
-import AdminUserRoleUpdate from './components/admin/user/AdminUserRoleUpdate';
-import AdminUserAccountDelete from './components/admin/user/AdminUserAccountDelete';
+// import AdminUserRoleUpdate from './components/admin/user/AdminUserRoleUpdate';
+// import AdminUserAccountDelete from './components/admin/user/AdminUserAccountDelete';
 import AdminNewOffice from './components/admin/cars/AdminNewOffice';
 import AdminOfficesDetails from './components/admin/cars/AdminOfficesDetails';
 import AdminNewCarDetail from './components/admin/cars/NewCarDetail';
 import CarDetails from './components/admin/cars/CarDetails';
 import AdminUpdateCarDetails from './components/admin/cars/UpdateCarDetails';
-import AdminDeleteCarDetail from './components/admin/cars/DeleteCarDetail';
+
 import AdminUsersAllOrders from './components/admin/orders/AdminAllOrders';
 import AdminUserOrderUpdate from './components/admin/orders/AdminOrderUpdate';
-import AdminUserOrderDelete from './components/admin/orders/AdminOrderDelete';
+// import AdminUserOrderDelete from './components/admin/orders/AdminOrderDelete';
 
 
 // User
@@ -50,7 +50,7 @@ import UserCartBook from './components/car/UserCartBook';
 import CarBooking from './components/booking/CarBooking';
 import BookingPayment from './components/booking/BookingPayment';
 import BookingHistory from './components/booking/BookingHistory';
-// import { carRental_Load_User } from './utils/actions/UserAction';
+import { carRental_Load_User } from './utils/actions/UserAction';
 
 function App() {
   const dispatch = useDispatch();
@@ -71,10 +71,8 @@ function App() {
   } 
 
   useEffect(()=>{
-    if(error){
-      dispatch(clearError)
-    }
-  }, [dispatch, error])
+    dispatch(carRental_Load_User)
+  }, [dispatch])
 
   useEffect(()=>{
     if(!isAuthenticated){
@@ -96,18 +94,16 @@ function App() {
               <>
                 {/* Admin */}
                 <Route exact path='/admin/dashboard' element={<AdminDashBoard/>} />
-                <Route exact path='/admin/user/:id' element={<AdminSingleUsers/>} />
-                <Route exact path='/admin/user/all' element={<AdminAllUsers/>} />
-                <Route exact path='/admin/user/role/:id' element={<AdminUserRoleUpdate/>} />
-                <Route exact path='/admin/user/account/:id' element={<AdminUserAccountDelete/>} />
+
+                <Route exact path='/admin/users/:id' element={<AdminAllUsers/>} />
+
                 <Route exact path='/admin/office/new' element={<AdminNewOffice/>} />
                 <Route exact path='/admin/office/details' element={<AdminOfficesDetails/>} />
                 <Route exact path='/admin/car/new' element={<AdminNewCarDetail/>} />
                 <Route exact path='/admin/car/update/:id' element={<AdminUpdateCarDetails/>} />
-                <Route exact path='/admin/car/delete/:id' element={<AdminDeleteCarDetail/>} />
+
                 <Route exact path='/admin/order/all' element={<AdminUsersAllOrders/>} />
                 <Route exact path='/admin/order/update/:id' element={<AdminUserOrderUpdate/>} />
-                <Route exact path='/admin/order/delete/:id' element={<AdminUserOrderDelete/>} />
 
                 {/* User */}
                 <Route exact path='/user/profile' element={<UserProfileShow/>} />

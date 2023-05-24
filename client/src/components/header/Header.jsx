@@ -16,36 +16,29 @@ const Header = () => {
   const handleLogout =(e) =>{
     e.preventDefault();
     alert('Logout')
-    dispatch(carRental_Sign_Out).then(()=>navigate('/'))
+    dispatch(carRental_Sign_Out)
+    navigate('/')
   }
 
-  useEffect(()=>{
-    if(!isAuthenticated){
-      <Navigate to='/'/>
-    }
-  }, [isAuthenticated])
+  // useEffect(()=>{
+  //   if(!isAuthenticated){
+  //     <Navigate to='/'/>
+  //   }
+  // }, [isAuthenticated])
 
-  useEffect(()=>{
-    if(error){
-      dispatch(clearError)
-    }
+  // useEffect(()=>{
+  //   if(error){
+  //     dispatch(clearError)
+  //   }
 
-  }, [dispatch])
+  // }, [dispatch])
 
   
   useEffect(()=>{
     if(!cars || Object.keys(cars).length===0){
       dispatch(carRental_Get_All_Cars)
     }
-    
-
   }, [dispatch])
-
-  useEffect(()=>{
-    if(error){
-      dispatch(clearErrors)
-    }
-  },[dispatch, error, isAuthenticated, loading])
 
   return (
     <>
@@ -57,9 +50,9 @@ const Header = () => {
           <div className={headerCSS.navBarWebNavigationLeft}>
             <ul>
               <li><h3><Link to='/gallery'>Gallery</Link></h3></li>
-              { cars ? <><li><h3><Link to='/cars'>Cars</Link></h3></li></>: <> </>}
+              { cars && !loading ? <><li><h3><Link to='/cars'>Cars</Link></h3></li></>: <> </>}
               
-              { isAuthenticated
+              { isAuthenticated && !loading 
                 ? <>
                     { user && user.role==='admin'
                       ? <>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import containerCSS from '../../css/container.module.css';
 import adminCarDetailCSS from './css/adminCarDetail.module.css';
@@ -31,7 +31,7 @@ const CarDetails = () => {
                     <img src={car.carPicture[0].url} alt='car_image'/><br/>
                 </div><br/>
                 <div>
-                    <button>Update Car</button>
+                    <button><Link to={`/admin/car/update/${car._id}`}>Update Car</Link></button>
                     <button>Delete Car</button>
                 </div>
             </div>
