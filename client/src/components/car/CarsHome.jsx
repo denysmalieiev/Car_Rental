@@ -114,7 +114,7 @@ const CarsHome = () => {
             {carTa? <><div className={carsHomeCSS.carsHomeBoxRightDivContent}><h6>Car Category & Seats</h6><h5>{carTa.carCategory+", "+carTa.carSeatCapacity}</h5></div></>:<></>}
             {carTa? <><div className={carsHomeCSS.carsHomeBoxRightDivContent}><h6>Engine & Milage</h6><h5>{carTa.carEngine+', '+carTa.carMileage}</h5></div></>:<></>}
             {carTa? <><div className={carsHomeCSS.carsHomeBoxRightDivContent}><h6>Fuel & Transmission</h6><h5>{carTa.carFuelType+', '+carTa.carTransmission}</h5></div></>:<></>}
-            {carTa? <><div className={carsHomeCSS.carsHomeBoxRightDivContent}><h6>Car Rent per km</h6><h5>{carTa.rentalPriceCharge}</h5></div></>:<></>}
+            {carTa? <><div className={carsHomeCSS.carsHomeBoxRightDivContent}><h6>Car Rent per km</h6><h5>{carTa.rentalPriceCharge+'₹/km'}</h5></div></>:<></>}
           </div>
         </div>
       </div>

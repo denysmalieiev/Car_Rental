@@ -23,6 +23,7 @@ import AdminAllUsers from './components/admin/user/AdminAllUsers';
 import AdminUserRoleUpdate from './components/admin/user/AdminUserRoleUpdate';
 import AdminUserAccountDelete from './components/admin/user/AdminUserAccountDelete';
 import AdminNewOffice from './components/admin/cars/AdminNewOffice';
+import AdminOfficesDetails from './components/admin/cars/AdminOfficesDetails';
 import AdminNewCarDetail from './components/admin/cars/NewCarDetail';
 import AdminUpdateCarDetails from './components/admin/cars/UpdateCarDetails';
 import AdminDeleteCarDetail from './components/admin/cars/DeleteCarDetail';
@@ -48,6 +49,7 @@ import UserCartBook from './components/car/UserCartBook';
 import CarBooking from './components/booking/CarBooking';
 import BookingPayment from './components/booking/BookingPayment';
 import BookingHistory from './components/booking/BookingHistory';
+import { carRental_Load_User } from './utils/actions/UserAction';
 
 function App() {
   const dispatch = useDispatch();
@@ -98,6 +100,7 @@ function App() {
                 <Route exact path='/admin/user/role/:id' element={<AdminUserRoleUpdate/>} />
                 <Route exact path='/admin/user/account/:id' element={<AdminUserAccountDelete/>} />
                 <Route exact path='/admin/office/new' element={<AdminNewOffice/>} />
+                <Route exact path='/admin/office/details' element={<AdminOfficesDetails/>} />
                 <Route exact path='/admin/car/new' element={<AdminNewCarDetail/>} />
                 <Route exact path='/admin/car/update/:id' element={<AdminUpdateCarDetails/>} />
                 <Route exact path='/admin/car/delete/:id' element={<AdminDeleteCarDetail/>} />
