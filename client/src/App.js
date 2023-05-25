@@ -71,14 +71,13 @@ function App() {
   } 
 
   useEffect(()=>{
-    dispatch(carRental_Load_User)
-  }, [dispatch])
-
-  useEffect(()=>{
     if(!isAuthenticated){
       navigate('/')
     }
-  }, [isAuthenticated])
+    if(isAuthenticated){
+      dispatch(carRental_Load_User)
+    }
+  }, [dispatch, isAuthenticated])
 
   return (
     <div className="App">

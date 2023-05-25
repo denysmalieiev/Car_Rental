@@ -75,6 +75,7 @@
         padding: 1% 0% 1.5%;
         height: fit-content;
         border: none;
+        color: white;
         background: rgb(11,4,43);
         background: linear-gradient(90deg, rgb(5, 17, 252) 6%, rgb(198, 0, 201) 46%, rgb(131, 10, 230) 100%);
     }

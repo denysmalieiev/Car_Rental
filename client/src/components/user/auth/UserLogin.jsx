@@ -28,7 +28,7 @@ const UserLogin = () => {
   const handleSubmitAuth = async (e)=>{
     e.preventDefault()
     dispatch(carRental_Sign_In(formData.email, formData.password))
-    dispatch(carRental_Load_User)
+    // dispatch(carRental_Load_User)
   }
 
   useEffect(()=>{

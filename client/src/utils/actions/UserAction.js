@@ -6,6 +6,10 @@ import {
     LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAIL,
     UPDATE_USER_PROFILE_REQUEST, UPDATE_USER_PROFILE_SUCCESS, UPDATE_USER_PROFILE_FAIL,
     UPDATE_USER_PASSWORD_REQUEST, UPDATE_USER_PASSWORD_SUCCESS, UPDATE_USER_PASSWORD_FAIL, 
+    ADMIN_GET_ALL_USERS_REQUEST, ADMIN_GET_ALL_USERS_SUCCESS, ADMIN_GET_ALL_USERS_FAIL,
+    ADMIN_SINGLE_USER_REQUEST, ADMIN_SINGLE_USER_SUCCESS, ADMIN_SINGLE_USER_FAIL, 
+    ADMIN_USER_ROLE_UPDATE_REQUEST, ADMIN_USER_ROLE_UPDATE_SUCCESS, ADMIN_USER_ROLE_UPDATE_FAIL,
+    ADMIN_USER_ACCOUNT_DELETE_REQUEST, ADMIN_USER_ACCOUNT_DELETE_SUCCESS, ADMIN_USER_ACCOUNT_DELETE_FAIL,
     CLEAR_ERRORS,
 } from '../constants/Constants.js';
 
@@ -42,8 +46,8 @@ export const carRental_Sign_In = (email, password) => async(dispath)=>{
 
         const config = {headers: { "Content-Type": "application/json"}};
 
-        const {data} = await axios.post(`/user/login`, { email, password }, config);
-        console.log(data)
+        await axios.post(`/user/login`, { email, password }, config);
+
         dispath({
             type: LOGIN_SUCCESS,
             // payload: data.success
@@ -129,6 +133,85 @@ export const carRental_User_Password_Update = (formData) => async(dispath)=>{
     } catch(error){
         dispath({
             type: UPDATE_USER_PASSWORD_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+// Admin: Get All Users
+export const carRental_Admin_Get_All_Users = async(dispath)=>{
+    try{
+        dispath({type: ADMIN_GET_ALL_USERS_REQUEST})     
+
+        const { data } = await axios.get(`/user/admin/users`);
+
+        dispath({
+            type: ADMIN_GET_ALL_USERS_SUCCESS,
+            payload: data.users
+        })
+    } catch(error){
+        dispath({
+            type: ADMIN_GET_ALL_USERS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+// Admin: Get Single User Request
+export const carRental_Admin_Get_Single_User = (id) => async(dispath)=>{
+    try{
+        dispath({type: ADMIN_SINGLE_USER_REQUEST})     
+
+        const { data } = await axios.get(`user/admin/user/${id}`);
+
+        dispath({
+            type: ADMIN_SINGLE_USER_SUCCESS,
+            payload: data.user
+        })
+    } catch(error){
+        dispath({
+            type: ADMIN_SINGLE_USER_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+// Admin: User Role Update
+export const carRental_Admin_User_Role_Update = (id, formData) => async(dispath)=>{
+    try{
+        dispath({type: ADMIN_USER_ROLE_UPDATE_REQUEST})     
+        const config = {headers: { "Content-Type": "application/json"}};
+        const { data } = await axios.put(`/user/admin/user/${id}`, {
+            role: formData.role,
+        }, config);
+
+        dispath({
+            type: ADMIN_USER_ROLE_UPDATE_SUCCESS,
+            payload: data.user
+        })
+    } catch(error){
+        dispath({
+            type: ADMIN_USER_ROLE_UPDATE_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+// Admin: User Account Delete
+export const carRental_Admin_User_Account_Delete = (id) => async(dispath)=>{
+    try{
+
+        dispath({type: ADMIN_USER_ACCOUNT_DELETE_REQUEST}) 
+
+        await axios.delete(`/user/admin/user/${id}`);
+
+        dispath({
+            type: ADMIN_USER_ACCOUNT_DELETE_SUCCESS
+        })
+
+    } catch(error){
+        dispath({
+            type: ADMIN_USER_ACCOUNT_DELETE_FAIL,
             payload: error.response.data.message
         })
     }

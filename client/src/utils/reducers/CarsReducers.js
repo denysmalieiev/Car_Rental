@@ -1,18 +1,25 @@
 import {
     CARS_GET_ALL_REQUEST, CARS_GET_ALL_SUCCESS, CARS_GET_ALL_FAIL,
     CARS_GET_SINGLE_REQUEST, CARS_GET_SINGLE_SUCCESS, CARS_GET_SINGLE_FAIL,
+    ADMIN_NEW_CAR_DETAILS_REQUEST, ADMIN_NEW_CAR_DETAILS_SUCCESS, ADMIN_NEW_CAR_DETAILS_FAIL,
+    ADMIN_CAR_DETAILS_UPDATE_REQUEST, ADMIN_CAR_DETAILS_UPDATE_SUCCESS, ADMIN_CAR_DETAILS_UPDATE_FAIL, ADMIN_CAR_DETAILS_UPDATE_RESET,
+    ADMIN_CAR_DETAILS_DELETE_REQUEST, ADMIN_CAR_DETAILS_DELETE_SUCCESS, ADMIN_CAR_DETAILS_DELETE_FAIL,
+    ADMIN_NEW_OFFICE_LOCATION_REQUEST, ADMIN_NEW_OFFICE_LOCATION_SUCCESS, ADMIN_NEW_OFFICE_LOCATION_FAIL,
+    ADMIN_GET_OFFICES_LOCATION_REQUEST, ADMIN_GET_OFFICES_LOCATION_SUCCESS, ADMIN_GET_OFFICES_LOCATION_FAIL,
     CLEAR_ERRORS,
 } from '../constants/Constants.js';
 
 export const allCarReducer = (state = {cars: {}}, action)=>{
     switch(action.type){
         case CARS_GET_ALL_REQUEST:
+        case ADMIN_CAR_DETAILS_DELETE_REQUEST:
             return {
                 loading: true,
                 cars: null
             }
 
         case CARS_GET_ALL_SUCCESS:
+        case ADMIN_CAR_DETAILS_DELETE_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -21,6 +28,7 @@ export const allCarReducer = (state = {cars: {}}, action)=>{
 
 
         case CARS_GET_ALL_FAIL:
+        case ADMIN_CAR_DETAILS_DELETE_FAIL:
             return {
                 ...state,
                 loading: false,
@@ -41,22 +49,103 @@ export const allCarReducer = (state = {cars: {}}, action)=>{
 export const singleCarReducer = (state = {}, action)=>{
     switch(action.type){
         case CARS_GET_SINGLE_REQUEST:
+        case ADMIN_NEW_CAR_DETAILS_REQUEST:
+        case ADMIN_CAR_DETAILS_UPDATE_REQUEST:
             return {
                 loading: true,
-                car: null
+                car: null,
+                isCarDetailUpdated: false,
             }
         case CARS_GET_SINGLE_SUCCESS:
+        case ADMIN_NEW_CAR_DETAILS_SUCCESS:
+        case ADMIN_CAR_DETAILS_UPDATE_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                car: action.payload
+                car: action.payload,
+                isCarDetailUpdated: true,
             }
 
         case CARS_GET_SINGLE_FAIL:
+        case ADMIN_NEW_CAR_DETAILS_FAIL:
+        case ADMIN_CAR_DETAILS_UPDATE_FAIL:
             return {
                 ...state,
                 loading: false,
                 car: null,
+                isCarDetailUpdated: false,
+                error: action.payload,
+            }
+
+        case ADMIN_CAR_DETAILS_UPDATE_RESET:
+            return {
+                ...state,
+                isCarDetailUpdated: false,
+            };
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null,
+            }
+        default:
+            return state;
+    }
+}
+
+
+export const adminNewOfficeReducer = (state = {}, action)=>{
+    switch(action.type){
+        case ADMIN_NEW_OFFICE_LOCATION_REQUEST:
+            return {
+                loading: true,
+                office: null
+            }
+        case ADMIN_NEW_OFFICE_LOCATION_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                office: action.payload
+            }
+
+        case ADMIN_NEW_OFFICE_LOCATION_FAIL:
+            return {
+                ...state,
+                loading: false,
+                office: null,
+                error: action.payload,
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null,
+            }
+        default:
+            return state;
+    }
+}
+
+
+export const adminAllOfficesReducer = (state = {}, action)=>{
+    switch(action.type){
+        case ADMIN_GET_OFFICES_LOCATION_REQUEST:
+            return {
+                loading: true,
+                offices: null
+            }
+        case ADMIN_GET_OFFICES_LOCATION_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                offices: action.payload
+            }
+
+        case ADMIN_GET_OFFICES_LOCATION_FAIL:
+            return {
+                ...state,
+                loading: false,
+                offices: null,
                 error: action.payload,
             }
 

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
-import { carRental_Get_All_Cars, clearError } from '../../utils/actions/CarsAction.js';
-import { carRental_Sign_Out, clearErrors} from '../../utils/actions/UserAction.js';
+import { carRental_Get_All_Cars } from '../../utils/actions/CarsAction.js';
+import { carRental_Load_User, carRental_Sign_Out } from '../../utils/actions/UserAction.js';
 import headerCSS from './css/header.module.css';
 
 const Header = () => {
@@ -19,26 +19,11 @@ const Header = () => {
     dispatch(carRental_Sign_Out)
     navigate('/')
   }
-
-  // useEffect(()=>{
-  //   if(!isAuthenticated){
-  //     <Navigate to='/'/>
-  //   }
-  // }, [isAuthenticated])
-
-  // useEffect(()=>{
-  //   if(error){
-  //     dispatch(clearError)
-  //   }
-
-  // }, [dispatch])
-
-  
   useEffect(()=>{
     if(!cars || Object.keys(cars).length===0){
       dispatch(carRental_Get_All_Cars)
     }
-  }, [dispatch])
+  }, [dispatch, isAuthenticated])
 
   return (
     <>
