@@ -19,6 +19,14 @@
             width: 85%;
             margin: 10% 7.5% 5%;
         }
+        .adminCarDetailLeftBox input{
+            margin: 0% 0% 5%;
+            padding: 1% 3%;
+            border: none;
+            color: blue;
+            background-color: antiquewhite;
+            border-radius: 5px;
+        }
         .adminCarDetailLeftBox button{
             background-color: rgb(29, 30, 123);
             color: white;
@@ -87,18 +95,30 @@
                     border-radius: 0px 0px 15px 0px;
                 }
                     .adminCarDetailRightContent b{
-                        width: 20%;
+                        width: 23%;
                         background-color: blue;
                         color: white;
+                        font-size: 0.9em;
                         font-weight: 500;
                         padding: 1% 3%;
                         border: none;
                     }
                     .adminCarDetailRightContent p{
-                        width: 68%;
+                        width: 65%;
                         padding: 1% 3%;
                         color: blue;
+                        font-size: 0.9em;
                         font-weight: 400;
                         border: none;
+                        border-radius: 5px;
+                    }
+                    .adminCarDetailRightContent input{
+                        width: 65%;
+                        padding: 1% 3%;
+                        color: blue;
+                        background-color: rgb(255, 243, 198);
+                        font-weight: 400;
+                        border: none;
+                        outline: none;
                         border-radius: 5px;
                     }

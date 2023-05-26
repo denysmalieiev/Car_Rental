@@ -50,18 +50,13 @@ import UserCartBook from './components/car/UserCartBook';
 import CarBooking from './components/booking/CarBooking';
 import BookingPayment from './components/booking/BookingPayment';
 import BookingHistory from './components/booking/BookingHistory';
-import { carRental_Load_User } from './utils/actions/UserAction';
+import { carRental_Load_User, carRental_Admin_Get_All_Users, } from './utils/actions/UserAction';
 
 function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { isAuthenticated, error } = useSelector(state=> state.auth);
-  // const { user } = useSelector(state=> state.user);
-  // const { isProfileUpdated } = useSelector(state=> state.profileUpdate);
-  // const { isPasswordUpdated } = useSelector(state=> state.passwordUpdate);
-  // const { cars, loading } = useSelector(state=> state.cars);
-  // const { car } = useSelector(state=> state.car);
 
   const [carToRent, setCarToRent] = useState(carToBeRent); // Object
   const [cityAvailable, setCityAvailable] = useState(cityOptionAvailable)
@@ -94,7 +89,7 @@ function App() {
                 {/* Admin */}
                 <Route exact path='/admin/dashboard' element={<AdminDashBoard/>} />
 
-                <Route exact path='/admin/users/:id' element={<AdminAllUsers/>} />
+                <Route exact path='/admin/users/:role' element={<AdminAllUsers/>} />
 
                 <Route exact path='/admin/office/new' element={<AdminNewOffice/>} />
                 <Route exact path='/admin/office/details' element={<AdminOfficesDetails/>} />

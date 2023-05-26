@@ -12,6 +12,7 @@ import {
 export const allCarReducer = (state = {cars: {}}, action)=>{
     switch(action.type){
         case CARS_GET_ALL_REQUEST:
+        case ADMIN_NEW_CAR_DETAILS_REQUEST:
         case ADMIN_CAR_DETAILS_DELETE_REQUEST:
             return {
                 loading: true,
@@ -19,6 +20,7 @@ export const allCarReducer = (state = {cars: {}}, action)=>{
             }
 
         case CARS_GET_ALL_SUCCESS:
+        case ADMIN_NEW_CAR_DETAILS_SUCCESS:
         case ADMIN_CAR_DETAILS_DELETE_SUCCESS:
             return {
                 ...state,
@@ -28,6 +30,7 @@ export const allCarReducer = (state = {cars: {}}, action)=>{
 
 
         case CARS_GET_ALL_FAIL:
+        case ADMIN_NEW_CAR_DETAILS_FAIL:
         case ADMIN_CAR_DETAILS_DELETE_FAIL:
             return {
                 ...state,
@@ -49,7 +52,6 @@ export const allCarReducer = (state = {cars: {}}, action)=>{
 export const singleCarReducer = (state = {}, action)=>{
     switch(action.type){
         case CARS_GET_SINGLE_REQUEST:
-        case ADMIN_NEW_CAR_DETAILS_REQUEST:
         case ADMIN_CAR_DETAILS_UPDATE_REQUEST:
             return {
                 loading: true,
@@ -57,7 +59,6 @@ export const singleCarReducer = (state = {}, action)=>{
                 isCarDetailUpdated: false,
             }
         case CARS_GET_SINGLE_SUCCESS:
-        case ADMIN_NEW_CAR_DETAILS_SUCCESS:
         case ADMIN_CAR_DETAILS_UPDATE_SUCCESS:
             return {
                 ...state,
@@ -67,7 +68,6 @@ export const singleCarReducer = (state = {}, action)=>{
             }
 
         case CARS_GET_SINGLE_FAIL:
-        case ADMIN_NEW_CAR_DETAILS_FAIL:
         case ADMIN_CAR_DETAILS_UPDATE_FAIL:
             return {
                 ...state,

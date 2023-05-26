@@ -28,6 +28,7 @@ const UserLogin = () => {
   const handleSubmitAuth = async (e)=>{
     e.preventDefault()
     dispatch(carRental_Sign_In(formData.email, formData.password))
+    navigate(`/`)
     // dispatch(carRental_Load_User)
   }
 

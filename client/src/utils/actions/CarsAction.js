@@ -48,7 +48,7 @@ export const carRental_Get_Single_car = (id) => async(dispath)=>{
     }
 }
 
-// Admin: New Offices
+// Admin: New Car
 export const carRental_Admin_New_Car_Detail = ( formData ) => async(dispath)=>{
     try{
         dispath({type: ADMIN_NEW_CAR_DETAILS_REQUEST})
@@ -58,7 +58,7 @@ export const carRental_Admin_New_Car_Detail = ( formData ) => async(dispath)=>{
         
         dispath({
             type: ADMIN_NEW_CAR_DETAILS_SUCCESS,
-            payload: data.car
+            payload: data.cars
         })
 
     } catch(error){
@@ -69,7 +69,7 @@ export const carRental_Admin_New_Car_Detail = ( formData ) => async(dispath)=>{
     }
 }
 
-// Admin: New Offices
+// Admin: Car Update
 export const carRental_Admin_Car_Details_Update =  ( id, formData ) => async(dispath)=>{
     try{
         dispath({type: ADMIN_CAR_DETAILS_UPDATE_REQUEST})
@@ -91,7 +91,7 @@ export const carRental_Admin_Car_Details_Update =  ( id, formData ) => async(dis
     }
 }
 
-    // Admin: New Offices
+    // Admin: Car Delete
 export const carRental_Admin_Car_Details_Delete = (id) => async(dispath)=>{
     try{
         dispath({type: ADMIN_CAR_DETAILS_DELETE_REQUEST})

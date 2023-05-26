@@ -233,3 +233,4 @@ export const carData = [
         rentalPrice: 15,
     },
 ]
+

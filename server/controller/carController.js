@@ -37,7 +37,7 @@ export const carRental_Car_Details_Upload_By_Admin = CatchAsync(async(req, res, 
     req.body.user = req.user.id;
 
     // d) Now saving car details in database
-    const cars = await Car.create({
+    const car = await Car.create({
         carName: req.body.carName,
         carModel: req.body.carModel,
         carCompany: req.body.carCompany,
@@ -52,6 +52,7 @@ export const carRental_Car_Details_Upload_By_Admin = CatchAsync(async(req, res, 
         user: req.body.user
     })
     // e) Sending response
+    const cars = await Car.find()
     return res.status(200).json({
         success: true,
         message: 'Car registed.',
@@ -126,9 +127,11 @@ export const carRental_Delate_A_Car_Uploaded = CatchAsync(async(req, res, next)=
     for (let i = 0; i < car.carPicture.length; i++) {
         await cloudinary.v2.uploader.destroy(car.carPicture[i].public_id);
     }
-    await car.remove()
+    await Car.findByIdAndDelete(req.params.id)
+    const cars = await Car.find()
     return res.status(200).json({
         success: true,
         message: 'Car detail delated.',
+        cars
     })
 })

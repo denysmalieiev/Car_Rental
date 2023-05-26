@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import { carRental_Get_All_Cars } from '../../utils/actions/CarsAction.js';
-import { carRental_Load_User, carRental_Sign_Out } from '../../utils/actions/UserAction.js';
+import { carRental_Sign_Out } from '../../utils/actions/UserAction.js';
 import headerCSS from './css/header.module.css';
 
 const Header = () => {
@@ -19,6 +19,7 @@ const Header = () => {
     dispatch(carRental_Sign_Out)
     navigate('/')
   }
+
   useEffect(()=>{
     if(!cars || Object.keys(cars).length===0){
       dispatch(carRental_Get_All_Cars)
@@ -35,16 +36,18 @@ const Header = () => {
           <div className={headerCSS.navBarWebNavigationLeft}>
             <ul>
               <li><h3><Link to='/gallery'>Gallery</Link></h3></li>
-              { cars && !loading ? <><li><h3><Link to='/cars'>Cars</Link></h3></li></>: <> </>}
+              {/* { cars ? <></>: <><li><h3>Cars</h3></li> </>} */}
               
-              { isAuthenticated && !loading 
+              { isAuthenticated
                 ? <>
                     { user && user.role==='admin'
                       ? <>
+                          <li><h3><Link to='/cars'>Cars</Link></h3></li>
                           <li><h3><Link to='/admin/dashboard'>Admin</Link></h3></li>
                           <li><h3><Link to='/admin/office/details'>Offices</Link></h3></li>
                         </>
                       : <>
+                          <li><h3><Link to='/cars'>Cars</Link></h3></li>
                           <li><h3><Link to='/car/rent/payment'>Cart</Link></h3></li>
                         </>
                     }

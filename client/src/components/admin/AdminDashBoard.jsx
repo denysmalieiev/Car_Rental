@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector} from 'react-redux';
+import { carRental_Admin_Get_All_Users } from '../../utils/actions/UserAction.js';
 
 import carRentalContainerCSS from '../css/container.module.css';
 import adminContainerCSS from './adminCss/adminContainer.module.css';
 
 const AdminDashBoard = () => {
+  const dispatch = useDispatch();
+  const { user } = useSelector(state=>state.user)
+  const { users } = useSelector(state=>state.users)
+
+  useEffect(()=>{
+    if(!users && user.role=='admin'){
+      dispatch(carRental_Admin_Get_All_Users)
+    }
+  }, [dispatch])
+
   return (
     <div className={carRentalContainerCSS.carRentalPageContainer}>
       <div className={adminContainerCSS.adminContainer}>
@@ -27,7 +39,7 @@ const AdminDashBoard = () => {
             <p>Total Registered Admins: </p>
             <button><Link to='/admin/users/admin'>All Admin</Link></button><br/>
             <p>Total Registered Customers: </p>
-            <button><Link to='/admin/users/customers'>All Users</Link></button>
+            <button><Link to='/admin/users/customer'>All Users</Link></button>
           </div>
         </div>
         <div className={adminContainerCSS.adminContainerRightPart}>

@@ -10,16 +10,23 @@ const CarsHome = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { isAuthenticated } = useSelector(state=> state.auth);
-  const { cars, error } = useSelector(state=> state.cars);
+  const { cars, error, loading } = useSelector(state=> state.cars);
   const { user } = useSelector(state=> state.user);
-  const [category, setCategory] = useState('SUV') 
+  const [category, setCategory] = useState('suv') 
   const [carTa, setCarTa] = useState()
 
   const handleCarCategoryFilter = (e, type) => {
     e.preventDefault()
     setCategory(type)
+    const fiterCar = cars.filter((data)=>{
+      if(data.carCategory.toLowerCase()!==category.toLowerCase()){
+        return 
+      }
+      return data
+    })
   }
 
+  console.log(cars)
   const handleCarClick = (e, id)=>{
     e.preventDefault()
     const fetchCar = cars.filter((data)=>{
@@ -46,6 +53,9 @@ const CarsHome = () => {
   }
 
   useEffect(()=>{
+    if(error){
+      dispatch(clearError)
+    }
     if(!cars){
       console.log('No')
     } else if( cars && Object.keys(cars).length>0){
@@ -53,22 +63,16 @@ const CarsHome = () => {
     } else {
       navigate('/')
     }
-  }, [])
 
-  useEffect(()=>{
-    if(error){
-      dispatch(clearError)
-    }
-
-  }, [dispatch, error])
+  }, [dispatch, error, category, loading])
 
   return (
     <div className={containerCSS.carRentalPageContainer} id='carsN'>
       <div className={carsHomeCSS.carsHomeBox}>
         <div className={carsHomeCSS.carsHomeBoxLeft}>
           <div className={carsHomeCSS.carsHomeBoxLeftCarCategory}>
-            <button onClick={(e)=> handleCarCategoryFilter(e, 'SUV')}><h3>SUV</h3></button>
-            <button onClick={(e)=> handleCarCategoryFilter(e, 'Sedan')}><h3>Sedan</h3></button>
+            <button onClick={(e)=> handleCarCategoryFilter(e, 'suv')}><h3>SUV</h3></button>
+            <button onClick={(e)=> handleCarCategoryFilter(e, 'sedan')}><h3>Sedan</h3></button>
           </div>
           <div className={carsHomeCSS.carsHomeBoxLeftCarOptions}>
             <h3>Cars</h3>
@@ -104,8 +108,9 @@ const CarsHome = () => {
             }
           </div>
         </div>
+
         <div className={carsHomeCSS.carsHomeBoxMid}>
-          {  carTa ? <><img src={carTa.carPicture[0].url} alt='car_image'/></>: <><img src='' alt='car_image'/></> }
+          {  carTa ? <><img src={carTa.carPicture[0].url} alt='car_image'/></>: <><img src='https://cdn.dribbble.com/users/2374064/screenshots/4732016/car-jump.gif' alt='car_image'/></> }
         </div>
         <div className={carsHomeCSS.carsHomeBoxRight}>
           <div className={carsHomeCSS.carsHomeBoxRightContent}>

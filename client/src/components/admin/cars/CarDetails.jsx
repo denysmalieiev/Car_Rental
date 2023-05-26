@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { carRental_Admin_Car_Details_Delete } from '../../../utils/actions/CarsAction';
 
 import containerCSS from '../../css/container.module.css';
 import adminCarDetailCSS from './css/adminCarDetail.module.css';
@@ -15,6 +16,14 @@ const CarDetails = () => {
     // const { isAuthenticated } = useSelector(state=> state.auth);
     const { car, error, loading } = useSelector(state=> state.car);
     // const { user } = useSelector(state=> state.user);
+
+        const handleDeleteCar = (e, car) =>{
+        e.preventDefault()
+        console.log(car)
+        alert(`${car.carName} deleted.`)
+        dispatch(carRental_Admin_Car_Details_Delete(car._id))
+        navigate('/')
+    }
 
     useEffect(()=>{
         if(error){
@@ -32,7 +41,7 @@ const CarDetails = () => {
                 </div><br/>
                 <div>
                     <button><Link to={`/admin/car/update/${car._id}`}>Update Car</Link></button>
-                    <button>Delete Car</button>
+                    <button onClick={(e) => handleDeleteCar(e, car) }>Delete Car</button>
                 </div>
             </div>
             <div className={adminCarDetailCSS.adminCarDetailRightBox}>

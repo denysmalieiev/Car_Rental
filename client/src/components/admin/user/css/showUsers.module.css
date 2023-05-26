@@ -1,0 +1,63 @@
+.usersCardConatiner{
+    width:79.5%;
+    margin: 2% 10%;
+    height: auto;
+    overflow: auto;
+    border: 2px solid rgb(242, 242, 255);
+    border-radius: 10px;
+}
+    .usersCardLeftShow{
+        width: 48%;
+        height: 250px;
+        margin: 0% 0%;
+        float: left;
+        display: flex;
+        justify-content:flex-start;
+        align-items: start;
+    }
+        .usersCardLeftShow img{
+            width: 80%;
+            height: 100%;
+        }
+
+    .usersCardRightShow{
+        width:50%;
+        margin: 1% 2% 1% 0%;
+        float: right;
+    }
+        .usersCardRightShow h3{
+            margin: 0% 0%;
+        }
+        .usersCardRightShow hr{
+            width: 75%;
+            height: 3px;
+            margin: 1% 0% 2%;
+            border: none;
+            border-radius: 2px;
+            background-color: black;
+        }
+        .showUserDetail{
+            display: flex;
+            font-size: 0.9em;
+        }
+            .showUserDetail b{
+                width: 20%;
+            }
+            .showUserDetail p{
+                width: 80%;
+                margin: 0% 0% 1%;
+            }
+
+        .usersCardRightShow button{
+            margin: 2% 0% 1%;
+            padding: 1% 5%;
+            border-radius: 5px;
+            font-weight: 500;
+            background-color: rgb(250, 247, 230);
+            color: red;
+            border: 2px solid rgb(225, 225, 222);
+        }
+            .usersCardRightShow button:hover{
+                background-color: white;
+                border: 2px solid blue;
+            }
