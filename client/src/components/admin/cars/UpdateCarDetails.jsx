@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { carRental_Admin_Car_Details_Delete } from '../../../utils/actions/CarsAction';
 
 import containerCSS from '../../css/container.module.css';
-import adminCarDetailCSS from './css/adminCarDetail.module.css';
+import adminCarDetailCSS from '../adminCss/adminDetails.module.css';
 
 import { clearError } from '../../../utils/actions/CarsAction';
 
@@ -18,6 +18,7 @@ const UpdateCarDetais = () => {
         carCompany: car.carCompany,
         carName: car.carName,
         carModel: car.carModel,
+        carImage: car.carPicture,
         carCategory: car.carCategory,
         carEngine: car.carEngine,
         carFuelType: car.carFuelType,
@@ -34,7 +35,8 @@ const UpdateCarDetais = () => {
 
     const handleOnSubmitForm = (e) =>{
         e.preventDefault()
-        alert('DOne')
+        alert('Done')
+        console.log(formData)
     }
 
     const handleDeleteCar = (e, id) =>{
@@ -62,7 +64,6 @@ const UpdateCarDetais = () => {
                 </div><br/>
                 <div>
                     <button><Link to={`/car/${car._id}`}>Car Details</Link></button>
-                    <button onClick={( e) => handleDeleteCar(e, car._id) }>Delete Car</button>
                 </div>
             </div>
             <div className={adminCarDetailCSS.adminCarDetailRightBox}>

@@ -139,7 +139,6 @@ export const carRental_Admin_All_Offices_Load = async(dispath)=>{
         dispath({type: ADMIN_GET_OFFICES_LOCATION_REQUEST})
 
         const { data } = await axios.get(`/user/admin/office/all`);
-        
         dispath({
             type: ADMIN_GET_OFFICES_LOCATION_SUCCESS,
             payload: data.offices

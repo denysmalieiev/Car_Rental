@@ -162,11 +162,11 @@ export const carRental_Admin_Get_Single_User = (id) => async(dispath)=>{
     try{
         dispath({type: ADMIN_SINGLE_USER_REQUEST})     
 
-        const { data } = await axios.get(`user/admin/user/${id}`);
+        const { data } = await axios.get(`/user/admin/user/${id}`);
 
         dispath({
             type: ADMIN_SINGLE_USER_SUCCESS,
-            payload: data.user
+            payload: data.userProfile
         })
     } catch(error){
         dispath({

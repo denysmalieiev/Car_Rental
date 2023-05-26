@@ -17,15 +17,15 @@ export const carRental_Admin_Get_All_User = CatchAsync(async(req, res, next)=>{
 
 // 2) --------------| Admin: Get Single User |--------------
 export const carRental_Admin_Get_Single_User = CatchAsync(async(req, res, next)=>{
-    const user = await User.findById(req.params.id);
+    const userProfile = await User.findById(req.params.id);
 
-    if(!user) {
+    if(!userProfile) {
         return next(new ErrorHandler(`User doesn't exist with id: ${req.params.id}`, 404));
     }
 
     return res.status(200).json({
         success: true,
-        user,
+        userProfile,
     });
 })
 
@@ -73,7 +73,7 @@ export const carRental_Admin_Office_Location_Register = CatchAsync( async(req, r
     if (officeLocationExist) {
         return next(new ErrorHandler("Office Location already exist", 400));
     }
-    const officeLocation = await OfficeLocation.create({
+    const office = await OfficeLocation.create({
         user: req.user.id,
         address: req.body.address,
         city: req.body.city,
@@ -86,6 +86,16 @@ export const carRental_Admin_Office_Location_Register = CatchAsync( async(req, r
 
     return res.status(201).json({
         success: true,
-        officeLocation,
+        office,
+    });
+})
+
+// 6) --------------| Admin: Office Location Update |--------------
+export const carRental_Admin_All_Offices_Location = CatchAsync( async(req, res, next) =>{
+    const offices = await OfficeLocation.find()
+
+    return res.status(201).json({
+        success: true,
+        offices,
     });
 })

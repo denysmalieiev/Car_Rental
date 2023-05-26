@@ -15,7 +15,7 @@ const reducer = combineReducers({
     cars: allCarReducer,
     car: singleCarReducer,
     adminOffice: adminNewOfficeReducer,
-    Offices: adminAllOfficesReducer,
+    offices: adminAllOfficesReducer,
     // userOrders:
     // adminOrders:
 })

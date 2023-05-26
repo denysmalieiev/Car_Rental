@@ -26,7 +26,6 @@ const CarsHome = () => {
     })
   }
 
-  console.log(cars)
   const handleCarClick = (e, id)=>{
     e.preventDefault()
     const fetchCar = cars.filter((data)=>{

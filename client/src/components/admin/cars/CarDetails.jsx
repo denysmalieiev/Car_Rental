@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { carRental_Admin_Car_Details_Delete } from '../../../utils/actions/CarsAction';
 
 import containerCSS from '../../css/container.module.css';
-import adminCarDetailCSS from './css/adminCarDetail.module.css';
+import adminCarDetailCSS from '../adminCss/adminDetails.module.css';
 
 import { clearError } from '../../../utils/actions/CarsAction';
 

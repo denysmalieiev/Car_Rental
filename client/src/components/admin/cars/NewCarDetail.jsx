@@ -3,7 +3,7 @@ import { useDispatch, useSelector} from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import containerCSS from '../../css/container.module.css';
-import adminCarDetailCSS from './css/adminCarDetail.module.css';
+import adminCarDetailCSS from '../adminCss/adminDetails.module.css';
 
 import { carRental_Admin_New_Car_Detail,carRental_Get_All_Cars,clearError } from '../../../utils/actions/CarsAction';
 

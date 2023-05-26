@@ -18,7 +18,7 @@ import Gallery from './components/mainHome/Gallery';
 
 // Admin
 import AdminDashBoard from './components/admin/AdminDashBoard';
-// import AdminSingleUsers from './components/admin/user/AdminSingleUser';
+import AdminSingleUsers from './components/admin/user/AdminUserProfile';
 import AdminAllUsers from './components/admin/user/AdminAllUsers';
 // import AdminUserRoleUpdate from './components/admin/user/AdminUserRoleUpdate';
 // import AdminUserAccountDelete from './components/admin/user/AdminUserAccountDelete';
@@ -90,6 +90,7 @@ function App() {
                 <Route exact path='/admin/dashboard' element={<AdminDashBoard/>} />
 
                 <Route exact path='/admin/users/:role' element={<AdminAllUsers/>} />
+                <Route exact path='/admin/user/:id' element={<AdminSingleUsers/>} />
 
                 <Route exact path='/admin/office/new' element={<AdminNewOffice/>} />
                 <Route exact path='/admin/office/details' element={<AdminOfficesDetails/>} />
@@ -101,7 +102,7 @@ function App() {
 
                 {/* User */}
                 <Route exact path='/user/profile' element={<UserProfileShow/>} />
-                <Route exact path='/user/profile/update' element={<UserProfileUpdate/>} />
+                <Route exact path='/user/profile/update' element={<UserProfileUpdate/>}/>
                 <Route exact path='/password/update' element={<UserPasswordUpdate/>} />
 
                 {/* Car */}

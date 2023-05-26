@@ -1,15 +1,40 @@
 .adminCarDetailContainer{
     width: 79.25%;
-    min-height: 450px;
+    min-height: 350px;
     height: auto;
     overflow: auto;
     margin: 0% 10%;
     border: 2px solid blue;
     border-radius: 10px;
 }
+    .headingBox{
+        width: 100%;
+        float: left;
+        margin: 0% 0% 2%;
+        text-align: center;
+    }
+        .headingBox hr{
+            width: 50%;
+            margin: 0.5% 25% 1%;
+            height: 5px;
+            border-radius: 5px;
+            border: none;
+            background: rgb(11,4,43);
+            background: linear-gradient(90deg, rgb(47, 0, 255) 6%, rgb(201, 0, 90) 46%, rgb(105, 10, 230) 100%);
+        }
+        .headingBox  button{
+            padding: 0.5% 3%;
+            border: none;
+            background: linear-gradient(90deg, rgb(5, 17, 252) 6%, rgb(198, 0, 201) 46%, rgb(131, 10, 230) 100%);
+        }
+        .headingBox  a{
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+        }
     .adminCarDetailLeftBox{
         width: 50%;
-        min-height: 450px;
+        min-height: 350px;
         height: auto;
         overflow: auto;
         float: left;
@@ -52,7 +77,7 @@
 
     .adminCarDetailRightBox{
         width: 50%;
-        min-height: 450px;
+        min-height: 350px;
         height: auto;
         overflow: auto;
         float: left;

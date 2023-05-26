@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import ShowUsers from './ShowUsers';
 import carRentalContainerCSS from '../../css/container.module.css';
 import adminContainerCSS from '../adminCss/adminContainer.module.css';
-import showUsersCSS from './css/showUsers.module.css';
+import showUsersCSS from '../adminCss/showUsers.module.css';
 
 const AdminAllUsers = () => {
   const params = useParams()
