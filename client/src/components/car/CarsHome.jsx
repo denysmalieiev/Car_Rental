@@ -75,7 +75,6 @@ const CarsHome = () => {
           </div>
           <div className={carsHomeCSS.carsHomeBoxLeftCarOptions}>
             <h3>Cars</h3>
-            <br/>
             {
               !cars
               ? <> </>
