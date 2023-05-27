@@ -24,8 +24,9 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
-    }   .navBarWebName p{
-        font-size: 1.4em;
+    }   
+        .navBarWebName p{
+            font-size: 1.4em;
             font-weight: 900;
         }
 
@@ -57,3 +58,111 @@
         .navBarWebNavigationRight li{
             padding: 0% 4%;
         }
+
+@media screen and (max-width: 600px) {
+    .carRentalNevBar{
+        height: 30px;
+    }
+        .navBarWebName{
+            width: 25%;
+            height: 30px;
+        }   
+            .navBarWebName p{
+                font-size: 0.8em;
+                font-weight: 900;
+            }
+    
+        .navBarWebNavigation{
+            width: 75%;
+        }
+            .navBarWebNavigation h3{
+                font-weight: 400;
+                font-size: 0.6em;
+            }
+            .navBarWebNavigation li{
+                height: 30px;
+            }
+            .navBarWebNavigationLeft{
+                width: 50%;
+            }        
+    
+            .navBarWebNavigationRight{
+                width: 50%;
+            }
+            .navBarWebNavigationRight li{
+                padding: 0% 3%;
+                height: 30px;
+            }
+}
+
+@media screen and (min-width: 601px) {
+    .carRentalNevBar{
+        height: 35px;
+    }
+        .navBarWebName{
+            width: 25%;
+            height: 35px;
+        }   
+            .navBarWebName p{
+                font-size: 1em;
+                font-weight: 900;
+            }
+    
+        .navBarWebNavigation{
+            width: 75%;
+        }
+            .navBarWebNavigation h3{
+                font-weight: 400;
+                font-size: 1em;
+            }
+            .navBarWebNavigation li{
+                height: 35px;
+            }
+            .navBarWebNavigationLeft{
+                width: 50%;
+            }        
+    
+            .navBarWebNavigationRight{
+                width: 50%;
+            }
+            .navBarWebNavigationRight li{
+                padding: 0% 3%;
+                height: 35px;
+            }
+}
+
+@media screen and (min-width: 951px) {
+    .carRentalNevBar{
+        height: 45px;
+    }
+        .navBarWebName{
+            width: 25%;
+            height: 45px;
+        }   
+            .navBarWebName p{
+                font-size: 1.4em;
+                font-weight: 900;
+            }
+    
+        .navBarWebNavigation{
+            width: 75%;
+        }
+            .navBarWebNavigation h3{
+                font-weight: 500;
+                font-size: 1.2em;
+            }
+            .navBarWebNavigation li{
+                height: 45px;
+            }
+            .navBarWebNavigationLeft{
+                width: 60%;
+            }        
+    
+            .navBarWebNavigationRight{
+                width: 40%;
+            }
+            .navBarWebNavigationRight li{
+                padding: 0% 3%;
+                height: 45px;
+            }
+}
