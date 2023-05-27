@@ -43,36 +43,29 @@ const Header = () => {
           <div className={headerCSS.navBarWebNavigationLeft}>
             <ul>
               { isAuthenticated && !loading
-                ? <>
-                    {
-                      role==='admin'
-                      ? 
-                        <>
+                ? <> 
+                  { role==='admin'
+                    ? <>
                         <li><h3><Link to='/cars'>Cars</Link></h3></li>
                         <li><h3><Link to='/admin/dashboard'>Admin</Link></h3></li>
                         <li><h3><Link to='/admin/office/details'>Offices</Link></h3></li>
-                        </>
-                      :
-                        <>
-                        </>
-                    }
+                      </>
+                    : <></>
+                  }
                   </>
-                : <>
-                  </>
+                : <></>
               }
             </ul>
           </div>
           <div className={headerCSS.navBarWebNavigationRight}>
             <ul>
               { isAuthenticated
-                ? 
-                  <>
+                ? <>
                     <li><h3><Link to='/car/rent/payment'>Cart</Link></h3></li>
                     <li><h3><Link to='/user/profile'>Profile</Link></h3></li>
                     <li><h3 style={{color: 'white'}} onClick={handleLogout}><Link>Logout</Link></h3></li>
                   </>
-                : 
-                  <>
+                : <>
                     <li><h3><Link to='/user/signin'>SignIn</Link></h3></li>
                     <li><h3><Link to='/user/signup'>SignUp</Link></h3></li>
                   </>
