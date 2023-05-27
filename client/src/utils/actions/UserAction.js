@@ -46,11 +46,11 @@ export const carRental_Sign_In = (email, password) => async(dispath)=>{
 
         const config = {headers: { "Content-Type": "application/json"}};
 
-        await axios.post(`/user/login`, { email, password }, config);
+        const {data} = await axios.post(`/user/login`, { email, password }, config);
 
         dispath({
             type: LOGIN_SUCCESS,
-            // payload: data.success
+            payload: data.role
         })
 
     } catch(error){
@@ -218,6 +218,6 @@ export const carRental_Admin_User_Account_Delete = (id) => async(dispath)=>{
 }
 
 // Clearing Error
-export const clearErrors = async(dispath)=>{
+export const clearError = async(dispath)=>{
     dispath({type: CLEAR_ERRORS});
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
-import { carRental_Get_All_Cars } from '../../utils/actions/CarsAction.js';
+import { carRental_Get_All_Cars, clearError } from '../../utils/actions/CarsAction.js';
 import { carRental_Sign_Out } from '../../utils/actions/UserAction.js';
 import headerCSS from './css/header.module.css';
 
@@ -9,9 +9,8 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
-  const { isAuthenticated } = useSelector(state=> state.auth);
+  const { isAuthenticated, role } = useSelector(state=> state.auth);
   const { cars, loading, error } = useSelector(state=> state.cars);
-  const { user } = useSelector(state=>state.user)
 
   const handleLogout =(e) =>{
     e.preventDefault();
@@ -21,10 +20,18 @@ const Header = () => {
   }
 
   useEffect(()=>{
+    if(error){
+      dispatch(clearError)
+    }
     if(!cars || Object.keys(cars).length===0){
       dispatch(carRental_Get_All_Cars)
     }
-  }, [dispatch, isAuthenticated])
+    if(isAuthenticated && role){
+      if(role==='admin'){
+        navigate('/admin/dashboard')
+      }
+    }
+  }, [dispatch, isAuthenticated, error, role])
 
   return (
     <>
@@ -35,24 +42,25 @@ const Header = () => {
         <div className={headerCSS.navBarWebNavigation}>
           <div className={headerCSS.navBarWebNavigationLeft}>
             <ul>
-              <li><h3><Link to='/gallery'>Gallery</Link></h3></li>
-              {/* { cars ? <></>: <><li><h3>Cars</h3></li> </>} */}
-              
-              { isAuthenticated
+              { isAuthenticated && !loading
                 ? <>
-                    { user && user.role==='admin'
-                      ? <>
-                          <li><h3><Link to='/cars'>Cars</Link></h3></li>
-                          <li><h3><Link to='/admin/dashboard'>Admin</Link></h3></li>
-                          <li><h3><Link to='/admin/office/details'>Offices</Link></h3></li>
+                    {
+                      role==='admin'
+                      ? 
+                        <>
+                        <li><h3><Link to='/cars'>Cars</Link></h3></li>
+                        <li><h3><Link to='/admin/dashboard'>Admin</Link></h3></li>
+                        <li><h3><Link to='/admin/office/details'>Offices</Link></h3></li>
                         </>
-                      : <>
-                          <li><h3><Link to='/cars'>Cars</Link></h3></li>
+                      :
+                        <>
                           <li><h3><Link to='/car/rent/payment'>Cart</Link></h3></li>
                         </>
                     }
                   </>
-                : <></>
+                : <>
+                    <li><h3><Link to='/cars'>Cars</Link></h3></li>
+                  </>
               }
             </ul>
           </div>

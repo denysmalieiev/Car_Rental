@@ -1,11 +1,10 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 
-import { clearError } from './utils/actions/CarsAction.js';
+import { carRental_Load_User, clearError } from './utils/actions/UserAction';
 import carDataContext from './DataContext';
-import { carToBeRent, cityOptionAvailable } from './Data';
 
 // Header and Footer
 import Header from './components/header/Header';
@@ -14,14 +13,11 @@ import Footer from './components/footer/Footer';
 // Home Page
 import HomePage from './components/mainHome/HomePage';
 import About from './components/mainHome/About';
-import Gallery from './components/mainHome/Gallery';
 
 // Admin
 import AdminDashBoard from './components/admin/AdminDashBoard';
 import AdminSingleUsers from './components/admin/user/AdminUserProfile';
 import AdminAllUsers from './components/admin/user/AdminAllUsers';
-// import AdminUserRoleUpdate from './components/admin/user/AdminUserRoleUpdate';
-// import AdminUserAccountDelete from './components/admin/user/AdminUserAccountDelete';
 import AdminNewOffice from './components/admin/cars/AdminNewOffice';
 import AdminOfficesDetails from './components/admin/cars/AdminOfficesDetails';
 import AdminNewCarDetail from './components/admin/cars/NewCarDetail';
@@ -30,7 +26,6 @@ import AdminUpdateCarDetails from './components/admin/cars/UpdateCarDetails';
 
 import AdminUsersAllOrders from './components/admin/orders/AdminAllOrders';
 import AdminUserOrderUpdate from './components/admin/orders/AdminOrderUpdate';
-// import AdminUserOrderDelete from './components/admin/orders/AdminOrderDelete';
 
 
 // User
@@ -50,7 +45,7 @@ import UserCartBook from './components/car/UserCartBook';
 import CarBooking from './components/booking/CarBooking';
 import BookingPayment from './components/booking/BookingPayment';
 import BookingHistory from './components/booking/BookingHistory';
-import { carRental_Load_User, carRental_Admin_Get_All_Users, } from './utils/actions/UserAction';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -58,30 +53,25 @@ function App() {
 
   const { isAuthenticated, error } = useSelector(state=> state.auth);
 
-  const [carToRent, setCarToRent] = useState(carToBeRent); // Object
-  const [cityAvailable, setCityAvailable] = useState(cityOptionAvailable)
-
-  function setCarForBooking(data){
-    setCarToRent(data)
-  } 
-
   useEffect(()=>{
+    if(error){
+      dispatch(clearError)
+    }
     if(!isAuthenticated){
       navigate('/')
     }
     if(isAuthenticated){
       dispatch(carRental_Load_User)
     }
-  }, [dispatch, isAuthenticated])
+  }, [dispatch, isAuthenticated, error])
 
   return (
     <div className="App">
-      <carDataContext.Provider value={{ carToRent, cityAvailable,  setCarForBooking }}>
+      <carDataContext.Provider value={{ }}>
         <Header/>
         <Routes>
           <Route path='/' element={<HomePage/>} />
           <Route path='/about' element={<About/>} />
-          <Route path='/gallery' element={<Gallery/>} />
               
           { isAuthenticated 
             ?

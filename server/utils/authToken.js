@@ -24,7 +24,8 @@ const authToken = {
         // 4) Sending response
         return res.status(statusCode).json({
             success: true,
-            token
+            token,
+            role: user.role
         }) 
     },
 

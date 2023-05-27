@@ -3,6 +3,11 @@ import React from 'react';
 import showUsersCSS from '../adminCss/showUsers.module.css';
 
 const ShowOffices = ({data}) => {
+
+  const handleOfficeDelete = (e) =>{
+    e.preventDefault()
+    alert(data._id)
+  }
   return (
     <>
       <div className={showUsersCSS.usersCardLeftShow}>
@@ -19,6 +24,7 @@ const ShowOffices = ({data}) => {
         {data.city && data.pin? <><div className={showUsersCSS.showUserDetail}><b>City: </b><p>{data.city+", "+data.pin}</p></div></>:<></>}
         {data.state? <><div className={showUsersCSS.showUserDetail}><b>State: </b><p>{data.state}</p></div></>:<></>}
         {data.country? <><div className={showUsersCSS.showUserDetail}><b>Country: </b><p>{data.country}</p></div></>:<></>}
+        <button onClick={handleOfficeDelete}>Delete</button>
       </div>
     </>
   )

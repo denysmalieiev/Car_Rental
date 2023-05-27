@@ -1,16 +1,14 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
-import {carRental_Sign_In, carRental_Load_User, clearErrors} from '../../../utils/actions/UserAction';
-import DataContext from '../../../DataContext';
+import {carRental_Sign_In, clearError} from '../../../utils/actions/UserAction';
 import carContainerCSS from  '../../css/container.module.css';
 import userAuthCSS from './css/userAuth.module.css';
 
 const UserLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, isAuthenticated, error } =  useSelector((state)=> state.auth);
-  const { user } =  useSelector((state)=> state.user);
+  const { isAuthenticated, loading, error } =  useSelector((state)=> state.auth);
 
   const [formData, setFormData] = useState({
     email: '',
@@ -29,12 +27,11 @@ const UserLogin = () => {
     e.preventDefault()
     dispatch(carRental_Sign_In(formData.email, formData.password))
     navigate(`/`)
-    // dispatch(carRental_Load_User)
   }
 
   useEffect(()=>{
     if(error){
-      dispatch(clearErrors)
+      dispatch(clearError)
     }
     if (isAuthenticated) {
       navigate(`/`)

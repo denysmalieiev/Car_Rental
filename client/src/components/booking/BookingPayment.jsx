@@ -1,9 +1,8 @@
-import React, { useEffect, useContext } from 'react';
-import { useNavigate, Link, useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+// import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
-import { clearErrors } from '../../utils/actions/UserAction';
+import { clearError } from '../../utils/actions/UserAction';
 
-import DataContext from '../../DataContext';
 import ContainerCSS from '../css/container.module.css';
 import bookingPaymentCSS from './css/bookingPayment.module.css';
 
@@ -11,14 +10,11 @@ const BookingPayment = () => {
 
   const dispatch = useDispatch();
   const { user, loading, error } =  useSelector((state)=> state.user);
-
-  const carContext = useContext(DataContext);
-  const navigate = useNavigate()
-  const params = useParams()
+  const { car } =  useSelector((state)=> state.user);
 
   useEffect(()=>{
     if(error){
-      dispatch(clearErrors)
+      dispatch(clearError)
     }
   },[dispatch, user, error, loading])
 
@@ -30,26 +26,23 @@ const BookingPayment = () => {
           <div className={bookingPaymentCSS.paymentBoxLeftContent}>
             {/* Left Top Image */}
             <div>
-              { carContext.carToRent
+              { car
                 ? 
-                  <img src={carContext.carToRent.carPicture[0].url} alt='Car Image'/>
+                  <img src={car.carPicture[0].url} alt='Car_Image'/>
                 : 
-                  <img src='https://cdn.dribbble.com/users/2374064/screenshots/4732016/car-jump.gif' alt='Car Image'/>
+                  <img src='https://cdn.dribbble.com/users/2374064/screenshots/4732016/car-jump.gif' alt='Car_Image'/>
               }
             </div>
             <br/>
             {/* Left bottom Details */}
             <div>
-              { carContext.carToRent
+              { car
                 ? 
                   <>
-                    <h2>Rental Price: ₹{carContext.carToRent.tripRange * carContext.carToRent.rentalPriceCharge}, Range: {carContext.carToRent.tripRange}</h2>
-                    <p style={{width: '84%', margin: '2% 8%'}}> <b>Car Pick up Address: </b>
-                      { carContext.carToRent.citySelect[0].address+' '+carContext.carToRent.citySelect[0].city+', '+carContext.carToRent.citySelect[0].state
-                       +' '+carContext.carToRent.citySelect[0].country+', '+carContext.carToRent.citySelect[0].pin+", Contact: "+carContext.carToRent.citySelect[0].contact }
-                    </p>
+                    <h2>Rental Price: ₹{ car.tripRange * car.rentalPriceCharge}, Range: {car.tripRange}</h2>
+                    <p style={{width: '84%', margin: '2% 8%'}}> <b>Car Pick up Address: </b></p>
                     <p> <b>Car: </b>
-                      { carContext.carToRent.carName+' '+carContext.carToRent.carCategory+', '+carContext.carToRent.carSeatCapacity }
+                      { car.carName+' '+ car.carCategory+', '+ car.carSeatCapacity }
                     </p>
                   </> 
                 :
@@ -164,7 +157,7 @@ const BookingPayment = () => {
             <div className={bookingPaymentCSS.paymentProceedBox}>
               <label htmlFor='payOtp'>OTP&nbsp;&nbsp;</label>
               <input type='number' id='payOtp' placeholder='0000' display="none"/>
-              <button onClick={(e)=>carContext.handlePaymentCompletion()}>Pay</button>
+              <button>Pay</button>
             </div>
             
           </div>

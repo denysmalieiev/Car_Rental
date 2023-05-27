@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
-import { clearErrors } from '../../../../utils/actions/UserAction';
+import { clearError } from '../../../../utils/actions/UserAction';
 
 import ContainerCSS from '../../../css/container.module.css';
 import userProfileCSS from './css/userProfile.module.css';
@@ -14,7 +13,7 @@ const UserProfileShow = () => {
 
   useEffect(()=>{
     if(error){
-      dispatch(clearErrors)
+      dispatch(clearError)
     }
   },[dispatch, user, error, loading])
 

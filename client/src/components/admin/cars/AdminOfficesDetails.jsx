@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ShowOffices from './ShowOffices';
 import { useDispatch, useSelector} from 'react-redux';
-import { carRental_Admin_New_Office_Location, carRental_Admin_All_Offices_Load, clearError} from '../../../utils/actions/CarsAction';
+import { carRental_Admin_All_Offices_Load, clearError} from '../../../utils/actions/CarsAction';
 
 import containerCSS from '../../css/container.module.css';
 import adminCarDetailCSS from '../adminCss/adminDetails.module.css';
@@ -9,11 +9,20 @@ import showUsersCSS from '../adminCss/showUsers.module.css';
 
 const AdminOfficeDetails = () => {
   const dispatch = useDispatch();
-  const { offices, loading } = useSelector(state=> state.offices);
+  const { offices, error, loading } = useSelector(state=> state.offices);
 
   useEffect(()=>{
-    dispatch(carRental_Admin_All_Offices_Load)
-  }, [])
+    if(error){
+      dispatch(clearError)
+    }
+    if(!offices){
+      dispatch(carRental_Admin_All_Offices_Load)
+    }
+    if(offices && loading){
+      dispatch(carRental_Admin_All_Offices_Load)
+    }
+
+  }, [dispatch])
 
   return (
     <div className={containerCSS.carRentalPageContainer}>

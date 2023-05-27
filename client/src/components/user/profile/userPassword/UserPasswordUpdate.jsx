@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
-import { clearErrors } from '../../../../utils/actions/UserAction';
+import { clearError } from '../../../../utils/actions/UserAction';
 
 import ContainerCSS from '../../../css/container.module.css';
 import passwordContainerCSS from './css/passwordContainer.module.css';
@@ -25,7 +25,7 @@ const UserPasswordUpdate = () => {
 
     useEffect(()=>{
         if(error){
-          dispatch(clearErrors)
+          dispatch(clearError)
         }
       },[dispatch, user, error, loading])
 

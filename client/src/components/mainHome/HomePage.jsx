@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector} from 'react-redux';
-import { carRental_Get_All_Cars, carRental_Get_Single_car, clearError } from '../../utils/actions/CarsAction.js';
+import { clearError } from '../../utils/actions/CarsAction.js';
 
 import homePageCSS from './css/homePage.module.css';
 import HomeTopContent from './HomeTopContent';
@@ -15,7 +15,7 @@ const HomePage = () => {
       dispatch(clearError)
     }
 
-  }, [dispatch])
+  }, [dispatch, loading, error])
 
   return (
     <>

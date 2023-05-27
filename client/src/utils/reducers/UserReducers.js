@@ -22,6 +22,13 @@ export const userAuthReducer = (state = {}, action)=>{
         isAuthenticated: false
       }
     case LOGIN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isAuthenticated: true,
+        role: action.payload
+      }
+
     case ADMIN_USER_ACCOUNT_DELETE_REQUEST:
       return {
         ...state,

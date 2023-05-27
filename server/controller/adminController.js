@@ -54,7 +54,7 @@ export const carRental_Admin_Delete_User_Account = CatchAsync(async(req, res, ne
         return next(new ErrorHandler(`User doesn't exist with id: ${req.params.id}`, 404));
     }
 
-    await user.remove();
+    await User.findByIdAndDelete(req.params.id)
 
     return res.status(200).json({
         success: true
@@ -84,6 +84,7 @@ export const carRental_Admin_Office_Location_Register = CatchAsync( async(req, r
         email: req.body.email
     });
 
+    console.log(office)
     return res.status(201).json({
         success: true,
         office,
@@ -93,9 +94,34 @@ export const carRental_Admin_Office_Location_Register = CatchAsync( async(req, r
 // 6) --------------| Admin: Office Location Update |--------------
 export const carRental_Admin_All_Offices_Location = CatchAsync( async(req, res, next) =>{
     const offices = await OfficeLocation.find()
-
     return res.status(201).json({
         success: true,
+        length: offices.length,
         offices,
+    });
+})
+
+// 7) --------------| Admin: Office Location Update |--------------
+export const carRental_Admin_Office_Location_Update = CatchAsync( async(req, res, next) =>{
+    const offices = await OfficeLocation.find()
+    return res.status(201).json({
+        success: true,
+        length: offices.length,
+        offices,
+    });
+})
+
+// 8) --------------| Admin: Office Location Delete |--------------
+export const carRental_Admin_Office_Location_Delete = CatchAsync( async(req, res, next) =>{
+    const officeLoc = await OfficeLocation.findById(req.params.id);
+
+    if(!officeLoc) {
+        return next(new ErrorHandler(`User doesn't exist with id: ${req.params.id}`, 404));
+    }
+
+    await OfficeLocation.findByIdAndDelete(req.params.id)
+
+    return res.status(200).json({
+        success: true
     });
 })

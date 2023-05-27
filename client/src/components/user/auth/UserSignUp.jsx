@@ -1,16 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
-import { carRental_Sign_Up, clearErrors} from '../../../utils/actions/UserAction';
-import DataContext from '../../../DataContext';
+import { carRental_Sign_Up, clearError } from '../../../utils/actions/UserAction';
 import carContainerCSS from  '../../css/container.module.css';
 import userAuthCSS from './css/userAuth.module.css';
 
 const UserSignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { error, loading, isAuthenticated } = useSelector(state=>state.user);
-  const carContext = useContext(DataContext)
+  const { error } = useSelector(state=>state.user);
+
   const [formData, setFromData] = useState({
     firstName: '',
     lastName: '',
@@ -35,6 +34,12 @@ const UserSignUp = () => {
         navigate('/user/signin')
       })
   }
+
+  useEffect(()=>{
+    if(error){
+      dispatch(clearError)
+    }
+  }, [dispatch, error])
 
   return (
     <div className={carContainerCSS.carRentalPageContainer}>

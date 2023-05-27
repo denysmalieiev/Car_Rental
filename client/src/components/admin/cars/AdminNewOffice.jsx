@@ -1,22 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { carRental_Admin_New_Office_Location, carRental_Admin_All_Offices_Load, clearError} from '../../../utils/actions/CarsAction';
+import { ADMIN_NEW_OFFICE_LOCATION_RESET } from '../../../utils/constants/Constants'
 
 import containerCSS from '../../css/container.module.css';
 import adminCarDetailCSS from '../adminCss/adminDetails.module.css';
 
 const AdminNewOffice = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { office, error } = useSelector(state=> state.adminOffice);
   const [formData, setFormData] = useState({
     city: '',
     state: '',
     address: '',
     country: '',
     email: '',
-    contact: 0,
-    pin:0
+    contact: '',
+    pin:''
   })
 
   const [fState, setFState] = useState('Delhi')
@@ -52,10 +54,23 @@ const AdminNewOffice = () => {
     v1.city = fCity;
     v1.state = fState;
     setFormData(v1)
-    console.log(formData)
     dispatch(carRental_Admin_New_Office_Location(formData))
-    navigate('/admin/dashboard')
   }
+
+  useEffect(()=>{
+    if(error){
+      alert(error)
+      dispatch(clearError)
+    }
+    if(office && !error){
+      alert('Office Registered')
+      dispatch(carRental_Admin_All_Offices_Load)
+      dispatch({
+        type: ADMIN_NEW_OFFICE_LOCATION_RESET,
+      });
+      navigate('/admin/dashboard')
+    }
+  }, [dispatch, error, office])
 
 
   return (
@@ -106,6 +121,7 @@ const AdminNewOffice = () => {
                     </>:<></>}
                     {fState==='Uttar Pradesh'?
                     <>
+                      <option value={'Noida'} >Noida</option>
                       <option value={'Lucknow'} >Lucknow</option>
                       <option value={'Kanpur'}>Kanpur</option>
                     </>:<></>}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
-import { carRental_Load_User, carRental_User_Profile_Update, clearErrors } from '../../../../utils/actions/UserAction';
+import { carRental_Load_User, carRental_User_Profile_Update, clearError } from '../../../../utils/actions/UserAction';
 import { UPDATE_USER_PROFILE_RESET } from "../../../../utils/constants/Constants";
 
 import ContainerCSS from '../../../css/container.module.css';
@@ -15,7 +15,7 @@ const UserProfileUpdate = () => {
   const { isProfileUpdated, loading } = useSelector((state) => state.profileUpdate);
 
   const [formData, setFormData] = useState({
-    firstName: user. firstName,
+    firstName: user.firstName,
     lastName: user.lastName,
     address: user.address,
     city: user.city,
@@ -42,7 +42,7 @@ const UserProfileUpdate = () => {
 
   useEffect(()=>{
     if(error){
-      dispatch(clearErrors)
+      dispatch(clearError)
     }
     if (isProfileUpdated) {
       dispatch({

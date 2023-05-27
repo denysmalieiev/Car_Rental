@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import homeTopDetailCSS from './css/homeTopDetail.module.css';
 import homeCarImage from './img/homeCarImage.png';
 import { AiOutlineArrowDown } from 'react-icons/ai';
@@ -18,7 +17,7 @@ const HomeTopContent = () => {
         </div>
       </div>
       <div className={homeTopDetailCSS.homeTopBoxRight}>
-        <img src={homeCarImage} alt='Home page Image' />
+        <img src={homeCarImage} alt='Home_Page_Image' />
       </div>
     </div>
   )
