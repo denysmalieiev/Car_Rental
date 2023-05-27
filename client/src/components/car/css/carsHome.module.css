@@ -1,6 +1,7 @@
 .carsHomeBox{
     width: 100%;
     height: auto;
+    overflow: auto;
     text-align: center;
 }
 
@@ -9,6 +10,7 @@
         color: white;
         width: 25%;
         height: 400px;
+        overflow: auto;
         float: left;
         padding: 1% 0%;
         border-radius: 10px 0px 0px 10px;
@@ -62,7 +64,8 @@
 
     .carsHomeBoxMid{
         width: 48%;   
-        height: 400px;     
+        height: 400px;  
+        overflow: auto;   
         float: left;
         padding: 1% 1%;
         display:flex;
@@ -76,7 +79,8 @@
     .carsHomeBoxRight{
         background-color: red;
         width: 25%;  
-        height: 400px;      
+        height: 400px;  
+        overflow: auto;    
         float: left;
         padding: 1% 0%;
         border-radius: 0px 10px 10px 0px;
@@ -120,3 +124,52 @@
             padding: 1% 5%;
             font-weight: 500;
         }
+
+
+@media screen and (max-width: 600px) {
+    .carsHomeBoxLeft{
+        width: 100%;
+        padding: 4% 0%;
+        border-radius: 0px 20px 20px 0px;
+    }
+        .carsHomeBoxLeftCarCategory{
+            width: 60%;
+            margin: 2% 20%;
+        }
+        .carsHomeBoxLeftCarCategory button{
+            width: 40%;
+            padding: 1.5% 0%;
+            font-size: 0.7em;
+        }
+        .carsHomeBoxLeftCarOptions button{
+            width: 80%;
+            margin: 3% 10% 0%;
+            padding: 2% 0%;
+            font-weight: 400;
+            font-size: 0.7em;
+        }
+
+    .carsHomeBoxMid{
+        width: 100%;   
+        height: 350px;     
+        float: left;
+        padding: 1% 0%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .carsHomeBoxRight{
+        width: 100%;  
+        padding: 0% 0%;
+        border-radius: 0px 20px 20px 0px;
+    }
+        .carsHomeBoxRightDivContent h6{
+            font-size: 0.7em;
+            font-display: 400;
+        }
+        .carsHomeBoxRightDivContent h5{
+            font-size: 0.7em;
+            font-display: 400;
+        }
+}

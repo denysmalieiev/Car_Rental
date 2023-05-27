@@ -1,4 +1,5 @@
 import React from 'react';
+
 import homeTopDetailCSS from './css/homeTopDetail.module.css';
 import homeCarImage from './img/homeCarImage.png';
 import { AiOutlineArrowDown } from 'react-icons/ai';
@@ -12,7 +13,6 @@ const HomeTopContent = () => {
             <h1>Self Drive</h1><br/>
             <h2>Your next advanture is just a click away. <br/>To start, simply browse the car and pick the one that's right for you.</h2>
             <br/>
-            <h1 className={homeTopDetailCSS.headingH1Style}><AiOutlineArrowDown/></h1>
           </div>
         </div>
       </div>
