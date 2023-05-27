@@ -6,6 +6,9 @@ import {
     ADMIN_CAR_DETAILS_DELETE_REQUEST, ADMIN_CAR_DETAILS_DELETE_SUCCESS, ADMIN_CAR_DETAILS_DELETE_FAIL,
     ADMIN_NEW_OFFICE_LOCATION_REQUEST, ADMIN_NEW_OFFICE_LOCATION_SUCCESS, ADMIN_NEW_OFFICE_LOCATION_FAIL, ADMIN_NEW_OFFICE_LOCATION_RESET,
     ADMIN_GET_OFFICES_LOCATION_REQUEST, ADMIN_GET_OFFICES_LOCATION_SUCCESS, ADMIN_GET_OFFICES_LOCATION_FAIL,
+    ADMIN_SINGLE_OFFICE_LOCATION_REQUEST, ADMIN_SINGLE_OFFICE_LOCATION_SUCCESS, ADMIN_SINGLE_OFFICE_LOCATION_FAIL,
+    ADMIN_UPDATE_OFFICE_LOCATION_REQUEST, ADMIN_UPDATE_OFFICE_LOCATION_SUCCESS, ADMIN_UPDATE_OFFICE_LOCATION_FAIL, ADMIN_UPDATE_OFFICE_LOCATION_RESET,
+    ADMIN_DELETE_OFFICE_LOCATION_REQUEST, ADMIN_DELETE_OFFICE_LOCATION_SUCCESS, ADMIN_DELETE_OFFICE_LOCATION_FAIL, ADMIN_DELETE_OFFICE_LOCATION_RESET,
     CLEAR_ERRORS,
 } from '../constants/Constants.js';
 
@@ -96,32 +99,67 @@ export const singleCarReducer = (state = {}, action)=>{
 
 export const adminNewOfficeReducer = (state = {}, action)=>{
     switch(action.type){
+
         case ADMIN_NEW_OFFICE_LOCATION_REQUEST:
+        case ADMIN_UPDATE_OFFICE_LOCATION_REQUEST:
             return {
                 loading: true,
-                office: null
+                office: null,
+                isOfficeStatus: false
             }
+
         case ADMIN_NEW_OFFICE_LOCATION_SUCCESS:
+        case ADMIN_UPDATE_OFFICE_LOCATION_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                office: action.payload
+                office: action.payload,
+                isOfficeStatus: true
             }
 
         case ADMIN_NEW_OFFICE_LOCATION_RESET:
+        case ADMIN_UPDATE_OFFICE_LOCATION_RESET:
             return {
                 ...state,
                 loading: false,
-                office: null
+                office: null,
+                isOfficeStatus: false
             }
-
+            
         case ADMIN_NEW_OFFICE_LOCATION_FAIL:
+        case ADMIN_UPDATE_OFFICE_LOCATION_FAIL:
             return {
                 ...state,
                 loading: false,
                 office: null,
                 error: action.payload,
             }
+
+        case ADMIN_DELETE_OFFICE_LOCATION_REQUEST:
+            return {
+                loading: true,
+                isOfficeDelated: false
+            }
+
+        case ADMIN_DELETE_OFFICE_LOCATION_SUCCESS:
+            return {
+                loading: false,
+                isOfficeDelated: true
+            }
+
+        case ADMIN_DELETE_OFFICE_LOCATION_RESET:
+            return {
+                loading: false,
+                isOfficeDelated: false
+            }
+
+        case ADMIN_DELETE_OFFICE_LOCATION_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            }
+
 
         case CLEAR_ERRORS:
             return {
@@ -132,6 +170,44 @@ export const adminNewOfficeReducer = (state = {}, action)=>{
             return state;
     }
 }
+
+// fbxgncvhb
+export const adminSingleOfficeReducer = (state = {}, action)=>{
+    switch(action.type){
+        case ADMIN_SINGLE_OFFICE_LOCATION_REQUEST:
+            return {
+                loading: true,
+                office: null,
+                
+            }
+
+        case ADMIN_SINGLE_OFFICE_LOCATION_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                office: action.payload,
+            }
+            
+        case ADMIN_SINGLE_OFFICE_LOCATION_FAIL:
+            return {
+                ...state,
+                loading: false,
+                office: null,
+                error: action.payload,
+            }
+
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null,
+            }
+        default:
+            return state;
+    }
+}
+
+// dsfxdgncvhjb
 
 
 export const adminAllOfficesReducer = (state = {}, action)=>{

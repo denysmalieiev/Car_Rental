@@ -20,6 +20,7 @@ import AdminSingleUsers from './components/admin/user/AdminUserProfile';
 import AdminAllUsers from './components/admin/user/AdminAllUsers';
 import AdminNewOffice from './components/admin/cars/AdminNewOffice';
 import AdminOfficesDetails from './components/admin/cars/AdminOfficesDetails';
+import AdminOfficeUpdate from './components/admin/cars/AdminOfficeUpdate';
 import AdminNewCarDetail from './components/admin/cars/NewCarDetail';
 import CarDetails from './components/admin/cars/CarDetails';
 import AdminUpdateCarDetails from './components/admin/cars/UpdateCarDetails';
@@ -84,11 +85,14 @@ function App() {
 
                 <Route exact path='/admin/office/new' element={<AdminNewOffice/>} />
                 <Route exact path='/admin/office/details' element={<AdminOfficesDetails/>} />
+                <Route exact path='/admin/office/update/:id' element={<AdminOfficeUpdate/>} />
+
                 <Route exact path='/admin/car/new' element={<AdminNewCarDetail/>} />
                 <Route exact path='/admin/car/update/:id' element={<AdminUpdateCarDetails/>} />
 
                 <Route exact path='/admin/order/all' element={<AdminUsersAllOrders/>} />
                 <Route exact path='/admin/order/update/:id' element={<AdminUserOrderUpdate/>} />
+                
 
                 {/* User */}
                 <Route exact path='/user/profile' element={<UserProfileShow/>} />

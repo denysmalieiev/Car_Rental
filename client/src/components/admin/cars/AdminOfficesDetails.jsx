@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import ShowOffices from './ShowOffices';
 import { useDispatch, useSelector} from 'react-redux';
 import { carRental_Admin_All_Offices_Load, clearError} from '../../../utils/actions/CarsAction';
+import { ADMIN_CAR_DETAILS_UPDATE_RESET } from '../../../utils/constants/Constants';
 
 import containerCSS from '../../css/container.module.css';
 import adminCarDetailCSS from '../adminCss/adminDetails.module.css';
@@ -9,7 +10,9 @@ import showUsersCSS from '../adminCss/showUsers.module.css';
 
 const AdminOfficeDetails = () => {
   const dispatch = useDispatch();
-  const { offices, error, loading } = useSelector(state=> state.offices);
+  const { offices, loading, error } = useSelector(state=> state.offices);
+  const { isOfficeDelated } = useSelector(state=> state.adminOffice);
+  
 
   useEffect(()=>{
     if(error){
@@ -18,11 +21,16 @@ const AdminOfficeDetails = () => {
     if(!offices){
       dispatch(carRental_Admin_All_Offices_Load)
     }
-    if(offices && loading){
+    if(isOfficeDelated){
       dispatch(carRental_Admin_All_Offices_Load)
+      if(isOfficeDelated){
+        dispatch({
+          type: ADMIN_CAR_DETAILS_UPDATE_RESET,
+        })
+      } 
     }
 
-  }, [dispatch])
+  }, [dispatch, isOfficeDelated])
 
   return (
     <div className={containerCSS.carRentalPageContainer}>
@@ -38,7 +46,7 @@ const AdminOfficeDetails = () => {
                 {
                   offices.map((data)=>{
                     return (
-                      <div className={showUsersCSS.usersCardConatiner}>
+                      <div key={data._id} className={showUsersCSS.usersCardConatiner}>
                         <ShowOffices key={data._id} data={data}/>
                       </div>
                     )

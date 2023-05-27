@@ -1,13 +1,34 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector} from 'react-redux';
+import { carRental_Admin_All_Offices_Load, carRental_Admin_Single_Office_Load, carRental_Admin_Office_Delete, clearError} from '../../../utils/actions/CarsAction';
+import { ADMIN_CAR_DETAILS_UPDATE_RESET } from '../../../utils/constants/Constants';
 
 import showUsersCSS from '../adminCss/showUsers.module.css';
 
 const ShowOffices = ({data}) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const { error } = useSelector(state=> state.adminOffice);
 
   const handleOfficeDelete = (e) =>{
     e.preventDefault()
-    alert(data._id)
+    dispatch(carRental_Admin_Office_Delete(data._id))
+  } 
+
+  const handleOfficeUpdate = (e) =>{
+    e.preventDefault()
+    navigate(`/admin/office/update/${data._id}`)
   }
+
+  useEffect(()=>{
+    if(error){
+      alert('Something went wrong')
+      dispatch(clearError)
+    }
+    dispatch(carRental_Admin_Single_Office_Load(data._id))
+  }, [dispatch, error])
+
   return (
     <>
       <div className={showUsersCSS.usersCardLeftShow}>
@@ -24,6 +45,7 @@ const ShowOffices = ({data}) => {
         {data.city && data.pin? <><div className={showUsersCSS.showUserDetail}><b>City: </b><p>{data.city+", "+data.pin}</p></div></>:<></>}
         {data.state? <><div className={showUsersCSS.showUserDetail}><b>State: </b><p>{data.state}</p></div></>:<></>}
         {data.country? <><div className={showUsersCSS.showUserDetail}><b>Country: </b><p>{data.country}</p></div></>:<></>}
+        <button onClick={handleOfficeUpdate}>Update</button>&nbsp;&nbsp;&nbsp;
         <button onClick={handleOfficeDelete}>Delete</button>
       </div>
     </>

@@ -18,6 +18,7 @@ import {
     carRental_Admin_Delete_User_Account,
     carRental_Admin_Office_Location_Register,
     carRental_Admin_All_Offices_Location,
+    carRental_Admin_Single_Office_Location,
     carRental_Admin_Office_Location_Update,
     carRental_Admin_Office_Location_Delete
 } from '../controller/adminController.js';
@@ -50,8 +51,8 @@ router.route("/admin/user/:id")
 router.route("/admin/office/register").post(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Office_Location_Register);
 router.route("/admin/office/all").get(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_All_Offices_Location);
 router.route("/admin/office/:id")
+    .get(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Single_Office_Location)
     .patch(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Office_Location_Update)
     .delete(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Office_Location_Delete);
-
 
 export default router;

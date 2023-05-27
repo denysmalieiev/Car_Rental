@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { carRental_Admin_New_Office_Location, carRental_Admin_All_Offices_Load, clearError} from '../../../utils/actions/CarsAction';
-import { ADMIN_NEW_OFFICE_LOCATION_RESET } from '../../../utils/constants/Constants';
+import { carRental_Admin_Office_Update, carRental_Admin_All_Offices_Load, clearError} from '../../../utils/actions/CarsAction';
+import { ADMIN_UPDATE_OFFICE_LOCATION_RESET } from '../../../utils/constants/Constants';
 
 import containerCSS from '../../css/container.module.css';
 import adminCarDetailCSS from '../adminCss/adminDetails.module.css';
 
-const AdminNewOffice = () => {
+const AdminOfficeUpdate = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { adminOffice, isOfficeStatus, error } = useSelector(state=> state.adminOffice);
+  const { office } = useSelector(state=> state.office);
   const [formData, setFormData] = useState({
-    city: '',
-    state: '',
-    address: '',
-    country: '',
-    email: '',
-    contact: '',
-    pin:''
+    city: office.city,
+    state: office.state,
+    address: office.address,
+    country: office.country,
+    email: office.email,
+    contact: office.contact,
+    pin: office.pin
   })
 
-  const [fState, setFState] = useState('Delhi')
+  const [fState, setFState] = useState(office.state)
 
-  const [fCity, setCity] = useState('New Delhi')
+  const [fCity, setCity] = useState(office.city)
 
   const handleOnChange = (e) =>{
     e.preventDefault()
@@ -54,7 +55,8 @@ const AdminNewOffice = () => {
     v1.city = fCity;
     v1.state = fState;
     setFormData(v1)
-    dispatch(carRental_Admin_New_Office_Location(formData))
+    console.log(formData)
+    dispatch(carRental_Admin_Office_Update(office._id, formData))
   }
 
   useEffect(()=>{
@@ -62,11 +64,12 @@ const AdminNewOffice = () => {
       alert(error)
       dispatch(clearError)
     }
+    
     if(isOfficeStatus){
-      alert('Office Registered')
+      alert('Office Details Updated')
       dispatch(carRental_Admin_All_Offices_Load)
       dispatch({
-        type: ADMIN_NEW_OFFICE_LOCATION_RESET,
+        type: ADMIN_UPDATE_OFFICE_LOCATION_RESET,
       });
       navigate('/admin/office/details')
     }
@@ -77,7 +80,7 @@ const AdminNewOffice = () => {
     <div className={containerCSS.carRentalPageContainer}>
       <div className={adminCarDetailCSS.adminCarDetailContainer}>
         <div className={adminCarDetailCSS.headingBox}>         
-          <h1>New Office</h1>
+          <h1>Update Office Details</h1>
           <hr/>
         </div>
         <div className={adminCarDetailCSS.adminCarDetailLeftBox}>
@@ -155,7 +158,7 @@ const AdminNewOffice = () => {
                   <input type='number' name='pin' value={formData.pin} onChange={handleOnChange} placeholder='Pin' required/>
                 </div>
 
-                <button>Save Office</button>
+                <button>Update Details</button>
 
               </form>
             </div>
@@ -165,4 +168,4 @@ const AdminNewOffice = () => {
   )
 }
 
-export default AdminNewOffice
+export default AdminOfficeUpdate

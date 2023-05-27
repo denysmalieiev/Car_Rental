@@ -7,6 +7,9 @@ import {
     ADMIN_CAR_DETAILS_DELETE_REQUEST, ADMIN_CAR_DETAILS_DELETE_SUCCESS, ADMIN_CAR_DETAILS_DELETE_FAIL,
     ADMIN_NEW_OFFICE_LOCATION_REQUEST, ADMIN_NEW_OFFICE_LOCATION_SUCCESS, ADMIN_NEW_OFFICE_LOCATION_FAIL,
     ADMIN_GET_OFFICES_LOCATION_REQUEST, ADMIN_GET_OFFICES_LOCATION_SUCCESS, ADMIN_GET_OFFICES_LOCATION_FAIL,
+    ADMIN_SINGLE_OFFICE_LOCATION_REQUEST, ADMIN_SINGLE_OFFICE_LOCATION_SUCCESS, ADMIN_SINGLE_OFFICE_LOCATION_FAIL,
+    ADMIN_UPDATE_OFFICE_LOCATION_REQUEST, ADMIN_UPDATE_OFFICE_LOCATION_SUCCESS, ADMIN_UPDATE_OFFICE_LOCATION_FAIL,
+    ADMIN_DELETE_OFFICE_LOCATION_REQUEST, ADMIN_DELETE_OFFICE_LOCATION_SUCCESS, ADMIN_DELETE_OFFICE_LOCATION_FAIL,
     CLEAR_ERRORS,
 } from '../constants/Constants.js';
 
@@ -151,6 +154,70 @@ export const carRental_Admin_All_Offices_Load = async(dispath)=>{
         })
     }
 }
+
+
+// Sinle Office Location
+export const carRental_Admin_Single_Office_Load = (id) => async(dispath)=>{
+    try{
+        dispath({type: ADMIN_SINGLE_OFFICE_LOCATION_REQUEST})
+
+        const { data } = await axios.get(`/user/admin/office/${id}`);
+        dispath({
+            type: ADMIN_SINGLE_OFFICE_LOCATION_SUCCESS,
+            payload: data.office
+        })
+
+    } catch(error){
+        dispath({
+            type: ADMIN_SINGLE_OFFICE_LOCATION_FAIL,
+            payload: error.response.data.message 
+        })
+    }
+}
+
+
+// Updating Office Location
+export const carRental_Admin_Office_Update = (id, formData) => async(dispath)=>{
+    try{
+        dispath({type: ADMIN_UPDATE_OFFICE_LOCATION_REQUEST})
+
+        const config = {headers: { "Content-Type": "application/json"}};
+        
+        const {data} = await axios.patch(`/user/admin/office/${id}`, formData, config );
+
+        dispath({
+            type: ADMIN_UPDATE_OFFICE_LOCATION_SUCCESS,
+            payload: data.office
+        })
+
+    } catch(error){
+        dispath({
+            type: ADMIN_UPDATE_OFFICE_LOCATION_FAIL,
+            payload: error.response.data.message 
+        })
+    }
+}
+
+// Deletig office Office
+export const carRental_Admin_Office_Delete = (id) => async(dispath)=>{
+    try{
+        dispath({type: ADMIN_DELETE_OFFICE_LOCATION_REQUEST})
+
+        await axios.delete(`/user/admin/office/${id}`);
+
+        dispath({
+            type: ADMIN_DELETE_OFFICE_LOCATION_SUCCESS,
+            // payload: data.status
+        })
+
+    } catch(error){
+        dispath({
+            type: ADMIN_DELETE_OFFICE_LOCATION_FAIL,
+            payload: error.response.data.message 
+        })
+    }
+}
+
 
 // Clearing Error
 export const clearError = async(dispath)=>{

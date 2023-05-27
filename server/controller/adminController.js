@@ -61,7 +61,12 @@ export const carRental_Admin_Delete_User_Account = CatchAsync(async(req, res, ne
     });
 })
 
-// 5) --------------| Admin: Office Location Update |--------------
+
+
+
+
+
+// 5) --------------| Admin: Office Location Register |--------------
 export const carRental_Admin_Office_Location_Register = CatchAsync( async(req, res, next) =>{
     const { address, city, state, country, pin, contact, email } = req.body;
     
@@ -70,9 +75,11 @@ export const carRental_Admin_Office_Location_Register = CatchAsync( async(req, r
     }
 
     const officeLocationExist = await OfficeLocation.findOne({email});
+
     if (officeLocationExist) {
         return next(new ErrorHandler("Office Location already exist", 400));
     }
+
     const office = await OfficeLocation.create({
         user: req.user.id,
         address: req.body.address,
@@ -84,16 +91,20 @@ export const carRental_Admin_Office_Location_Register = CatchAsync( async(req, r
         email: req.body.email
     });
 
-    console.log(office)
     return res.status(201).json({
         success: true,
         office,
     });
 })
 
-// 6) --------------| Admin: Office Location Update |--------------
+// 6) --------------| Admin: All Offices Location |--------------
 export const carRental_Admin_All_Offices_Location = CatchAsync( async(req, res, next) =>{
     const offices = await OfficeLocation.find()
+
+    if (!offices) {
+        return next(new ErrorHandler("Something went wrong", 400));
+    }
+
     return res.status(201).json({
         success: true,
         length: offices.length,
@@ -101,17 +112,39 @@ export const carRental_Admin_All_Offices_Location = CatchAsync( async(req, res, 
     });
 })
 
-// 7) --------------| Admin: Office Location Update |--------------
+// 7) --------------| Admin: Office Location Detail |--------------
+export const carRental_Admin_Single_Office_Location = CatchAsync( async(req, res, next) =>{
+    const office = await OfficeLocation.findById(req.params.id)
+
+    if (!office) {
+        return next(new ErrorHandler("Office Location dosen't exist", 400));
+    }
+
+    return res.status(201).json({
+        success: true,
+        office,
+    });
+})
+
+// 8) --------------| Admin: Office Location Update |--------------
 export const carRental_Admin_Office_Location_Update = CatchAsync( async(req, res, next) =>{
-    const offices = await OfficeLocation.find()
-    return res.status(201).json({
-        success: true,
-        length: offices.length,
-        offices,
+    const officeChk = await OfficeLocation.find()
+    if (!officeChk) {
+        return next(new ErrorHandler("Office Location dosen't exist", 400));
+    }
+    const office = await OfficeLocation.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true,
+        userFindAndModify: true
     });
+
+    return res.status(200).json({
+        sucess: true,
+        office,
+    })
 })
 
-// 8) --------------| Admin: Office Location Delete |--------------
+// 9) --------------| Admin: Office Location Delete |--------------
 export const carRental_Admin_Office_Location_Delete = CatchAsync( async(req, res, next) =>{
     const officeLoc = await OfficeLocation.findById(req.params.id);
 
