@@ -17,6 +17,7 @@ const reducer = combineReducers({
     adminOffice: adminNewOfficeReducer,
     office: adminSingleOfficeReducer,
     offices: adminAllOfficesReducer,
+    // userRole: 
     // userOrders:
     // adminOrders:
 })

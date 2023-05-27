@@ -6,7 +6,7 @@ import {
     UPDATE_USER_PROFILE_REQUEST, UPDATE_USER_PROFILE_SUCCESS, UPDATE_USER_PROFILE_FAIL, UPDATE_USER_PROFILE_RESET,
     UPDATE_USER_PASSWORD_REQUEST, UPDATE_USER_PASSWORD_SUCCESS, UPDATE_USER_PASSWORD_FAIL, UPDATE_USER_PASSWORD_RESET,
     ADMIN_GET_ALL_USERS_REQUEST, ADMIN_GET_ALL_USERS_SUCCESS, ADMIN_GET_ALL_USERS_FAIL,
-    ADMIN_SINGLE_USER_REQUEST, ADMIN_SINGLE_USER_SUCCESS, ADMIN_SINGLE_USER_FAIL, 
+    ADMIN_SINGLE_USER_REQUEST, ADMIN_SINGLE_USER_SUCCESS, ADMIN_SINGLE_USER_FAIL, ADMIN_SINGLE_USER_RESET,
     ADMIN_USER_ROLE_UPDATE_REQUEST, ADMIN_USER_ROLE_UPDATE_SUCCESS, ADMIN_USER_ROLE_UPDATE_FAIL,
     ADMIN_USER_ACCOUNT_DELETE_REQUEST, ADMIN_USER_ACCOUNT_DELETE_SUCCESS, ADMIN_USER_ACCOUNT_DELETE_FAIL,
     CLEAR_ERRORS,
@@ -217,20 +217,30 @@ export const carRental_Admin_Single_User_Load = (state = {}, action) => {
     case ADMIN_USER_ROLE_UPDATE_REQUEST:  
       return {
         loading: true,
+        isProfileLoaded: false,
       }
     case ADMIN_SINGLE_USER_SUCCESS:
     case ADMIN_USER_ROLE_UPDATE_SUCCESS:
       return {
         ...state,
         loading: false,
-        userProfile: action.payload
+        userProfile: action.payload,
+        isProfileLoaded: true,
       }
+
+    case ADMIN_SINGLE_USER_RESET:
+      return {
+        ...state,
+        isProfileLoaded: false,
+      };
+      
     case ADMIN_SINGLE_USER_FAIL:
     case ADMIN_USER_ROLE_UPDATE_FAIL:
       return {
         loading: false,
         userProfile: null,
         error: action.payload,
+        isProfileLoaded: false,
       }
 
     case CLEAR_ERRORS:

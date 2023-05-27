@@ -54,12 +54,10 @@ const Header = () => {
                         </>
                       :
                         <>
-                          <li><h3><Link to='/car/rent/payment'>Cart</Link></h3></li>
                         </>
                     }
                   </>
                 : <>
-                    <li><h3><Link to='/cars'>Cars</Link></h3></li>
                   </>
               }
             </ul>
@@ -69,6 +67,7 @@ const Header = () => {
               { isAuthenticated
                 ? 
                   <>
+                    <li><h3><Link to='/car/rent/payment'>Cart</Link></h3></li>
                     <li><h3><Link to='/user/profile'>Profile</Link></h3></li>
                     <li><h3 style={{color: 'white'}} onClick={handleLogout}><Link>Logout</Link></h3></li>
                   </>

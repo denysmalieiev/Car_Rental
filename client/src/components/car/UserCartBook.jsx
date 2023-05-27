@@ -9,6 +9,7 @@ import userCartBookCSS from './css/UserCartBook.module.css';
 const CarDetail = () => {
 
   const { isAuthenticated } = useSelector(state=> state.auth);
+  const { offices } =  useSelector((state)=> state.offices);
   const { cars, loading, error } = useSelector(state=> state.cars);
 
   // const { car } = useSelector(state=> state.car);
@@ -18,16 +19,8 @@ const CarDetail = () => {
   const [car, setCar] = useState()
   const [selectRangeVal, setSelectRangeVal] = useState([]);
   const [selectCityVal, setSelectCityVal] = useState([]);
-  
-  
-  useEffect(()=>{
-    const fetchCar = cars.filter((data)=>{
-      if(params.id===data._id)
-      return data
-    })
-    setCar(fetchCar[0])
-  }, [])
 
+  // dsbhjkabjvsdkj
   function handleSelectChangeRange(e) {
     e.preventDefault()
     setSelectRangeVal(e.target.value.split(' ')[0]);
@@ -35,35 +28,22 @@ const CarDetail = () => {
 
   function handleSelectChangeCity(e) {
     e.preventDefault()
-    var citySel = e.target.value;
-    const tempCity = carContext.cityAvailable.filter((data)=>{
-      if(data.city.toString().toLowerCase()===citySel.toString().toLowerCase()){
-        return data
-      }
-    })
-    setSelectCityVal(tempCity);
+    setSelectCityVal(e.target.value)
   }
+
 
   function handleProceedForBooking(e, id, range, city, price){
     e.preventDefault()
-    if(selectCityVal.length===0 || selectRangeVal.length===0){
-      alert('Please select range and city')
-      return
-    }
-    var tempCar = car;
-    tempCar.tripPrice = price;
-    tempCar.tripRange = parseInt(range);
-    tempCar.citySelect = city;
-    setCar(tempCar)
-    if(isAuthenticated){
-      carContext.setCarForBooking(car)
-      navigate(`/car/rent/payment`)
-    } else{
-      carContext.setCarForBooking(car)
-      alert('You are not logged in, Please login.')
-      navigate(`/user/signin`)
-    }
+    alert('Booked')
   }
+
+  useEffect(()=>{
+    const fetchCar = cars.filter((data)=>{
+      if(params.id===data._id)
+      return data
+    })
+    setCar(fetchCar[0])
+  }, [])
 
   return (
     <div className={ContainerCSS.carRentalPageContainer}>
@@ -97,11 +77,11 @@ const CarDetail = () => {
 
             <label htmlFor="RentalCity">Choose City:</label>
             <select id="RentalCity" onChange={handleSelectChangeCity} required>
-              { carContext.cityAvailable
+              { offices
                 ? 
                   <>
-                  <option value={'City'} default>City</option>
-                  { carContext.cityAvailable.map((data)=>{
+                  <option default>Cities...</option>
+                  { offices.map((data)=>{
                     return (
                       <option key={data._id} value={data.city}>{data.city}</option>
                     )

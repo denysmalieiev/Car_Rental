@@ -32,6 +32,7 @@
             font-weight: 600;
             text-decoration: none;
         }
+
     .adminCarDetailLeftBox{
         width: 50%;
         min-height: 350px;
@@ -73,6 +74,12 @@
         .adminCarDetailLeftBox a{
             color: white;
             text-decoration: none;
+        }
+        .adminUserDetailLeftBox img{
+            width: 49%;
+            margin: 10% 25% 5% 25%;
+            border-radius: 50%;
+            border: 2px solid yellow;
         }
 
     .adminCarDetailRightBox{

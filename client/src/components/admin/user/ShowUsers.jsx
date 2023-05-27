@@ -1,18 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { carRental_Admin_Get_Single_User } from '../../../utils/actions/UserAction';
+import { carRental_Admin_Get_Single_User, clearError } from '../../../utils/actions/UserAction';
+import { ADMIN_SINGLE_USER_RESET } from '../../../utils/constants/Constants'
 
 import showUsersCSS from '../adminCss/showUsers.module.css';
 
 const ShowUsers = ({data}) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const { isProfileLoaded, error } = useSelector(state=> state.userProfile);
+
   const handleClick = (e) =>{
     e.preventDefault()
     dispatch(carRental_Admin_Get_Single_User(data._id))
-    navigate(`/admin/user/${data._id}`)
+    // navigate(`/admin/user/${data._id}`)
   }
+
+  useEffect(()=>{
+    if(error){
+      dispatch(clearError)
+    }
+    if(isProfileLoaded){
+      dispatch({
+        type: ADMIN_SINGLE_USER_RESET,
+      })
+      navigate(`/admin/user/${data._id}`)
+    }
+    
+  }, [dispatch, isProfileLoaded, error])
+
   return (
     <div className={showUsersCSS.usersCardConatiner}>
       <div className={showUsersCSS.usersCardLeftShow}>

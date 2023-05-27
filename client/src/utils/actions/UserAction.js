@@ -177,12 +177,12 @@ export const carRental_Admin_Get_Single_User = (id) => async(dispath)=>{
 }
 
 // Admin: User Role Update
-export const carRental_Admin_User_Role_Update = (id, formData) => async(dispath)=>{
+export const carRental_Admin_User_Role_Update = (id, userRole) => async(dispath)=>{
     try{
         dispath({type: ADMIN_USER_ROLE_UPDATE_REQUEST})     
         const config = {headers: { "Content-Type": "application/json"}};
         const { data } = await axios.put(`/user/admin/user/${id}`, {
-            role: formData.role,
+            role: userRole,
         }, config);
 
         dispath({

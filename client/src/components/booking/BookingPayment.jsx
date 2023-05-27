@@ -10,7 +10,7 @@ const BookingPayment = () => {
 
   const dispatch = useDispatch();
   const { user, loading, error } =  useSelector((state)=> state.user);
-  const { car } =  useSelector((state)=> state.user);
+  const { car } =  useSelector((state)=> state.car);
 
   useEffect(()=>{
     if(error){
@@ -27,26 +27,22 @@ const BookingPayment = () => {
             {/* Left Top Image */}
             <div>
               { car
-                ? 
-                  <img src={car.carPicture[0].url} alt='Car_Image'/>
-                : 
-                  <img src='https://cdn.dribbble.com/users/2374064/screenshots/4732016/car-jump.gif' alt='Car_Image'/>
+                ? <img src={car.carPicture[0].url} alt='Car_Image'/>
+                : <img src='https://cdn.dribbble.com/users/2374064/screenshots/4732016/car-jump.gif' alt='Car_Image'/>
               }
             </div>
             <br/>
             {/* Left bottom Details */}
             <div>
               { car
-                ? 
-                  <>
+                ? <>
                     <h2>Rental Price: ₹{ car.tripRange * car.rentalPriceCharge}, Range: {car.tripRange}</h2>
                     <p style={{width: '84%', margin: '2% 8%'}}> <b>Car Pick up Address: </b></p>
                     <p> <b>Car: </b>
                       { car.carName+' '+ car.carCategory+', '+ car.carSeatCapacity }
                     </p>
                   </> 
-                :
-                  <> No car added in cart.</>
+                : <> No car added in cart.</>
               }
             </div>
           </div>
@@ -59,10 +55,8 @@ const BookingPayment = () => {
             {/* User Name */}
             <h2>
               {user 
-                ?
-                  <>{ user.firstName+ ' ' + user.lastName }</>
-                :
-                  <>-</>
+                ? <>{ user.firstName+ ' ' + user.lastName }</>
+                : <>-</>
               }
             </h2><hr/>
 
@@ -71,10 +65,8 @@ const BookingPayment = () => {
               <b>Address</b>
               <p>
                 { user 
-                  ?
-                    <>{ user.address }</>
-                  :
-                    <>-</>
+                  ? <>{ user.address }</>
+                  : <>-</>
                 }
               </p>
             </div>
@@ -83,10 +75,8 @@ const BookingPayment = () => {
               <b>Address</b>
               <p>
                 { user 
-                  ?
-                    <> { user.city } </>
-                  :
-                    <>-</>
+                  ? <> { user.city } </>
+                  : <>-</>
                 }
               </p>
             </div>
@@ -95,10 +85,8 @@ const BookingPayment = () => {
               <b>State</b>
               <p>
                 { user 
-                  ?
-                    <> { user.state } </>
-                  :
-                    <>-</>
+                  ? <> { user.state } </>
+                  : <>-</>
                 }
               </p>
             </div>
@@ -107,10 +95,8 @@ const BookingPayment = () => {
               <b>Country</b>
               <p>
                 { user 
-                ?
-                  <> { user.country } </>
-                :
-                  <>-</>
+                ? <> { user.country } </>
+                : <>-</>
                 }
               </p>
             </div>
@@ -119,10 +105,8 @@ const BookingPayment = () => {
             <div className={bookingPaymentCSS.userPaymentCardDetails}>
               <h3>
                 { user 
-                  ?
-                    <>{user.firstName+ ' ' + user.lastName}</>
-                  :
-                    <>-</>
+                  ? <>{user.firstName+ ' ' + user.lastName}</>
+                  : <>-</>
                 }
               </h3>
 
