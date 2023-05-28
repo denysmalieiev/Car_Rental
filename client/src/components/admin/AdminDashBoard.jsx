@@ -2,16 +2,15 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import { carRental_Admin_Get_All_Users } from '../../utils/actions/UserAction.js';
-import { carRental_Admin_All_Offices_Load, clearError } from '../../utils/actions/CarsAction';
+import { clearError } from '../../utils/actions/CarsAction';
 
 import carRentalContainerCSS from '../css/container.module.css';
 import adminContainerCSS from './adminCss/adminContainer.module.css';
 
 const AdminDashBoard = () => {
   const dispatch = useDispatch();
-  const { role } = useSelector(state=>state.auth)
+  const { isAuthenticated, role } = useSelector(state=>state.auth)
   const { users, error } = useSelector(state=>state.users)
-  // const { offices } = useSelector(state=>state.offices)
 
   useEffect(()=>{
     if(error){
@@ -19,7 +18,6 @@ const AdminDashBoard = () => {
     }
     if(!users && role==='admin'){
       dispatch(carRental_Admin_Get_All_Users)
-      dispatch(carRental_Admin_All_Offices_Load)
     }
   }, [dispatch])
 

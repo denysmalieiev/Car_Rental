@@ -51,7 +51,7 @@ router.route("/admin/user/:id")
     .delete(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Delete_User_Account);
 router.route("/admin/office/register").post(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Office_Location_Register);
 router.route("/admin/office/:id")
-    .get(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Single_Office_Location)
+    .get(authToken.isUserAuthenticated, carRental_Admin_Single_Office_Location)
     .patch(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Office_Location_Update)
     .delete(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Office_Location_Delete);
 

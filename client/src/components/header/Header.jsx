@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
-import { carRental_Get_All_Cars, clearError } from '../../utils/actions/CarsAction.js';
+import { carRental_Get_All_Cars, carRental_Admin_All_Offices_Load, clearError } from '../../utils/actions/CarsAction.js';
 import { carRental_Sign_Out } from '../../utils/actions/UserAction.js';
 import headerCSS from './css/header.module.css';
 
@@ -11,6 +11,7 @@ const Header = () => {
 
   const { isAuthenticated, role } = useSelector(state=> state.auth);
   const { cars, loading, error } = useSelector(state=> state.cars);
+  const { offices } = useSelector(state=>state.offices)
 
   const handleLogout =(e) =>{
     e.preventDefault();
@@ -25,6 +26,9 @@ const Header = () => {
     }
     if(!cars || Object.keys(cars).length===0){
       dispatch(carRental_Get_All_Cars)
+    }
+    if(!offices){
+      dispatch(carRental_Admin_All_Offices_Load)
     }
     if(isAuthenticated && role){
       if(role==='admin'){

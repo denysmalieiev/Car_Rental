@@ -67,7 +67,7 @@ export const carRental_User_Single_Order = CatchAsync( async(req, res, next) =>{
 
 // 3) --------------| Get Logged In User Orders |--------------
 export const carRental_User_All_Orders = CatchAsync( async(req, res, next) =>{
-    const orders = await Order.find({ user: req.user._id });
+    const orders = await Order.find({ user: req.user._id }).sort({createdAt: -1});
 
     if (!orders) {
         return next(new ErrorHandler("Order Not Found", 404));

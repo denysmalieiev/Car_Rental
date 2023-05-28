@@ -5,6 +5,7 @@ import {
     LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAIL,
     UPDATE_USER_PROFILE_REQUEST, UPDATE_USER_PROFILE_SUCCESS, UPDATE_USER_PROFILE_FAIL, UPDATE_USER_PROFILE_RESET,
     UPDATE_USER_PASSWORD_REQUEST, UPDATE_USER_PASSWORD_SUCCESS, UPDATE_USER_PASSWORD_FAIL, UPDATE_USER_PASSWORD_RESET,
+    USER_CART_CAR_BOOK_REQUEST,  USER_CART_CAR_BOOK_SUCCESS,  USER_CART_CAR_BOOK_FAIL,
     ADMIN_GET_ALL_USERS_REQUEST, ADMIN_GET_ALL_USERS_SUCCESS, ADMIN_GET_ALL_USERS_FAIL,
     ADMIN_SINGLE_USER_REQUEST, ADMIN_SINGLE_USER_SUCCESS, ADMIN_SINGLE_USER_FAIL, ADMIN_SINGLE_USER_RESET,
     ADMIN_USER_ROLE_UPDATE_REQUEST, ADMIN_USER_ROLE_UPDATE_SUCCESS, ADMIN_USER_ROLE_UPDATE_FAIL,
@@ -241,6 +242,38 @@ export const carRental_Admin_Single_User_Load = (state = {}, action) => {
         userProfile: null,
         error: action.payload,
         isProfileLoaded: false,
+      }
+
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+
+export const carRental_User_Cart_Car_Book_Reducer = (state = {}, action) => {
+  switch (action.type) {
+    case USER_CART_CAR_BOOK_REQUEST: 
+      return {
+        loading: true,
+        cartCar: null,
+      }
+    case USER_CART_CAR_BOOK_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        cartCar: action.payload,
+      }
+      
+    case USER_CART_CAR_BOOK_FAIL:
+      return {
+        loading: false,
+        carCart: null,
       }
 
     case CLEAR_ERRORS:

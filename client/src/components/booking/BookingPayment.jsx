@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import { clearError } from '../../utils/actions/UserAction';
 
@@ -9,8 +9,10 @@ import bookingPaymentCSS from './css/bookingPayment.module.css';
 const BookingPayment = () => {
 
   const dispatch = useDispatch();
+  const params = useParams()
   const { user, loading, error } =  useSelector((state)=> state.user);
-  const { car } =  useSelector((state)=> state.car);
+  const { office } =  useSelector((state)=> state.office);
+  const { cartCar } =  useSelector((state)=> state.cartCar);
 
   useEffect(()=>{
     if(error){
@@ -26,20 +28,20 @@ const BookingPayment = () => {
           <div className={bookingPaymentCSS.paymentBoxLeftContent}>
             {/* Left Top Image */}
             <div>
-              { car
-                ? <img src={car.carPicture[0].url} alt='Car_Image'/>
+              { cartCar
+                ? <img src={cartCar.carPicture[0].url} alt='Car_Image'/>
                 : <img src='https://cdn.dribbble.com/users/2374064/screenshots/4732016/car-jump.gif' alt='Car_Image'/>
               }
             </div>
             <br/>
             {/* Left bottom Details */}
             <div>
-              { car
+              { cartCar
                 ? <>
-                    <h2>Rental Price: ₹{ car.tripRange * car.rentalPriceCharge}, Range: {car.tripRange}</h2>
-                    <p style={{width: '84%', margin: '2% 8%'}}> <b>Car Pick up Address: </b></p>
+                    <h2>Rental Price: ₹{ params.range * cartCar.rentalPriceCharge}, Range: {params.range}</h2>
+                    <p style={{width: '84%', margin: '2% 8%'}}> <b>Car Pick up Address: </b>{office ?<>{office.address+", "+office.city+", "+office.state+" "+office.country+", Pin: "+office.pin}</>: <></>}</p>
                     <p> <b>Car: </b>
-                      { car.carName+' '+ car.carCategory+', '+ car.carSeatCapacity }
+                      { cartCar.carName+' '+ cartCar.carCategory+', '+ cartCar.carSeatCapacity }
                     </p>
                   </> 
                 : <> No car added in cart.</>

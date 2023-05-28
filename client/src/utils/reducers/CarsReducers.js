@@ -55,13 +55,23 @@ export const allCarReducer = (state = {cars: {}}, action)=>{
 export const singleCarReducer = (state = {}, action)=>{
     switch(action.type){
         case CARS_GET_SINGLE_REQUEST:
-        case ADMIN_CAR_DETAILS_UPDATE_REQUEST:
             return {
                 loading: true,
                 car: null,
-                isCarDetailUpdated: false,
             }
         case CARS_GET_SINGLE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                car: action.payload,
+            }
+
+        case ADMIN_CAR_DETAILS_UPDATE_REQUEST:
+            return {
+                    loading: true,
+                    car: null,
+                    isCarDetailUpdated: false,
+                }
         case ADMIN_CAR_DETAILS_UPDATE_SUCCESS:
             return {
                 ...state,

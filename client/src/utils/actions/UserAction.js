@@ -6,6 +6,7 @@ import {
     LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAIL,
     UPDATE_USER_PROFILE_REQUEST, UPDATE_USER_PROFILE_SUCCESS, UPDATE_USER_PROFILE_FAIL,
     UPDATE_USER_PASSWORD_REQUEST, UPDATE_USER_PASSWORD_SUCCESS, UPDATE_USER_PASSWORD_FAIL, 
+    USER_CART_CAR_BOOK_REQUEST,  USER_CART_CAR_BOOK_SUCCESS,  USER_CART_CAR_BOOK_FAIL,
     ADMIN_GET_ALL_USERS_REQUEST, ADMIN_GET_ALL_USERS_SUCCESS, ADMIN_GET_ALL_USERS_FAIL,
     ADMIN_SINGLE_USER_REQUEST, ADMIN_SINGLE_USER_SUCCESS, ADMIN_SINGLE_USER_FAIL, 
     ADMIN_USER_ROLE_UPDATE_REQUEST, ADMIN_USER_ROLE_UPDATE_SUCCESS, ADMIN_USER_ROLE_UPDATE_FAIL,
@@ -137,6 +138,28 @@ export const carRental_User_Password_Update = (formData) => async(dispath)=>{
         })
     }
 }
+// User: Cart Car to Book
+export const carRental_User_Cart_Car_To_Book = (id) => async(dispath)=>{
+    try{
+
+        dispath({type: USER_CART_CAR_BOOK_REQUEST}) 
+
+        const {data} = await axios.get(`/cars/${id}`);
+        
+        dispath({
+            type: USER_CART_CAR_BOOK_SUCCESS,
+            payload: data.car
+        })
+
+    } catch(error){
+        dispath({
+            type: USER_CART_CAR_BOOK_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+
 
 // Admin: Get All Users
 export const carRental_Admin_Get_All_Users = async(dispath)=>{

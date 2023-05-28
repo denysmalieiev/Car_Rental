@@ -4,7 +4,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 
 import { carRental_Load_User, clearError } from './utils/actions/UserAction';
-import carDataContext from './DataContext';
+
 
 // Header and Footer
 import Header from './components/header/Header';
@@ -18,9 +18,9 @@ import About from './components/mainHome/About';
 import AdminDashBoard from './components/admin/AdminDashBoard';
 import AdminSingleUsers from './components/admin/user/AdminUserProfile';
 import AdminAllUsers from './components/admin/user/AdminAllUsers';
-import AdminNewOffice from './components/admin/cars/AdminNewOffice';
-import AdminOfficesDetails from './components/admin/cars/AdminOfficesDetails';
-import AdminOfficeUpdate from './components/admin/cars/AdminOfficeUpdate';
+import AdminNewOffice from './components/admin/offices/AdminNewOffice';
+import AdminOfficesDetails from './components/admin/offices/AdminOfficesDetails';
+import AdminOfficeUpdate from './components/admin/offices/AdminOfficeUpdate';
 import AdminNewCarDetail from './components/admin/cars/NewCarDetail';
 import CarDetails from './components/admin/cars/CarDetails';
 import AdminUpdateCarDetails from './components/admin/cars/UpdateCarDetails';
@@ -53,7 +53,7 @@ function App() {
   const navigate = useNavigate();
 
   const { isAuthenticated, error } = useSelector(state=> state.auth);
-
+  
   useEffect(()=>{
     if(error){
       alert(error)
@@ -69,7 +69,6 @@ function App() {
 
   return (
     <div className="App">
-      <carDataContext.Provider value={{ }}>
         <Header/>
         <Routes>
           <Route path='/' element={<HomePage/>} />
@@ -103,7 +102,7 @@ function App() {
                 <Route exact path='/cars' element={<CarsHome/>} />
                 <Route exact path='/car/:id' element={<CarDetails/>} />
                 <Route exact path='/car/booking/:id' element={<UserCartBook/>} />
-                <Route exact path='/car/rent/payment' element={<BookingPayment/>} />
+                <Route exact path='/car/payment/:office/:range' element={<BookingPayment/>} />
                 <Route exact path='/cars/booking/history' element={<BookingHistory/>} />
                 <Route exact path='/car/bo' element={<CarBooking/>} />
               </>
@@ -121,7 +120,6 @@ function App() {
           }
         </Routes>
         <Footer/>
-      </carDataContext.Provider>
     </div>
   );
 }

@@ -1,40 +1,59 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useSelector} from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector} from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import DataContext from '../../DataContext';
+import { carRental_User_Cart_Car_To_Book } from '../../utils/actions/UserAction';
+import { carRental_Admin_Single_Office_Load } from '../../utils/actions/CarsAction';
+import UserShowCity from './UserShowCity';
+
 import ContainerCSS from '../css/container.module.css';
 import userCartBookCSS from './css/UserCartBook.module.css';
 
 
 const CarDetail = () => {
 
-  const { isAuthenticated } = useSelector(state=> state.auth);
-  const { offices } =  useSelector((state)=> state.offices);
-  const { cars, loading, error } = useSelector(state=> state.cars);
-
-  // const { car } = useSelector(state=> state.car);
-  const carContext = useContext(DataContext);
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const { offices } =  useSelector((state)=> state.offices);
+  const { cars } = useSelector(state=> state.cars);
+  const { cartCar } =  useSelector((state)=> state.cartCar);
   const params = useParams()
   const [car, setCar] = useState()
   const [selectRangeVal, setSelectRangeVal] = useState([]);
   const [selectCityVal, setSelectCityVal] = useState([]);
+  const [rangeVal, setRangeVal] = useState([]);
+  const [cityId, setCityId] = useState();
+
 
   // dsbhjkabjvsdkj
   function handleSelectChangeRange(e) {
     e.preventDefault()
-    setSelectRangeVal(e.target.value.split(' ')[0]);
+    // setSelectRangeVal(e.target.value.split(' ')[0]);
+    setRangeVal(e.target.value.split(' ')[0])
   }
 
   function handleSelectChangeCity(e) {
     e.preventDefault()
-    setSelectCityVal(e.target.value)
+    const vl1 = e.target.value.split(',')
+    setCityId(e.target.value.split(',')[0])
+    // setSelectCityVal(e.target.value.split(',')[1])
   }
 
 
-  function handleProceedForBooking(e, id, range, city, price){
+  function handleProceedForBooking(e, rangeVal, cityId){
     e.preventDefault()
-    alert('Booked')
+    console.log(rangeVal)
+    console.log(cityId)
+    if(cityId && rangeVal){
+      dispatch(carRental_Admin_Single_Office_Load(cityId))
+      navigate(`/car/payment/${cityId}/${rangeVal}`)
+    }
+    else if(!cityId){
+      alert(`Please select range.`)
+    }
+    else{
+      alert(`Please select city`)
+    }
   }
 
   useEffect(()=>{
@@ -43,6 +62,7 @@ const CarDetail = () => {
       return data
     })
     setCar(fetchCar[0])
+    dispatch(carRental_User_Cart_Car_To_Book(params.id))
   }, [])
 
   return (
@@ -62,7 +82,7 @@ const CarDetail = () => {
           <div className={userCartBookCSS.cartBookingRightOption}>
             <label htmlFor="rentRange">Choose Range:</label>
             <select id="rentRange" onChange={handleSelectChangeRange} required>
-              <option value={'0 km'} default>0 km</option>
+              <option value={'0 Km'} default>0 km</option>
               <option value={'100 km'}>100 km</option>
               <option value={'200 km'}>200 km</option>
               <option value={'300 km'}>300 km</option>
@@ -80,10 +100,10 @@ const CarDetail = () => {
               { offices
                 ? 
                   <>
-                  <option default>Cities...</option>
+                  <option value={''} default>Cities...</option>
                   { offices.map((data)=>{
                     return (
-                      <option key={data._id} value={data.city}>{data.city}</option>
+                      <option key={data._id} value={data._id+","+data.city}>{data.city}</option>
                     )
                   }) }
                   </>
@@ -93,10 +113,10 @@ const CarDetail = () => {
           </div>
           <div className={userCartBookCSS.cartBookingDetailRightPrice}>
             <div className={userCartBookCSS.cartBookingDetailRightTextArea}>
-              <p>{car? <>{selectRangeVal * car.rentalPriceCharge +'₹'}</>:<>-</>}</p>
+              <p>{car? <>{ rangeVal * car.rentalPriceCharge +'₹'}</>:<>-</>}</p>
             </div>
             <div className={userCartBookCSS.cartBookingDetailRightButton}>
-              <button onClick={(e)=>handleProceedForBooking(e, car._id, selectRangeVal, selectCityVal, car.rentalPrice)}>Book Now</button>
+              <button onClick={(e)=>handleProceedForBooking(e, rangeVal, cityId)}>Book Now</button>
             </div>
           </div>
           <h5>Note: Car's per/km charge is applicable for number of km's (price/km) drove above selected range.</h5>
