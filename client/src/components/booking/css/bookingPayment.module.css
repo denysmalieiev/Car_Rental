@@ -2,7 +2,7 @@
     width: 99%;
     overflow: auto;
     height: auto;
-    border: 2px solid rgb(168, 249, 255);
+    border: 1px solid rgb(168, 249, 255);
     border-radius: 10px;
 }
     .paymentBoxLeft{
@@ -158,3 +158,86 @@
                         border-top: 0;
                         border-left: 0;
                     }
+
+
+@media screen and (max-width: 600px) {
+        .paymentBoxLeft{
+            width: 100%;
+            min-height: 350px;
+            margin: 0% 0% 10%;
+        }
+        .paymentBoxRight{
+            width: 100%;
+        }
+            .paymentBoxRightContent{
+                width: 90%;
+                float: left;
+                margin: 5% 5%;
+            }
+                .userBookingCarDetails{
+                    margin: 3% 0%;
+                }
+                    .userBookingCarDetails b{
+                        width: 25%;
+                        font-weight: 400;
+                        padding: 2% 0%;
+                        font-size: 0.8em;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    .userBookingCarDetails p{
+                        width: 72%;
+                        padding: 2% 3%;
+                        color: blue;
+                        font-size: 0.8em;
+                    }
+    
+                .userPaymentCardDetails{
+                    width: 85%;
+                    margin: 15% 0% 10%;
+                    padding: 2% 7.5%;
+                    border-radius: 15px;
+                }
+                    .userPaymentCardDetails h3{
+                        margin: 2% 0% 5%;
+                        font-size: 0.8em;
+                    }
+                    .userPaymentCardInput{
+                        display: flex;
+                        margin: 2% 0% 5%;
+                    }
+                        .userPaymentCardInput input{
+                            width: 80%;
+                            font-size: 0.8em;
+                        }
+                    .userPaymentCardDetails p{
+                        width: 20%;
+                        font-size: 0.8em;
+                        font-weight: 300;
+                    }
+                        .userPaymentCardSecurityInput{
+                            display: flex;
+                            width: 100%;
+                            margin: 2% 0% 2%;
+                        }
+                            .paymentCardSecurityDiv{
+                                width: 100%;
+                                float: left;
+                            }
+                                .paymentCardSecurityDiv b{
+                                    font-size: 0.8em;
+                                    font-weight: 300;
+                                }
+                                .userPaymentCardSecurityInput input{
+                                    width: 70%;
+                                    outline: none;
+                                    border: none;
+                                    text-align: center;
+                                    padding: 2% 1%;
+                                    font-size: 0.9em;
+                                }
+                        .sendPaymentOTPButton{
+                            margin: 3% 0% 5%;
+                        }
+}

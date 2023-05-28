@@ -172,4 +172,7 @@
             font-size: 0.7em;
             font-display: 400;
         }
+        .carsHomeBoxRightContent button{
+            padding: 2% 5%;
+        }
 }
