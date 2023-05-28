@@ -134,6 +134,9 @@
                         font-weight: 500;
                         padding: 1% 3%;
                         border: none;
+                        display: flex;
+                        justify-content: start;
+                        align-items:center;
                     }
                     .adminCarDetailRightContent p{
                         width: 65%;
@@ -154,3 +157,54 @@
                         outline: none;
                         border-radius: 5px;
                     }
+
+
+@media screen and (max-width: 600px) {
+    .adminCarDetailContainer{
+        width: 99%;
+        margin: 0% 0%;
+        border: 1px solid blue;
+    }
+        .adminCarDetailLeftBox{
+            width: 90%;
+            margin: 0% 5%;
+            min-height: 200px;
+        }
+            .adminCarDetailLeftBox img{
+                width: 90%;
+                margin: 10% 0%;
+            }
+            .adminCarDetailLeftBox input{
+                width: 70%;
+                margin: 0% 0% 5%;
+            }
+    
+        .adminCarDetailRightBox{
+            width: 100%;
+        }
+            .adminCarDetailRightContainer{
+                margin: 5% 5%;
+            }
+                .adminCarDetailRightContainer hr{
+                    width: 70%;
+                    height: 4px;
+                }
+                        .adminCarDetailRightContent b{
+                            width: 25%;
+                            margin: 0%;
+                            padding: 0% 2.5%;
+                            font-size: 0.6em;
+                            font-weight: 500;
+                        }
+                        .adminCarDetailRightContent p{
+                            width: 67%;
+                            padding: 2% 0% 2% 3%;
+                            font-size: 0.8em;
+                            font-weight: 300;
+                        }
+                        .adminCarDetailRightContent input{
+                            width: 67%;
+                            padding: 2% 0% 2% 3%;
+                            font-size: 0.8em;
+                        }
+}

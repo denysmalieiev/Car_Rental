@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { carRental_Sign_In, clearError } from '../../../utils/actions/UserAction';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { carRental_Sign_In} from '../../../utils/actions/UserAction';
 import { carRental_Admin_All_Offices_Load } from '../../../utils/actions/CarsAction';
 
 import carContainerCSS from  '../../css/container.module.css';
@@ -9,8 +9,6 @@ import userAuthCSS from './css/userAuth.module.css';
 
 const UserLogin = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { isAuthenticated, loading, error } =  useSelector((state)=> state.auth);
 
   const [formData, setFormData] = useState({
     email: '',
@@ -29,17 +27,7 @@ const UserLogin = () => {
     e.preventDefault()
     dispatch(carRental_Sign_In(formData.email, formData.password))
     dispatch(carRental_Admin_All_Offices_Load)
-    navigate(`/`)
   }
-
-  useEffect(()=>{
-    if(error){
-      dispatch(clearError)
-    }
-    if (isAuthenticated) {
-      navigate(`/`)
-  }
-  },[dispatch, error, isAuthenticated, loading])
 
   return (
     <div className={carContainerCSS.carRentalPageContainer}>

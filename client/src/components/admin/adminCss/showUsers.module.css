@@ -12,8 +12,8 @@
         margin: 0% 0%;
         float: left;
         display: flex;
-        justify-content: start;
-        align-items: start;
+        justify-content: flex-start;
+        align-items: flex-start;
     }
         .usersCardLeftShow img{
             width: 80%;
@@ -61,3 +61,53 @@
                 background-color: white;
                 border: 2px solid blue;
             }
+
+@media screen and (max-width: 600px) {
+    .usersCardConatiner{
+        width: 99.5%;
+        margin: 2% 00%;
+        border: 2px solid rgb(242, 242, 255);
+        border-radius: 10px;
+    }
+    .usersCardConatiner{
+        width:89.5%;
+        margin: 5% 5% 10%;
+    }
+    .usersCardLeftShow{
+        width: 100%;
+        height: auto;
+        margin: 5% 0%;
+        float: left;
+    }
+        .usersCardLeftShow img{
+            width: 60%;
+            margin: 5% 20%;
+            height: 100%;
+            border-radius: 45%;
+        }
+
+    .usersCardRightShow{
+        width:80%;
+        margin: 1% 0%;
+        padding: 0% 10%;
+        float: right;
+    }
+        .usersCardRightShow h3{
+            font-size: 1em;
+        }
+        .showUserDetail{
+            display: flex;
+            font-size: 0.8em;
+        }
+            .showUserDetail b{
+                width: 30%;
+            }
+            .showUserDetail p{
+                width: 70%;
+                margin: 1% 0%;
+            }
+
+        .usersCardRightShow button{
+            margin: 2% 0% 10%;
+        }
+}
