@@ -5,7 +5,6 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import ShowUsers from './ShowUsers';
 import carRentalContainerCSS from '../../css/container.module.css';
 import adminContainerCSS from '../adminCss/adminContainer.module.css';
-import showUsersCSS from '../adminCss/showUsers.module.css';
 
 const AdminAllUsers = () => {
   const params = useParams()
@@ -33,14 +32,14 @@ const AdminAllUsers = () => {
             ?<>          
               <h1>Admins</h1>
               <hr/>
-            <button><Link to='/admin/users/customer'>All Users</Link></button></>
+            <button><Link to='/admin/users/customer'>All Users</Link></button><br/><br/></>
             :<>
               <h1>Customers</h1>
               <hr/>
-              <button><Link to='/admin/users/admin'>All Admins</Link></button></>
+              <button><Link to='/admin/users/admin'>All Admins</Link></button><br/><br/>
+            </>
           }
         </div>
-
         <div>
           { showUsers&& showUsers.map((data)=>{
                 return <ShowUsers key={data.id} data={data}/>

@@ -56,6 +56,7 @@ function App() {
 
   useEffect(()=>{
     if(error){
+      alert(error)
       dispatch(clearError)
     }
     if(!isAuthenticated){
@@ -65,7 +66,7 @@ function App() {
       dispatch(carRental_Load_User)
     }
   }, [dispatch, isAuthenticated, error])
-// carRental_Admin_User_Role_Update
+
   return (
     <div className="App">
       <carDataContext.Provider value={{ }}>

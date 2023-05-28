@@ -1,5 +1,6 @@
 .userCarBookBook{
-    width: 100%;
+    width: 99%;
+    height: auto;
     overflow: auto;
 }
     .userCarBookCartLeft{
@@ -107,3 +108,64 @@
             font-weight: 400;
             margin: 0% 0% 2%;
         }
+
+
+@media screen and (max-width: 600px) {
+    .userCarBookCartLeft{
+        width: 100%;
+        min-height: 200px;
+    }
+    .userCarBookCartLeft img{
+        width: 70%;
+    }
+    
+    .userCarBookCartRight{
+        width: 100%;
+        min-height: 450px;
+    }
+        .userCarBookCartRight hr{
+            width: 50%;
+        }
+        .userCarBookCartRight label{
+            font-weight: 400;
+            font-size: 0.6em;
+        }
+        .userCarBookCartRight select{
+            font-weight: 400;
+            font-size: 0.6em;
+        }
+        .userCarBookCartRight option{
+            font-weight: 400;
+        }
+        .cartBookingDetailRight p{
+            font-size: 0.6em;
+            font-weight: 300;
+        }
+        .cartBookingDetailRight h3{
+            font-size: 0.7em;
+            font-weight: 400;
+        }
+
+
+        .cartBookingDetailRightPrice{
+            margin: 10% 0%;
+        }
+        .cartBookingDetailRightTextArea{
+            width: 40%;
+            background-color: rgb(170, 254, 254);
+            margin: 0% 5% 0% 0%;
+            padding: 1% 0%;
+            font-weight: 700;
+          }
+          .cartBookingDetailRightButton{
+            width: 60%;
+          }
+          .cartBookingDetailRightButton button{
+            width: 60%;
+        }
+        .userCarBookCartRight h5{
+            font-weight: 400;
+            font-size: 0.7em;
+            margin: 0% 0% 2%;
+        }
+}
