@@ -2,12 +2,12 @@ import mongoose from 'mongoose';
 
 const orderSchema = new mongoose.Schema(
     {
-        carPickLocationID: {
+        officeLocation: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "OfficeLocation",
             required: true
         },
-        carBookedInfoID: {
+        car: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Car",
             required: true

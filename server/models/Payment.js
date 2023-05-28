@@ -44,15 +44,7 @@ const paymentSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        mid: {
-            type: String,
-            required: true
-        },
         paymentMode: {
-            type: String,
-            required: true
-        },
-        refundAmt: {
             type: String,
             required: true
         },

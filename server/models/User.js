@@ -67,7 +67,7 @@ const userSchema = new mongoose.Schema(
             type: String,
             default: 'Customer',
         },
-        carBooked: [
+        order: [
             {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'Order',

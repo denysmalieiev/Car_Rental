@@ -71,7 +71,7 @@ export const carRental_get_All_Cars = CatchAsync(async(req, res, next)=>{
 
     return res.status(200).json({
         success: true,
-        message: 'Car registed.',
+        message: 'All cars.',
         length: cars.length,
         cars
     })

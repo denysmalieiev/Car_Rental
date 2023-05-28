@@ -55,13 +55,13 @@ const carSchema = new mongoose.Schema(
             type: Number,
             required: true,
         },
-        carBookings: [
+        order: [
             {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'Order',
             },
         ],
-        carBookingPayment: [
+        payment: [
             {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'Payment',
