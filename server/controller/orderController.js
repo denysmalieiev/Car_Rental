@@ -7,18 +7,23 @@ import mail from '../utils/sendEmail.js';
 
 // 1) --------------| Order Creation |--------------
 export const carRental_User_Order_Creation = CatchAsync( async(req, res, next) =>{
-    const { officeLocationId, carId, paymentInfo, totalPrice } = req.body;
+    const { officeLocationId, carId, carRange, paymentInfo, totalPrice } = req.body;
+
+    if( !officeLocationId || !carId || !carRange || !paymentInfo || !totalPrice){
+        return next(new ErrorHandler('Please proive all details', 400))
+    }
     
-    const orderExist = await Order.findOne({ paymentInfo });
+    const orderExist = await Order.findOne({ car: carId, officeLocation: officeLocationId, paymentInfo: paymentInfo, });
     const car = await Car.findById({_id: carId})
     const usr = await User.findById({_id: req.user._id})
 
-    if (orderExist) {
+    if (orderExist && orderExist.orderStatus==='Processing') {
         return next(new ErrorHandler("Order Already Placed", 400));
     }
     const order = await Order.create({
         officeLocation: officeLocationId,
         car: carId,
+        carRange,
         paymentInfo,
         totalPrice,
         paidAt: Date.now(),
@@ -65,7 +70,7 @@ export const carRental_User_Single_Order = CatchAsync( async(req, res, next) =>{
     });
 })
 
-// 3) --------------| Get Logged In User Orders |--------------
+// 3) --------------| User Orders |--------------
 export const carRental_User_All_Orders = CatchAsync( async(req, res, next) =>{
     const orders = await Order.find({ user: req.user._id }).sort({createdAt: -1});
 
@@ -79,7 +84,23 @@ export const carRental_User_All_Orders = CatchAsync( async(req, res, next) =>{
     });
 })
 
-// 4) --------------| Admin: Get All Orders |--------------
+// 4) --------------| User Order Cancel |--------------
+export const carRental_User_Cancel_A_Order = CatchAsync( async(req, res, next) =>{
+    const orderChk = await Order.findById(req.params.id);
+
+    if (!orderChk) {
+        return next(new ErrorHandler("Order Not Found", 404));
+    }
+
+    const order = await Order.findByIdAndDelete(req.params.id);
+    
+
+    res.status(200).json({
+        success: true,
+    });
+})
+
+// 5) --------------| Admin: Get All Orders |--------------
 export const carRental_Admin_Users_All_Orders = CatchAsync( async(req, res, next) =>{
     const orders = await Order.find();
 
@@ -87,19 +108,19 @@ export const carRental_Admin_Users_All_Orders = CatchAsync( async(req, res, next
         return next(new ErrorHandler("Order Not Found", 404));
     }
 
-    let totalAmount = 0;
+    let totalOrderAmount = 0;
     orders.forEach((order) => {
-        totalAmount += order.totalPrice;
+        totalOrderAmount += order.totalPrice;
     });
 
     res.status(200).json({
         success: true,
         orders,
-        totalAmount,
+        totalOrderAmount,
     });
 })
 
-// 5) --------------| Admin: Update Order Status |--------------
+// 6) --------------| Admin: Update Order Status |--------------
 export const carRental_Admin_Update_User_Order = CatchAsync( async(req, res, next) =>{
     const order = await Order.findById(req.params.id);
 
@@ -124,20 +145,5 @@ export const carRental_Admin_Update_User_Order = CatchAsync( async(req, res, nex
 
     res.status(200).json({
         success: true
-    });
-})
-
-// 6) --------------| Admin: Delete a Order |--------------
-export const carRental_Admin_Delete_User_Order = CatchAsync( async(req, res, next) =>{
-    const order = await Order.findById(req.params.id);
-
-    if (!order) {
-        return next(new ErrorHandler("Order Not Found", 404));
-    }
-
-    await order.remove();
-
-    res.status(200).json({
-        success: true,
     });
 })

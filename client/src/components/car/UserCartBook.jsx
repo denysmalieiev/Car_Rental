@@ -42,8 +42,8 @@ const CarDetail = () => {
 
   function handleProceedForBooking(e, rangeVal, cityId){
     e.preventDefault()
-    console.log(rangeVal)
-    console.log(cityId)
+    // console.log(rangeVal)
+    // console.log(cityId)
     if(cityId && rangeVal){
       dispatch(carRental_Admin_Single_Office_Load(cityId))
       navigate(`/car/payment/${cityId}/${rangeVal}`)

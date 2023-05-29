@@ -27,6 +27,10 @@ const orderSchema = new mongoose.Schema(
                 required: true
             },
         },
+        carRange: {
+            type: Number,
+            required: true
+        },
         paidAt: {
             type: Date,
             required: true

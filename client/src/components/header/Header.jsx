@@ -65,7 +65,7 @@ const Header = () => {
             <ul>
               { isAuthenticated
                 ? <>
-                    <li><h3><Link to='/car/rent/payment'>Cart</Link></h3></li>
+                    <li><h3><Link to='/cars/booking/history'>Bookings</Link></h3></li>
                     <li><h3><Link to='/user/profile'>Profile</Link></h3></li>
                     <li><h3 style={{color: 'white'}} onClick={handleLogout}><Link>Logout</Link></h3></li>
                   </>

@@ -3,7 +3,8 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { userAuthReducer, carRental_User_Profile_Load, carRental_User_Profile_Update, carRental_profile_Password_Update, carRental_Admin_All_Users_Load, carRental_Admin_Single_User_Load, carRental_User_Cart_Car_Book_Reducer } from '../utils/reducers/UserReducers.js';
 import { allCarReducer, singleCarReducer, adminNewOfficeReducer, adminAllOfficesReducer, adminSingleOfficeReducer } from '../utils/reducers/CarsReducers.js';
-
+import { carRental_User_Single_Order, carRental_User_All_Orders, carRental_Admin_All_Users_Orders } from '../utils/reducers/OrderReducer.js';
+ 
 
 const reducer = combineReducers({
     auth: userAuthReducer,
@@ -19,8 +20,9 @@ const reducer = combineReducers({
     office: adminSingleOfficeReducer,
     offices: adminAllOfficesReducer,
     // userRole: 
-    // userOrders:
-    // adminOrders:
+    userSingleOrder: carRental_User_Single_Order,
+    userOrders: carRental_User_All_Orders,
+    adminOrders: carRental_Admin_All_Users_Orders
 })
 
 let initialState = {};

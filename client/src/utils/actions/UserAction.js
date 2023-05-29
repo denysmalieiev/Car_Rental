@@ -99,7 +99,7 @@ export const carRental_Load_User = async(dispath)=>{
 }
 
 // Profile update
-export const carRental_User_Profile_Update =(userData) => async(dispath)=>{
+export const carRental_User_Profile_Update = (userData) => async(dispath)=>{
     try{
         dispath({type: UPDATE_USER_PROFILE_REQUEST})
         const config = {headers: { "Content-Type": "application/json"}};

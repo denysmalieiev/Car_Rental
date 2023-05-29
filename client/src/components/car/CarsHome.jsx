@@ -33,7 +33,6 @@ const CarsHome = () => {
         return
       } return data
     })
-    console.log(fetchCar)
     setCarTa(fetchCar[0])
   }
 
