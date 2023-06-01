@@ -10,7 +10,8 @@ import showUsersCSS from '../adminCss/showUsers.module.css';
 
 const AdminOfficeDetails = () => {
   const dispatch = useDispatch();
-  const { offices, loading, error } = useSelector(state=> state.offices);
+  const { isAuthenticated } = useSelector(state=> state.auth);
+  const { offices, error } = useSelector(state=> state.offices);
   const { isOfficeDelated } = useSelector(state=> state.adminOffice);
   
 
@@ -18,9 +19,9 @@ const AdminOfficeDetails = () => {
     if(error){
       dispatch(clearError)
     }
-    if(!offices){
-      dispatch(carRental_Admin_All_Offices_Load)
-    }
+    // if(!offices && isAuthenticated){
+    //   dispatch(carRental_Admin_All_Offices_Load)
+    // }
     if(isOfficeDelated){
       dispatch(carRental_Admin_All_Offices_Load)
       if(isOfficeDelated){
@@ -30,7 +31,7 @@ const AdminOfficeDetails = () => {
       } 
     }
 
-  }, [dispatch, isOfficeDelated])
+  }, [dispatch, isOfficeDelated, isAuthenticated])
 
   return (
     <div className={containerCSS.carRentalPageContainer}>

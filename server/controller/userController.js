@@ -19,21 +19,17 @@ export const carRental_User_Registration = CatchAsync(async(req, res, next)=>{
     if(userExist){
         return res.send('User already exist.');
     }
-    // d) If user is new then saving details in Database
-    const myCloud = await cloudinary.v2.uploader.upload(req.body.profilePicture, {
-        folder: "avatars",
-        width: 150,
-        crop: "scale",
-    });
+    // // d) If user is new then saving details in Database
+    // const myCloud = await cloudinary.v2.uploader.upload(req.body.profilePicture, {
+    //     folder: "avatars",
+    //     width: 150,
+    //     crop: "scale",
+    // });
     const user = await User.create({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
         password: req.body.password,
-        profilePicture: {
-            public_id: myCloud.public_id,
-            url: myCloud.secure_url,
-        },
     })
     // e) Sending response
     return res.status(200).json({

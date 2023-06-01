@@ -10,6 +10,7 @@ import {
     ADMIN_SINGLE_USER_REQUEST, ADMIN_SINGLE_USER_SUCCESS, ADMIN_SINGLE_USER_FAIL, ADMIN_SINGLE_USER_RESET,
     ADMIN_USER_ROLE_UPDATE_REQUEST, ADMIN_USER_ROLE_UPDATE_SUCCESS, ADMIN_USER_ROLE_UPDATE_FAIL,
     ADMIN_USER_ACCOUNT_DELETE_REQUEST, ADMIN_USER_ACCOUNT_DELETE_SUCCESS, ADMIN_USER_ACCOUNT_DELETE_FAIL,
+    USERS_ALL_STORE_RESET,
     CLEAR_ERRORS,
 } from '../constants/Constants.js';
 
@@ -91,7 +92,14 @@ export const carRental_User_Profile_Load = (state = {}, action) => {
         user: null,
         error: action.payload,
       }
-
+      
+      case USERS_ALL_STORE_RESET:
+        return {
+            ...state,
+            loading: false,
+            user: null,
+        }
+        
     case CLEAR_ERRORS:
       return {
         ...state,
@@ -200,6 +208,13 @@ export const carRental_Admin_All_Users_Load = (state = {}, action) => {
         users: null,
         error: action.payload,
       }
+    
+    case USERS_ALL_STORE_RESET:
+        return {
+            ...state,
+            loading: false,
+            users: null,
+        }
 
     case CLEAR_ERRORS:
       return {
@@ -244,6 +259,13 @@ export const carRental_Admin_Single_User_Load = (state = {}, action) => {
         isProfileLoaded: false,
       }
 
+    case USERS_ALL_STORE_RESET:
+        return {
+          loading: false,
+          userProfile: null,
+          isProfileLoaded: false,
+        }
+
     case CLEAR_ERRORS:
       return {
         ...state,
@@ -275,6 +297,12 @@ export const carRental_User_Cart_Car_Book_Reducer = (state = {}, action) => {
         loading: false,
         carCart: null,
       }
+      
+    case USERS_ALL_STORE_RESET:
+        return {
+          loading: false,
+          carCart: null,
+        }
 
     case CLEAR_ERRORS:
       return {

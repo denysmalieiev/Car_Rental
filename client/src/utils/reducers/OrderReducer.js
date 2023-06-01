@@ -5,11 +5,12 @@ import {
     USER_ORDER_CANCEL_REQUEST, USER_ORDER_CANCEL_SUCCESS, USER_ORDER_CANCEL_FAIL,
     ADMIN_USERS_ALL_ORDERS_REQUEST,  ADMIN_USERS_ALL_ORDERS_SUCCESS, ADMIN_USERS_ALL_ORDERS_FAIL,
     ADMIN_USER_ORDER_UPDATE_REQUEST, ADMIN_USER_ORDER_UPDATE_SUCCESS, ADMIN_USER_ORDER_UPDATE_FAIL,
+    USERS_ALL_STORE_RESET,
     CLEAR_ERRORS,
 } from '../constants/Constants';
 
 
-export const carRental_User_Single_Order = (state = {cars: {}}, action)=>{
+export const carRental_User_Single_Order = (state = {}, action)=>{
     switch(action.type){
         case USER_NEW_ORDER_REQUEST:
         case USER_SINGLE_ORDER_DETAIL_REQUEST:
@@ -17,7 +18,8 @@ export const carRental_User_Single_Order = (state = {cars: {}}, action)=>{
         case ADMIN_USER_ORDER_UPDATE_REQUEST:
             return {
                 loading: true,
-                singleOrder: null
+                singleOrder: null,
+                orderStatus: false
             }
 
         case USER_NEW_ORDER_SUCCESS:
@@ -27,18 +29,27 @@ export const carRental_User_Single_Order = (state = {cars: {}}, action)=>{
             return {
                 ...state,
                 loading: false,
-                singleOrder: action.payload
+                singleOrder: action.payload,
+                orderStatus: false
             }
 
         case USER_NEW_ORDER_FAIL:
         case USER_SINGLE_ORDER_DETAIL_FAIL:
         case USER_ORDER_CANCEL_FAIL:
-            case ADMIN_USER_ORDER_UPDATE_FAIL:
+        case ADMIN_USER_ORDER_UPDATE_FAIL:
             return {
                 ...state,
                 loading: false,
                 singleOrder: null,
                 error: action.payload,
+            }
+
+        case USERS_ALL_STORE_RESET:
+            return {
+                ...state,
+                loading: false,
+                singleOrder: null,
+                orderStatus: false,
             }
 
         case CLEAR_ERRORS:
@@ -52,7 +63,7 @@ export const carRental_User_Single_Order = (state = {cars: {}}, action)=>{
 }
 
 
-export const carRental_User_All_Orders = (state = {cars: {}}, action)=>{
+export const carRental_User_All_Orders = (state = {}, action)=>{
     switch(action.type){
         case USER_ALL_ORDER_REQUEST:
             return {
@@ -74,6 +85,13 @@ export const carRental_User_All_Orders = (state = {cars: {}}, action)=>{
                 userOrders: null,
                 error: action.payload,
             }
+            
+        case USERS_ALL_STORE_RESET:
+            return {
+                ...state,
+                loading: false,
+                userOrders: null,
+            }
 
         case CLEAR_ERRORS:
             return {
@@ -86,7 +104,7 @@ export const carRental_User_All_Orders = (state = {cars: {}}, action)=>{
 }
 
 
-export const carRental_Admin_All_Users_Orders = (state = {cars: {}}, action)=>{
+export const carRental_Admin_All_Users_Orders = (state = {}, action)=>{
     switch(action.type){
         case ADMIN_USERS_ALL_ORDERS_REQUEST:
             return {
@@ -109,6 +127,15 @@ export const carRental_Admin_All_Users_Orders = (state = {cars: {}}, action)=>{
                 loading: false,
                 adminAllOrders: null,
                 error: action.payload,
+            }
+        
+        case USERS_ALL_STORE_RESET:
+            return {
+                ...state,
+                loading: false,
+                adminAllOrders: null,
+                totalOrderAmount: null,
+                userOrders: null,
             }
 
         case CLEAR_ERRORS:

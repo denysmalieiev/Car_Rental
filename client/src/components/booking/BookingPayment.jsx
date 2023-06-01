@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
-import { clearError } from '../../utils/actions/UserAction';
+import { USERS_ALL_STORE_RESET } from '../../utils/constants/Constants';
+import { carRental_User_New_Order, carRental_User_All_Orders, clearError } from '../../utils/actions/OrderAction';
 
 import ContainerCSS from '../css/container.module.css';
 import bookingPaymentCSS from './css/bookingPayment.module.css';
@@ -9,10 +10,12 @@ import bookingPaymentCSS from './css/bookingPayment.module.css';
 const BookingPayment = () => {
 
   const dispatch = useDispatch();
-  const params = useParams()
-  const { user, loading, error } =  useSelector((state)=> state.user);
+  const navigate = useNavigate()
+  const params = useParams();
+  const { user, loading } =  useSelector((state)=> state.user);
   const { office } =  useSelector((state)=> state.office);
   const { cartCar } =  useSelector((state)=> state.cartCar);
+  const { orderStatus, error } = useSelector((state)=> state.userSingleOrder)
 
   const [formData, setFormData] = useState({
     carId: '',
@@ -43,8 +46,10 @@ const BookingPayment = () => {
 
   const handlePayment = (e) =>{
     e.preventDefault()
-
-    if(paymentForm.cardNumber!=="" && paymentForm.userMobileNumber!=="" && paymentForm.cardExpire!=="" && paymentForm.cardCVV!=="" && paymentForm.cardOTP!==""){
+    if( !user.contact && !user.address && !user.city && !user.state && !user.country && !user.pin ){
+      return alert('Please update profile before booking.')
+    }
+    else if(paymentForm.cardNumber!=="" && paymentForm.userMobileNumber!=="" && paymentForm.cardExpire!=="" && paymentForm.cardCVV!=="" && paymentForm.cardOTP!==""){
       let orderShadow = formData
       orderShadow.carId = cartCar._id
       orderShadow.officeLocationId = office._id
@@ -56,16 +61,25 @@ const BookingPayment = () => {
       }
       setFormData(orderShadow)
       console.log(formData)
+      dispatch(carRental_User_New_Order(formData))
     }
     else{
       alert('Please enter all details to proceed for payment')
     }
-    console.log(paymentForm)
   }
 
   useEffect(()=>{
     if(error){
+      alert(error)
       dispatch(clearError)
+    }
+    if(orderStatus){
+      dispatch(carRental_User_All_Orders)
+      dispatch({
+        type: USERS_ALL_STORE_RESET,
+      });
+      alert('Order Successful')
+      navigate('/')
     }
   },[dispatch, user, error, loading])
 
@@ -113,7 +127,7 @@ const BookingPayment = () => {
             </div>
 
             <div className={bookingPaymentCSS.userBookingCarDetails}>
-              <b>Address</b>
+              <b>City</b>
               <p> { user ? <> { user.city } </> : <>-</> }</p>
             </div>
 

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
     USER_NEW_ORDER_REQUEST, USER_NEW_ORDER_SUCCESS, USER_NEW_ORDER_FAIL,
     USER_ALL_ORDER_REQUEST, USER_ALL_ORDER_SUCCESS, USER_ALL_ORDER_FAIL,
@@ -12,6 +13,7 @@ import {
 export const carRental_User_New_Order = (formData) => async(dispath)=>{
     try{
         dispath({type: USER_NEW_ORDER_REQUEST})
+
         const config = {headers: { "Content-Type": "application/json"}};
 
         const { data } = await axios.post(`/order/user/new`, { formData }, config);

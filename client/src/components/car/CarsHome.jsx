@@ -41,12 +41,12 @@ const CarsHome = () => {
     if(!isAuthenticated){
       alert('Please login to proceed')
       navigate('/user/signin')
+    } 
+    
+    if(user && user.role==='admin'){
+      dispatch(carRental_Get_Single_car(id)).then(()=>navigate(`/car/${id}`))
     } else {
-      if(user && user.role==='admin'){
-        dispatch(carRental_Get_Single_car(id)).then(()=>navigate(`/car/${id}`))
-      }else {
-        dispatch(carRental_Get_Single_car(id)).then(()=>navigate(`/car/booking/${id}`))
-      }
+      dispatch(carRental_Get_Single_car(id)).then(()=>navigate(`/car/booking/${id}`))
     }
   }
 
@@ -55,7 +55,6 @@ const CarsHome = () => {
       dispatch(clearError)
     }
     if(!cars){
-      console.log('No')
     } else if( cars && Object.keys(cars).length>0){
       setCarTa(cars[0])
     } else {

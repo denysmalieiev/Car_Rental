@@ -11,7 +11,6 @@ const Header = () => {
 
   const { isAuthenticated, role } = useSelector(state=> state.auth);
   const { cars, loading, error } = useSelector(state=> state.cars);
-  const { offices } = useSelector(state=>state.offices)
 
   const handleLogout =(e) =>{
     e.preventDefault();
@@ -24,12 +23,9 @@ const Header = () => {
     if(error){
       dispatch(clearError)
     }
-    if(!cars || Object.keys(cars).length===0){
-      dispatch(carRental_Get_All_Cars)
-    }
-    if(!offices){
-      dispatch(carRental_Admin_All_Offices_Load)
-    }
+    // if(!cars || Object.keys(cars).length===0){
+    //   dispatch(carRental_Get_All_Cars)
+    // }
     if(isAuthenticated && role){
       if(role==='admin'){
         navigate('/admin/dashboard')

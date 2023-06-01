@@ -1,38 +1,41 @@
 import Order from '../models/Order.js';
 import User from '../models/User.js';
 import Car from '../models/Car.js';
+import OfficeLocation from '../models/OfficeLocation.js';
 import ErrorHandler from '../utils/errorHandler.js';
 import CatchAsync from '../middlewares/catchAsync.js'
 import mail from '../utils/sendEmail.js';
 
 // 1) --------------| Order Creation |--------------
 export const carRental_User_Order_Creation = CatchAsync( async(req, res, next) =>{
-    const { officeLocationId, carId, carRange, paymentInfo, totalPrice } = req.body;
+    const { officeLocationId, carId, carRange, paymentInfo, totalPrice } = req.body.formData;
 
-    if( !officeLocationId || !carId || !carRange || !paymentInfo || !totalPrice){
+    if(officeLocationId==='' || carId==='' || carRange==='' || paymentInfo==={} || totalPrice===''){
         return next(new ErrorHandler('Please proive all details', 400))
     }
     
-    const orderExist = await Order.findOne({ car: carId, officeLocation: officeLocationId, paymentInfo: paymentInfo, });
-    const car = await Car.findById({_id: carId})
-    const usr = await User.findById({_id: req.user._id})
+    const orderExist = await Order.findOne({ car: carId, officeLocation: officeLocationId, paymentInfo: paymentInfo });
+    const car = await Car.findById(carId)
+    const usr = await User.findById(req.user._id)
+    const office = await OfficeLocation.findById(officeLocationId)
 
     if (orderExist && orderExist.orderStatus==='Processing') {
         return next(new ErrorHandler("Order Already Placed", 400));
     }
+
     const order = await Order.create({
-        officeLocation: officeLocationId,
-        car: carId,
-        carRange,
-        paymentInfo,
-        totalPrice,
+        officeLocation: office._id,
+        car: car._id,
+        carRange: carRange,
+        paymentInfo: paymentInfo,
+        totalPrice: totalPrice,
         paidAt: Date.now(),
-        user: req.user._id,
+        user: usr._id,
     });
 
-    car.order.push(order._id)
+    car.order.push(order.id)
     await car.save()
-    usr.order.push(order._id)
+    usr.order.push(order.id)
     await usr.save();
 
     // const message = `Dear ${req.user.name},\n\n Greeting of the Day, \n\nYou booking ${order._id} for renting a car is successful. \n\nThanks\n\nWishing for your happy journey!`;
@@ -72,7 +75,7 @@ export const carRental_User_Single_Order = CatchAsync( async(req, res, next) =>{
 
 // 3) --------------| User Orders |--------------
 export const carRental_User_All_Orders = CatchAsync( async(req, res, next) =>{
-    const orders = await Order.find({ user: req.user._id }).sort({createdAt: -1});
+    const orders = await Order.find({ user: req.user._id }).populate("user", "firstName lastName email").populate("car").populate("officeLocation").sort({createdAt: -1});
 
     if (!orders) {
         return next(new ErrorHandler("Order Not Found", 404));

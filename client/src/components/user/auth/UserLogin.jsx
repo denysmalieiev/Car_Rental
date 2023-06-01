@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { carRental_Sign_In} from '../../../utils/actions/UserAction';
 import { carRental_Admin_All_Offices_Load } from '../../../utils/actions/CarsAction';
@@ -9,7 +9,7 @@ import userAuthCSS from './css/userAuth.module.css';
 
 const UserLogin = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -25,8 +25,7 @@ const UserLogin = () => {
 
   const handleSubmitAuth = async (e)=>{
     e.preventDefault()
-    dispatch(carRental_Sign_In(formData.email, formData.password))
-    dispatch(carRental_Admin_All_Offices_Load)
+    dispatch(carRental_Sign_In(formData.email, formData.password)).then(()=>navigate('/'))
   }
 
   return (

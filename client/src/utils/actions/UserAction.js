@@ -11,6 +11,7 @@ import {
     ADMIN_SINGLE_USER_REQUEST, ADMIN_SINGLE_USER_SUCCESS, ADMIN_SINGLE_USER_FAIL, 
     ADMIN_USER_ROLE_UPDATE_REQUEST, ADMIN_USER_ROLE_UPDATE_SUCCESS, ADMIN_USER_ROLE_UPDATE_FAIL,
     ADMIN_USER_ACCOUNT_DELETE_REQUEST, ADMIN_USER_ACCOUNT_DELETE_SUCCESS, ADMIN_USER_ACCOUNT_DELETE_FAIL,
+    USERS_ALL_STORE_RESET,
     CLEAR_ERRORS,
 } from '../constants/Constants.js';
 
@@ -69,6 +70,10 @@ export const carRental_Sign_Out = async(dispath)=>{
         
         dispath({
             type: LOGOUT_SUCCESS
+        })
+
+        dispath({
+            type: USERS_ALL_STORE_RESET
         })
 
     } catch(error){

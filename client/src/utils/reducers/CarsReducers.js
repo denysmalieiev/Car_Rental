@@ -9,10 +9,11 @@ import {
     ADMIN_SINGLE_OFFICE_LOCATION_REQUEST, ADMIN_SINGLE_OFFICE_LOCATION_SUCCESS, ADMIN_SINGLE_OFFICE_LOCATION_FAIL,
     ADMIN_UPDATE_OFFICE_LOCATION_REQUEST, ADMIN_UPDATE_OFFICE_LOCATION_SUCCESS, ADMIN_UPDATE_OFFICE_LOCATION_FAIL, ADMIN_UPDATE_OFFICE_LOCATION_RESET,
     ADMIN_DELETE_OFFICE_LOCATION_REQUEST, ADMIN_DELETE_OFFICE_LOCATION_SUCCESS, ADMIN_DELETE_OFFICE_LOCATION_FAIL, ADMIN_DELETE_OFFICE_LOCATION_RESET,
+    USERS_ALL_STORE_RESET,
     CLEAR_ERRORS,
 } from '../constants/Constants.js';
 
-export const allCarReducer = (state = {cars: {}}, action)=>{
+export const allCarReducer = (state = {}, action)=>{
     switch(action.type){
         case CARS_GET_ALL_REQUEST:
         case ADMIN_NEW_CAR_DETAILS_REQUEST:
@@ -41,7 +42,12 @@ export const allCarReducer = (state = {cars: {}}, action)=>{
                 cars: null,
                 error: action.payload,
             }
-
+        case USERS_ALL_STORE_RESET:
+            return {
+                ...state,
+                loading: false,
+                cars: null
+            }
         case CLEAR_ERRORS:
             return {
                 ...state,
@@ -95,6 +101,14 @@ export const singleCarReducer = (state = {}, action)=>{
                 ...state,
                 isCarDetailUpdated: false,
             };
+
+        case USERS_ALL_STORE_RESET:
+            return {
+                ...state,
+                loading: false,
+                car: null,
+                isCarDetailUpdated: false,
+            }
 
         case CLEAR_ERRORS:
             return {
@@ -170,7 +184,14 @@ export const adminNewOfficeReducer = (state = {}, action)=>{
                 error: action.payload,
             }
 
-
+        case USERS_ALL_STORE_RESET:
+            return {
+                ...state,
+                loading: false,
+                office: null,
+                isOfficeStatus: false,
+                isOfficeDelated: false
+            }
         case CLEAR_ERRORS:
             return {
                 ...state,
@@ -206,7 +227,12 @@ export const adminSingleOfficeReducer = (state = {}, action)=>{
                 error: action.payload,
             }
 
-
+        case USERS_ALL_STORE_RESET:
+            return {
+                ...state,
+                loading: false,
+                office: null
+            }
         case CLEAR_ERRORS:
             return {
                 ...state,
@@ -240,6 +266,13 @@ export const adminAllOfficesReducer = (state = {}, action)=>{
                 loading: false,
                 offices: null,
                 error: action.payload,
+            }
+
+        case USERS_ALL_STORE_RESET:
+            return {
+                ...state,
+                loading: false,
+                offices: null
             }
 
         case CLEAR_ERRORS:

@@ -10,7 +10,7 @@ const ShowOffices = ({data}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const { error } = useSelector(state=> state.adminOffice);
-
+  const { office } = useSelector(state=> state.office)
   const handleOfficeDelete = (e) =>{
     e.preventDefault()
     dispatch(carRental_Admin_Office_Delete(data._id))
@@ -18,22 +18,19 @@ const ShowOffices = ({data}) => {
 
   const handleOfficeUpdate = (e) =>{
     e.preventDefault()
-    navigate(`/admin/office/update/${data._id}`)
+    dispatch(carRental_Admin_Single_Office_Load(data._id)).then(()=>navigate(`/admin/office/update/${data._id}`))
   }
-
   useEffect(()=>{
     if(error){
       alert('Something went wrong')
       dispatch(clearError)
     }
-    dispatch(carRental_Admin_Single_Office_Load(data._id))
   }, [dispatch, error])
 
   return (
     <>
       <div className={showUsersCSS.usersCardLeftShow}>
         <img src='https://cdn.dribbble.com/users/1000879/screenshots/3273639/store.gif' alt='Office_Image'/>
-        {/* {data? <><img src={data.profilePicture.url} alt='User Profile'/></>:<><img src='' alt='User Profile'/></>} */}
       </div>
       <div className={showUsersCSS.usersCardRightShow}>
         <br/>

@@ -49,6 +49,7 @@ router.route("/admin/user/:id")
     .get(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Get_Single_User)
     .put(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_User_Role_Update)
     .delete(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Delete_User_Account);
+    
 router.route("/admin/office/register").post(authToken.isUserAuthenticated, authToken.authorizedRoles("admin"), carRental_Admin_Office_Location_Register);
 router.route("/admin/office/:id")
     .get(authToken.isUserAuthenticated, carRental_Admin_Single_Office_Location)

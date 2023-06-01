@@ -2,7 +2,7 @@ import './App.css';
 import React, { useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
-
+import { carRental_Admin_All_Offices_Load} from './utils/actions/CarsAction';
 import { carRental_Load_User, clearError } from './utils/actions/UserAction';
 
 
@@ -52,7 +52,9 @@ function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isAuthenticated, error } = useSelector(state=> state.auth);
+  const { isAuthenticated, role, error } = useSelector(state=> state.auth);
+  const { user } = useSelector(state=> state.user);
+  const { offices } = useSelector(state=> state.offices);
   
   useEffect(()=>{
     if(error){
@@ -63,7 +65,13 @@ function App() {
       navigate('/')
     }
     if(isAuthenticated){
-      dispatch(carRental_Load_User)
+      if(!user){
+        dispatch(carRental_Load_User)
+      }
+      if(!offices){
+        dispatch(carRental_Admin_All_Offices_Load)
+      }
+
     }
   }, [dispatch, isAuthenticated, error])
 
