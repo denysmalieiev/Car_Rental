@@ -68,6 +68,7 @@ export const carRental_User_Single_Order = CatchAsync( async(req, res, next) =>{
         return next(new ErrorHandler("Order Not Found", 404));
     }
 
+    console.log(order && !order.pickedAt)
     res.status(200).json({
         success: true,
         order,
@@ -121,11 +122,13 @@ export const carRental_Admin_Users_All_Orders = CatchAsync( async(req, res, next
 
     res.status(200).json({
         success: true,
-        orders,
         totalOrderAmount,
         pendingOrders: returnResult[0],
         activeOrders: returnResult[1],
-        closedOrders: returnResult[2]
+        closedOrders: returnResult[2],
+        canceledOrders: returnResult[3],
+        orders,
+
     });
 })
 
@@ -137,23 +140,46 @@ export const carRental_Admin_Update_User_Order = CatchAsync( async(req, res, nex
         return next(new ErrorHandler("Order Not Found", 404));
     }
 
-    if (order.orderStatus === "Picked") {
+    // If booking is in processing then changing to either booked or canceled
+    if(order.orderStatus.toLowerCase()==='processing' && req.body.orderStatus){
+        order.orderStatus = req.body.orderStatus
+        await order.save({ validateBeforeSave: false });
+        return res.status(200).json({
+                success: true,
+                order
+               });
+    } // If booking is in progress and order status is not chnaged by admin 
+    else if (order.orderStatus.toLowerCase() === "processing" && order.orderStatus.toLowerCase() !== "completed") {
+        return next(new ErrorHandler("Car booking not confirmed", 400));
+    } // If booking is canceled by admin
+    else if (order.orderStatus.toLowerCase() === "cancled" && order.orderStatus.toLowerCase() !== "completed") {
+        return next(new ErrorHandler("Booking Canceled", 400));
+    }
+
+    // If car booking is confirmed then checking if car is picked or not
+    if (order.orderStatus.toLowerCase() === "booked" && req.body.statusChange.toLowerCase()==='booked' && order.pickedAt) {
         return next(new ErrorHandler("Already Picked", 400));
-    }
-    
-    order.orderStatus = req.body.status;
-    if (req.body.status === "Picked") {
-        order.pickedAt = Date.now();
-    }
-
-    if (req.body.status === "Returned") {
-        order.returnedAt = Date.now();
+    } else {
+        if(req.body.statusChange.toLowerCase()==='booked'){
+            order.pickedAt = Date.now();
+            await order.save({ validateBeforeSave: false });
+        }
     }
 
-    await order.save({ validateBeforeSave: false });
+    // If car booking is completed then checking if car is returned or not
+    if(order.orderStatus.toLowerCase() === "completed" && req.body.statusChange.toLowerCase()==='completed' && order.returnedAt && order.pickedAt){
+        return next(new ErrorHandler("Journey already completed", 400));
+    } else {
+        if((req.body.statusChange.toLowerCase()==='completed')){
+            order.orderStatus = 'Completed'
+            order.returnedAt = Date.now();
+            await order.save({ validateBeforeSave: false });
+        }
+    }
 
     res.status(200).json({
-        success: true
+        success: true,
+        order
     });
 })
 
@@ -163,6 +189,7 @@ function filterOrder(orders){
     let pendingOrders = 0
     let activeOrders = 0;
     let closedOrders = 0;
+    let canceledOrders = 0;
     orders.map((data)=>{
         if(data.orderStatus.toLowerCase()==='processing'){
             pendingOrders +=1;
@@ -170,10 +197,13 @@ function filterOrder(orders){
             activeOrders +=1;
         } else if(data.orderStatus.toLowerCase()==='completed'){
             closedOrders +=1;
+        } else if(data.orderStatus.toLowerCase()==='canceled'){
+            canceledOrders +=1;
         }
     })
     returnArray[0] = pendingOrders;
     returnArray[1] = activeOrders;
     returnArray[2] = closedOrders; 
+    returnArray[3] = canceledOrders; 
     return returnArray;
 }
