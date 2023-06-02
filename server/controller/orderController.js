@@ -152,7 +152,7 @@ export const carRental_Admin_Update_User_Order = CatchAsync( async(req, res, nex
     else if (order.orderStatus.toLowerCase() === "processing" && order.orderStatus.toLowerCase() !== "completed") {
         return next(new ErrorHandler("Car booking not confirmed", 400));
     } // If booking is canceled by admin
-    else if (order.orderStatus.toLowerCase() === "cancled" && order.orderStatus.toLowerCase() !== "completed") {
+    else if (order.orderStatus.toLowerCase() === "canceled" && order.orderStatus.toLowerCase() !== "completed") {
         return next(new ErrorHandler("Booking Canceled", 400));
     }
 
@@ -177,13 +177,13 @@ export const carRental_Admin_Update_User_Order = CatchAsync( async(req, res, nex
         }
     }
 
-    res.status(200).json({
+    return res.status(200).json({
         success: true,
         order
     });
 })
 
-
+// Fuction to fitler orders in categories like pending, active closed and canceled
 function filterOrder(orders){
     let returnArray = []
     let pendingOrders = 0
