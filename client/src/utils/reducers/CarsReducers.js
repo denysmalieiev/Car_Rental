@@ -44,9 +44,7 @@ export const allCarReducer = (state = {}, action)=>{
             }
         case USERS_ALL_STORE_RESET:
             return {
-                ...state,
-                loading: false,
-                cars: null
+                state: {},
             }
         case CLEAR_ERRORS:
             return {
@@ -104,10 +102,7 @@ export const singleCarReducer = (state = {}, action)=>{
 
         case USERS_ALL_STORE_RESET:
             return {
-                ...state,
-                loading: false,
-                car: null,
-                isCarDetailUpdated: false,
+                state: {},
             }
 
         case CLEAR_ERRORS:
@@ -186,11 +181,7 @@ export const adminNewOfficeReducer = (state = {}, action)=>{
 
         case USERS_ALL_STORE_RESET:
             return {
-                ...state,
-                loading: false,
-                office: null,
-                isOfficeStatus: false,
-                isOfficeDelated: false
+                state: {},
             }
         case CLEAR_ERRORS:
             return {
@@ -229,9 +220,7 @@ export const adminSingleOfficeReducer = (state = {}, action)=>{
 
         case USERS_ALL_STORE_RESET:
             return {
-                ...state,
-                loading: false,
-                office: null
+                state: {},
             }
         case CLEAR_ERRORS:
             return {
@@ -270,9 +259,7 @@ export const adminAllOfficesReducer = (state = {}, action)=>{
 
         case USERS_ALL_STORE_RESET:
             return {
-                ...state,
-                loading: false,
-                offices: null
+                state: {},
             }
 
         case CLEAR_ERRORS:

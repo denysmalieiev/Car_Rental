@@ -46,10 +46,7 @@ export const carRental_User_Single_Order = (state = {}, action)=>{
 
         case USERS_ALL_STORE_RESET:
             return {
-                ...state,
-                loading: false,
-                singleOrder: null,
-                orderStatus: false,
+                state: {},
             }
 
         case CLEAR_ERRORS:
@@ -88,9 +85,7 @@ export const carRental_User_All_Orders = (state = {}, action)=>{
             
         case USERS_ALL_STORE_RESET:
             return {
-                ...state,
-                loading: false,
-                userOrders: null,
+                state: {},
             }
 
         case CLEAR_ERRORS:
@@ -109,7 +104,7 @@ export const carRental_Admin_All_Users_Orders = (state = {}, action)=>{
         case ADMIN_USERS_ALL_ORDERS_REQUEST:
             return {
                 loading: true,
-                adminAllOrders: null,
+                allOrders: null,
                 totalOrderAmount: null
             }
 
@@ -117,7 +112,7 @@ export const carRental_Admin_All_Users_Orders = (state = {}, action)=>{
             return {
                 ...state,
                 loading: false,
-                adminAllOrders: action.payload.userOrders,
+                allOrders: action.payload.orders,
                 totalOrderAmount: action.payload.totalOrderAmount
             }
 
@@ -125,17 +120,13 @@ export const carRental_Admin_All_Users_Orders = (state = {}, action)=>{
             return {
                 ...state,
                 loading: false,
-                adminAllOrders: null,
+                allOrders: null,
                 error: action.payload,
             }
         
         case USERS_ALL_STORE_RESET:
             return {
-                ...state,
-                loading: false,
-                adminAllOrders: null,
-                totalOrderAmount: null,
-                userOrders: null,
+                state: {},
             }
 
         case CLEAR_ERRORS:

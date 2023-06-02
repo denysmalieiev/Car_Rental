@@ -1,4 +1,4 @@
-.usersCardConatiner{
+.orderCardConatiner{
     width:90%;
     margin: 5% 5% 3%;
     height: auto;
@@ -6,7 +6,7 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-radius: 10px;
 }
-    .usersCardLeftShow{
+    .orderCardLeftShow{
         width: 38%;
         height: 280px;
         margin: 0% 0%;
@@ -16,19 +16,19 @@
         align-items: center;
         background-color: aliceblue;
     }
-        .usersCardLeftShow img{
+        .orderCardLeftShow img{
             width: 80%;
         }
 
-    .usersCardRightShow{
+    .orderCardRightShow{
         width:60%;
         margin: 1% 0% 1% 2%;
         float: right;
     }
-        .usersCardRightShow h3{
+        .orderCardRightShow h3{
             margin: 0% 0%;
         }
-        .usersCardRightShow hr{
+        .orderCardRightShow hr{
             width: 75%;
             height: 3px;
             margin: 1% 0% 2%;
@@ -48,51 +48,52 @@
                 margin: 0% 0% 1%;
             }
 
-        .usersCardRightShow button{
+        .orderCardRightShow button{
             margin: 2% 0% 1%;
-            padding: 1% 5%;
+            padding: 0.5% 3%;
             border-radius: 5px;
             font-weight: 500;
-            background-color: rgb(250, 247, 230);
-            color: red;
-            border: 2px solid rgb(225, 225, 222);
+            background-color: rgb(0, 0, 0);
+            color: yellow;
+            border: 1px solid rgb(225, 225, 222);
         }
-            .usersCardRightShow button:hover{
+            .orderCardRightShow button:hover{
+                color: red;
                 background-color: white;
-                border: 2px solid blue;
+                border: 1px solid blue;
             }
 
 @media screen and (max-width: 600px) {
-    .usersCardConatiner{
+    .orderCardConatiner{
         width: 99.5%;
         margin: 2% 00%;
         border: 2px solid rgb(242, 242, 255);
         border-radius: 10px;
     }
-    .usersCardConatiner{
+    .orderCardConatiner{
         width:89.5%;
         margin: 5% 5% 10%;
     }
-    .usersCardLeftShow{
+    .orderCardLeftShow{
         width: 100%;
         height: auto;
         margin: 5% 0%;
         float: left;
     }
-        .usersCardLeftShow img{
+        .orderCardLeftShow img{
             width: 60%;
             margin: 5% 20%;
             height: 100%;
             border-radius: 45%;
         }
 
-    .usersCardRightShow{
+    .orderCardRightShow{
         width:80%;
         margin: 1% 0%;
         padding: 0% 10%;
         float: right;
     }
-        .usersCardRightShow h3{
+        .orderCardRightShow h3{
             font-size: 1em;
         }
         .showUserDetail{
@@ -107,7 +108,7 @@
                 margin: 1% 0%;
             }
 
-        .usersCardRightShow button{
+        .orderCardRightShow button{
             margin: 2% 0% 10%;
         }
 }

@@ -6,6 +6,7 @@ import ErrorHandler from '../utils/errorHandler.js';
 import CatchAsync from '../middlewares/catchAsync.js'
 import mail from '../utils/sendEmail.js';
 
+
 // 1) --------------| Order Creation |--------------
 export const carRental_User_Order_Creation = CatchAsync( async(req, res, next) =>{
     const { officeLocationId, carId, carRange, paymentInfo, totalPrice } = req.body.formData;
@@ -105,7 +106,7 @@ export const carRental_User_Cancel_A_Order = CatchAsync( async(req, res, next) =
 
 // 5) --------------| Admin: Get All Orders |--------------
 export const carRental_Admin_Users_All_Orders = CatchAsync( async(req, res, next) =>{
-    const orders = await Order.find();
+    const orders = await Order.find().populate('user').populate('car');
 
     if (!orders) {
         return next(new ErrorHandler("Order Not Found", 404));
@@ -116,10 +117,15 @@ export const carRental_Admin_Users_All_Orders = CatchAsync( async(req, res, next
         totalOrderAmount += order.totalPrice;
     });
 
+    const returnResult = filterOrder(orders)
+
     res.status(200).json({
         success: true,
         orders,
         totalOrderAmount,
+        pendingOrders: returnResult[0],
+        activeOrders: returnResult[1],
+        closedOrders: returnResult[2]
     });
 })
 
@@ -150,3 +156,24 @@ export const carRental_Admin_Update_User_Order = CatchAsync( async(req, res, nex
         success: true
     });
 })
+
+
+function filterOrder(orders){
+    let returnArray = []
+    let pendingOrders = 0
+    let activeOrders = 0;
+    let closedOrders = 0;
+    orders.map((data)=>{
+        if(data.orderStatus.toLowerCase()==='processing'){
+            pendingOrders +=1;
+        } else if(data.orderStatus.toLowerCase()==='booked'){
+            activeOrders +=1;
+        } else if(data.orderStatus.toLowerCase()==='completed'){
+            closedOrders +=1;
+        }
+    })
+    returnArray[0] = pendingOrders;
+    returnArray[1] = activeOrders;
+    returnArray[2] = closedOrders; 
+    return returnArray;
+}

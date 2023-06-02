@@ -95,9 +95,7 @@ export const carRental_User_Profile_Load = (state = {}, action) => {
       
       case USERS_ALL_STORE_RESET:
         return {
-            ...state,
-            loading: false,
-            user: null,
+            state: {},
         }
         
     case CLEAR_ERRORS:
@@ -211,9 +209,7 @@ export const carRental_Admin_All_Users_Load = (state = {}, action) => {
     
     case USERS_ALL_STORE_RESET:
         return {
-            ...state,
-            loading: false,
-            users: null,
+          state: {},
         }
 
     case CLEAR_ERRORS:
@@ -261,9 +257,7 @@ export const carRental_Admin_Single_User_Load = (state = {}, action) => {
 
     case USERS_ALL_STORE_RESET:
         return {
-          loading: false,
-          userProfile: null,
-          isProfileLoaded: false,
+          state: {},
         }
 
     case CLEAR_ERRORS:
@@ -300,8 +294,7 @@ export const carRental_User_Cart_Car_Book_Reducer = (state = {}, action) => {
       
     case USERS_ALL_STORE_RESET:
         return {
-          loading: false,
-          carCart: null,
+          state: {},
         }
 
     case CLEAR_ERRORS:

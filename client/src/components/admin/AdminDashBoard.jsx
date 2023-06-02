@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import { carRental_Admin_Get_All_Users } from '../../utils/actions/UserAction.js';
+import { carRental_Admin_Users_All_Orders } from '../../utils/actions/OrderAction.js';
 import { clearError } from '../../utils/actions/CarsAction';
 
 import carRentalContainerCSS from '../css/container.module.css';
@@ -9,8 +10,9 @@ import adminContainerCSS from './adminCss/adminContainer.module.css';
 
 const AdminDashBoard = () => {
   const dispatch = useDispatch();
-  const { isAuthenticated, role } = useSelector(state=>state.auth)
+  const {  role } = useSelector(state=>state.auth)
   const { users, error } = useSelector(state=>state.users)
+  const { allOrders, totalOrderAmount } = useSelector(state=>state.adminOrders)
 
   useEffect(()=>{
     if(error){
@@ -18,6 +20,9 @@ const AdminDashBoard = () => {
     }
     if(!users && role==='admin'){
       dispatch(carRental_Admin_Get_All_Users)
+    }
+    if(!allOrders){
+      dispatch(carRental_Admin_Users_All_Orders)
     }
   }, [dispatch])
 
@@ -31,9 +36,9 @@ const AdminDashBoard = () => {
         <div className={adminContainerCSS.adminContainerLeftPart}>
           <div className={adminContainerCSS.adminConatinerTopDetails}>
             <h3>Bookings</h3>
-            <p>Total Earnings:</p>
-            <p>Total Bookings:</p>
-            <p>Bookings Pending:</p>
+            <p>Total Earnings: {totalOrderAmount? <><i>₹&nbsp;</i>{totalOrderAmount}</>:<></>}</p>
+            <p>Total Bookings: {allOrders? <>{allOrders.length}</>:<></>}</p>
+            <p>Bookings Pending: </p>
             <p>Active Bookings: </p>
             <p>Closed Bookings: </p>
             <button><Link to='/admin/order/all'>Users Bookings</Link></button>

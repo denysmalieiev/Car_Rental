@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
-import { USERS_ALL_STORE_RESET } from '../../utils/constants/Constants';
 import { carRental_User_New_Order, carRental_User_All_Orders, clearError } from '../../utils/actions/OrderAction';
 
 import ContainerCSS from '../css/container.module.css';
@@ -75,9 +74,6 @@ const BookingPayment = () => {
     }
     if(orderStatus){
       dispatch(carRental_User_All_Orders)
-      dispatch({
-        type: USERS_ALL_STORE_RESET,
-      });
       alert('Order Successful')
       navigate('/')
     }
