@@ -48,7 +48,6 @@ const Header = () => {
               <>
                 <p><Link>Order</Link></p>
                 <p>Profile</p>
-                <p><Link>Logout</Link></p>
               </>
               : <></>
             }
@@ -61,6 +60,7 @@ const Header = () => {
           <div className={headerCSS.navBarAuthOption}>
             <p><Link to='/cars/booking/history'>Bookings</Link></p>
             <p><Link to='/user/profile'>Profile</Link></p>
+            <p><Link>Logout</Link></p>
           </div>
         </>
         : <></>
