@@ -1,9 +1,6 @@
 import './App.css';
 import React, { useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector} from 'react-redux';
-import { carRental_Admin_All_Offices_Load} from './utils/actions/CarsAction';
-import { carRental_Load_User, clearError } from './utils/actions/UserAction';
+import { Routes, Route } from 'react-router-dom';
 
 
 // Header and Footer
@@ -13,21 +10,6 @@ import Footer from './components/footer/Footer';
 // Home Page
 import HomePage from './components/mainHome/HomePage';
 import About from './components/mainHome/About';
-
-// Admin
-import AdminDashBoard from './components/admin/AdminDashBoard';
-import AdminSingleUsers from './components/admin/user/AdminUserProfile';
-import AdminAllUsers from './components/admin/user/AdminAllUsers';
-import AdminNewOffice from './components/admin/offices/AdminNewOffice';
-import AdminOfficesDetails from './components/admin/offices/AdminOfficesDetails';
-import AdminOfficeUpdate from './components/admin/offices/AdminOfficeUpdate';
-import AdminNewCarDetail from './components/admin/cars/NewCarDetail';
-import CarDetails from './components/admin/cars/CarDetails';
-import AdminUpdateCarDetails from './components/admin/cars/UpdateCarDetails';
-
-import AdminUsersAllOrders from './components/admin/orders/AdminAllOrders';
-import AdminUserOrderUpdate from './components/admin/orders/AdminOrderUpdate';
-
 
 // User
 import UserLogin from './components/user/auth/UserLogin';
@@ -42,92 +24,28 @@ import ResetPassword from './components/user/profile/userPassword/ResetPassword'
 import CarsHome from './components/car/CarsHome';
 import UserCartBook from './components/car/UserCartBook';
 
-// Booking
-import CarBooking from './components/booking/CarBooking';
-import BookingPayment from './components/booking/BookingPayment';
-import BookingHistory from './components/booking/BookingHistory';
-
 
 function App() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  const { isAuthenticated, role, error } = useSelector(state=> state.auth);
-  const { user } = useSelector(state=> state.user);
-  const { offices } = useSelector(state=> state.offices);
-  
-  useEffect(()=>{
-    if(error){
-      alert(error)
-      dispatch(clearError)
-    }
-    if(!isAuthenticated){
-      navigate('/')
-    }
-    if(isAuthenticated){
-      if(!user){
-        dispatch(carRental_Load_User)
-      }
-      if(!offices){
-        dispatch(carRental_Admin_All_Offices_Load)
-      }
-
-    }
-  }, [dispatch, isAuthenticated, error])
+  useEffect(() => {}, [])
 
   return (
     <div className="App">
-        <Header/>
-        <Routes>
-          <Route path='/' element={<HomePage/>} />
-          <Route path='/about' element={<About/>} />
-              
-          { isAuthenticated 
-            ?
-              <>
-                {/* Admin */}
-                <Route exact path='/admin/dashboard' element={<AdminDashBoard/>} />
-
-                <Route exact path='/admin/users/:role' element={<AdminAllUsers/>} />
-                <Route exact path='/admin/user/:id' element={<AdminSingleUsers/>} />
-
-                <Route exact path='/admin/office/new' element={<AdminNewOffice/>} />
-                <Route exact path='/admin/office/details' element={<AdminOfficesDetails/>} />
-                <Route exact path='/admin/office/update/:id' element={<AdminOfficeUpdate/>} />
-
-                <Route exact path='/admin/car/new' element={<AdminNewCarDetail/>} />
-                <Route exact path='/admin/car/update/:id' element={<AdminUpdateCarDetails/>} />
-
-                <Route exact path='/admin/order/all' element={<AdminUsersAllOrders/>} />
-                <Route exact path='/admin/order/update/:id' element={<AdminUserOrderUpdate/>} />
-                
-                {/* User */}
-                <Route exact path='/user/profile' element={<UserProfileShow/>} />
-                <Route exact path='/user/profile/update' element={<UserProfileUpdate/>}/>
-                <Route exact path='/password/update' element={<UserPasswordUpdate/>} />
-
-                {/* Car */}
-                <Route exact path='/cars' element={<CarsHome/>} />
-                <Route exact path='/car/:id' element={<CarDetails/>} />
-                <Route exact path='/car/booking/:id' element={<UserCartBook/>} />
-                <Route exact path='/car/payment/:office/:range' element={<BookingPayment/>} />
-                <Route exact path='/cars/booking/history' element={<BookingHistory/>} />
-                <Route exact path='/car/bo' element={<CarBooking/>} />
-              </>
-            :
-              <>
-                {/* User */}
-                <Route exact path='/user/signin' element={<UserLogin/>} />
-                <Route exact path='/user/signup' element={<UserSignUp/>} />
-                <Route exact path='/password/forgot' element={<ForgotPassword/>} />
-                <Route exact path='/password/reset' element={<ResetPassword/>} />
-
-                {/* Car */}
-                <Route exact path='/cars' element={<CarsHome/>} />
-              </>
-          }
-        </Routes>
-        <Footer/>
+      <Header />
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/about' element={<About />} />
+        <Route exact path='/user/signin' element={<UserLogin />} />
+        <Route exact path='/user/signup' element={<UserSignUp />} />
+        <Route exact path='/password/forgot' element={<ForgotPassword />} />
+        <Route exact path='/password/reset' element={<ResetPassword />} />
+        <Route exact path='/user/profile' element={<UserProfileShow />} />
+        <Route exact path='/user/profile/update' element={<UserProfileUpdate />} />
+        <Route exact path='/password/update' element={<UserPasswordUpdate />} />
+        <Route exact path='/cars' element={<CarsHome />} />
+        <Route exact path='/car/booking/:id' element={<UserCartBook />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }

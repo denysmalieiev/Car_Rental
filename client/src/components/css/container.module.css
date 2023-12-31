@@ -2,5 +2,12 @@
     width: 80%;
     height: auto;
     overflow: auto;
-    margin: 2% 10% 5%;
+    margin: 5% 10% 5%;
+}
+
+@media screen and (max-width: 600px) {
+    .carRentalPageContainer{
+        width: 86%;
+        margin: 10% 7% 5%;
+    }
 }

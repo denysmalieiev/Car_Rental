@@ -21,7 +21,7 @@ const handleOnSubmit = (e) => {
         <div className={passwordContainerCSS.passwordContainer}>
             <form className={passwordContainerCSS.inputFormContainer} onSubmit={handleOnSubmit}>
                 <h2>Forgot Password</h2><hr/><br/>
-                <input type='email' onChange={handleOnChange} name='email' value={formData.oldPassword} placeholder='Email'/><br/>
+                <input type='email' onChange={handleOnChange} name='email' value={formData.email} placeholder='Email'/><br/>
                 <button>Send</button>
             </form>
         </div>

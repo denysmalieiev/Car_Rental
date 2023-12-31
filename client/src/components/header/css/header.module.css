@@ -78,6 +78,11 @@
     background-color: antiquewhite;
     font-weight: 400;
 }
+.navBarOfferBox p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 @media screen and (max-width: 600px) {
 
@@ -100,7 +105,7 @@
 
     .navBarOfferBox {
         height: 1.6rem;
-        font-size: 0.725rem;
+        font-size: 0.65rem;
     }
 
 }

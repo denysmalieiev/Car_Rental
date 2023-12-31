@@ -1,178 +1,236 @@
-.carsHomeBox{
+.component_container {
     width: 100%;
+    min-height: 42rem;
     height: auto;
     overflow: auto;
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 5% 0;
 }
 
-    .carsHomeBoxLeft{
-        background-color: red;
-        color: white;
-        width: 25%;
-        height: 400px;
-        overflow: auto;
-        float: left;
-        padding: 1% 0%;
-        border-radius: 10px 0px 0px 10px;
-    }
-        .carsHomeBoxLeftCarCategory{
-            width: 70%;
-            margin: 5% 15%;
-        }
-        .carsHomeBoxLeftCarCategory button{
-            background-color: rgb(0, 47, 177);
-            color: white;
-            width: 40%;
-            padding: 3% 0%;
-            margin: 0% 5%;
-            text-align: center;
-            border-radius: 2px;
-            border: 2px solid white;
-            border-top: 0;
-            border-left: 0;
-        }
-        .carsHomeBoxLeftCarCategory button:hover{
-            border: 2px solid rgb(100, 105, 255);
-            border-top: 0;
-            border-left: 0;
-        }
-        .carsHomeBoxLeftCarOptions{
-            width: 70%;
-            margin: 5% 15%;
-            text-align: center;
-        }
+.component_container p{
+    width: 100%;
+    float: left;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 900;
+    color: black;
+    margin: 8% 0 2%
+}
+.container_Show_Cars {
+    width: 80%;
+    min-height: 32rem;
+    height: auto;
+    overflow: auto;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.182);
+    border-radius: 0.5rem;
+}
 
-        .carsHomeBoxLeftCarOptions button{
-            background-color: white;
-            color: rgb(0, 47, 177);
-            width: 80%;
-            margin: 5% 10%;
-            padding: 4% 0%;
-            text-align: center;
-            font-weight: 600;
-            border: 3px solid rgb(0, 47, 177);
-            border-top: 0;
-            border-left: 0;
-        }
-        .carsHomeBoxLeftCarOptions button:hover{
-            color: black;
-            border: 3px solid black;
-            border-top: 0;
-            border-left: 0;
-        }
+.carOptionShowImage {
+    width: 65%;
+    height: max-content;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
 
+.carOptionShowImage img {
+    width: 90%;
+    height: auto;
+}
 
-    .carsHomeBoxMid{
-        width: 48%;   
-        height: 400px;  
-        overflow: auto;   
-        float: left;
-        padding: 1% 1%;
-        display:flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .carsHomeBoxMid img{
+.carOptionsList {
+    width: 35%;
+    height: 32rem;
+    float: left;
+    overflow: hidden;
+    background-color: red;
+}
+
+.availableCarsLists {
+    width: 100%;
+    height: 8rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.availableCarsLists p {
+    width: 30%;
+    height: auto;
+    padding: 2% 5%;
+    margin: 8% 35% 0;
+    background-color: black;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 800;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+    border-radius: 0.25rem;
+}
+
+.availableCarsListOption {
+    width: 30%;
+    height: auto;
+    padding: 1.5% 2%;
+    margin: 0% 2%;
+    background-color: white;
+    color: blue;
+    outline: none;
+    appearance: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-radius: 0.25rem;
+}
+
+.availableCarsListSCarSelect {
+    width: 50%;
+    height: auto;
+    padding: 1.5% 2%;
+    margin: 0% 2%;
+    background-color: white;
+    color: blue;
+    outline: none;
+    appearance: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-radius: 0.25rem;
+}
+
+.selectedCarDetails{
+    width: 100%;
+    min-height: 19rem;
+    height: auto;
+    float: left;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.selectedCarInformation{
+    width: 84%;
+    height: auto;
+    margin: 0.5rem 0 0;
+    overflow: hidden;
+}
+
+.selectedCarInfoBox{
+    width: 98%;
+    height: 2.5rem;
+    margin: 0.4rem 1%;
+    background-color: white;
+    color: black;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.selectedCarInfoBox p{
+    width: 60%;
+    margin: 0 50% 0 0;
+    height: 1.25rem;
+    background-color: blue;
+    color: yellow;
+    font-size: 0.8rem;
+    font-weight: 800;
+    padding: 0 4%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+.selectedCarInfoBox span{
+    width: 100%;
+    height: 1.25rem;
+    padding: 0 4%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.selectedCarBook{
+    width: 100%;
+    height: auto;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.selectedCarBook button{
+    background-color: blue;
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 1% 4%;
+    margin: 0% 5%;
+    border-radius: 2px;
+}
+
+@media screen and (max-width: 599px) {
+    .container_Show_Cars {
         width: 100%;
+        min-height: 42rem;
+        height: auto;
+        margin: 1rem 0 3rem;
+        border-radius: 0;
     }
-
-    .carsHomeBoxRight{
-        background-color: red;
-        width: 25%;  
-        height: 400px;  
-        overflow: auto;    
-        float: left;
-        padding: 1% 0%;
-        border-radius: 0px 10px 10px 0px;
-    }
-        .carsHomeBoxRightContent{
-            width:80%;
-            margin: 5% 10% 0%;
-            font-weight: 600;
-            text-align: left;
-        }
-        .carsHomeBoxRightContent button{
-            background-color: black;
-            color: white;
-            margin: 3% 0% 0%;
-            padding: 3% 5%;
-            text-align: center;
-            font-weight: 600;
-            border: 3px solid yellow;
-            border-top: 0;
-            border-left: 0;
-        }
-        .carsHomeBoxRightContent button:hover{
-            background-color: black;
-            color: yellow;
-            border: 2px solid white;
-            border-top: 1px solid black;
-            border-left: 1px solid black;
-        }
-        .carsHomeBoxRightDivContent{
-            margin: 0% 0% 4%;
-        }
-        .carsHomeBoxRightDivContent h6{
-            background-color: blue;
-            color: white;
-            width: 50%;
-            padding: 1% 5%
-        }
-        .carsHomeBoxRightDivContent h5{
-            background-color: white;
-            color: black;
-            padding: 1% 5%;
-            font-weight: 500;
-        }
-
-
-@media screen and (max-width: 600px) {
-    .carsHomeBoxLeft{
+    .carOptionShowImage {
         width: 100%;
-        padding: 4% 0%;
-        border-radius: 0px 20px 20px 0px;
-    }
-        .carsHomeBoxLeftCarCategory{
-            width: 60%;
-            margin: 2% 20%;
-        }
-        .carsHomeBoxLeftCarCategory button{
-            width: 40%;
-            padding: 1.5% 0%;
-            font-size: 0.7em;
-        }
-        .carsHomeBoxLeftCarOptions button{
-            width: 80%;
-            margin: 3% 10% 0%;
-            padding: 2% 0%;
-            font-weight: 400;
-            font-size: 0.7em;
-        }
-
-    .carsHomeBoxMid{
-        width: 100%;   
-        height: 350px;     
-        float: left;
-        padding: 1% 0%;
-        display:flex;
-        justify-content: center;
-        align-items: center;
+        height: 16rem
     }
 
-    .carsHomeBoxRight{
-        width: 100%;  
-        padding: 0% 0%;
-        border-radius: 0px 20px 20px 0px;
+    .carOptionsList {
+        width: 100%;
+        min-height: 26rem;
+        height: auto;
     }
-        .carsHomeBoxRightDivContent h6{
-            font-size: 0.7em;
-            font-display: 400;
-        }
-        .carsHomeBoxRightDivContent h5{
-            font-size: 0.7em;
-            font-display: 400;
-        }
-        .carsHomeBoxRightContent button{
-            padding: 2% 5%;
-        }
+
+    .availableCarsLists {
+        height: 6rem;
+    }
+    .availableCarsLists p {
+        margin: 4% 35% 0;
+        font-size: 1rem;
+    }
+    .selectedCarDetails{
+        height: 16rem;
+    }
+    
+    .selectedCarBook{
+        height: 4rem;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .carOptionShowImage {
+        width: 65%;
+    }
+
+    .carOptionsList {
+        width: 35%;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .carOptionShowImage {
+        width: 65%;
+    }
+
+    .carOptionsList {
+        width: 35%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .carOptionShowImage {
+        width: 65%;
+    }
+
+    .carOptionsList {
+        width: 35%;
+    }
 }

@@ -2,7 +2,6 @@ import React from 'react';
 
 import homeTopDetailCSS from './css/homeTopDetail.module.css';
 import homeCarImage from './img/homeCarImage.png';
-import { AiOutlineArrowDown } from 'react-icons/ai';
 
 const HomeTopContent = () => {
   return (
