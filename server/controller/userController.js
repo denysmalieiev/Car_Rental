@@ -8,68 +8,75 @@ import cloudinary from 'cloudinary';
 
 // 1) --------------| User Registration |--------------
 export const carRental_User_Registration = CatchAsync(async(req, res, next)=>{
-    // a) Destructuring of data
-    const {firstName, lastName, email, password} = req.body;
-    // b) Checking if all required fields have been provided or not
-    if(!firstName || !lastName || !email || !password){
-        return res.send('Please enter details.')
-    }
-    // c) Checking if user already exist
-    const userExist = await User.findOne({email})
-    if(userExist){
+
+    // Destructuring of data
+    const {username, email, password} = req.body;
+
+    // Checking if all required fields have been provided or not
+    if(!username || !email || !password) return next( new ErrorHandler('Please provide all details!', 400))
+
+    // Checking if user already exist
+    const isUserExist = await User.findOne({username: req.body.username, email: req.body.email})
+    if(isUserExist){
         return res.send('User already exist.');
     }
-    // // d) If user is new then saving details in Database
-    // const myCloud = await cloudinary.v2.uploader.upload(req.body.profilePicture, {
-    //     folder: "avatars",
-    //     width: 150,
-    //     crop: "scale",
-    // });
-    const user = await User.create({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
+
+    // Checking if email already been in used by other user
+    const isEmailExist = await User.findOne({email})
+    if(isEmailExist){
+        return res.send('User already exist.');
+    }
+
+    // Checking if username already been in used by other user
+    const isUsernameExist = await User.findOne({username: req.body.username.toLowerCase()})
+    if(isUsernameExist){
+        return res.send('User already exist.');
+    }
+
+    // Saving User details
+    await User.create({
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password,
     })
-    // e) Sending response
-    return res.status(200).json({
-        success: true,
-        message: 'User registed.',
-        name: user.firstName+' '+user.lastName,
-        email: user.email,
-    })
+
+    // Sending response
+    authToken.sendToken(user, 200, res);
 })
 
 
 // 2) --------------| User Login |--------------
 export const carRental_User_Login = CatchAsync(async(req, res, next)=>{
-    const {email, password} = req.body;
-    if(!email || !password){
+    
+    // Checking if all details are provided
+    if(!req.body.email || !req.body.password){
         return next(new ErrorHandler(`Please enter email and password`, 400))
     }
-    const userCheck  = await User.findOne({email}).select('+password');
+
+    // Fetching User
+    const user  = await User.findOne({email}).select('+password');
 
     // a) Checking if user exist or password provided is correct or not
-    if(!userCheck || !await userCheck.correctPassword(password)){
+    if(!user || !await user.correctPassword(password)){
         return next(new ErrorHandler('Invalid email and password', 401))
     }
     // b) Calling token function to set cookie
-    authToken.sendToken(userCheck, 200, res)
+    authToken.sendToken(user, 200, res)
 })
 
 
 // 3) --------------| User Logout |--------------
 export const carRental_User_Logout = CatchAsync(async(req, res, next)=>{
-    const user = req.user.firstName+" "+req.user.lastName
-    // a) first removing the cookie 
+    
+    // Removing the cookie 
     res.cookie('token', null, {
         expires: new Date(Date.now()),
         httpOnly: true,
     })
-    // b) then sending response
+    // Sending response
     res.status(200).json({
         success: true,
-        message: `${user}, You are now logged out.`
+        message: `You are now logged out.`
     })
 })
 

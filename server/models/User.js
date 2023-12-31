@@ -4,16 +4,10 @@ import crypto from 'crypto';
 
 const userSchema = new mongoose.Schema(
     {
-        firstName:{
+        username: {
             type: String,
+            unique: true,
             required: true,
-            min: 2,
-            max: 30,
-        },
-        lastName: {
-            type: String,
-            required: true,
-            min: 2,
             max: 30,
         },
         email: {
@@ -27,6 +21,26 @@ const userSchema = new mongoose.Schema(
             required: true,
             min: 5,
             select: false
+        },
+        firstName:{
+            type: String,
+            min: 2,
+            max: 30,
+        },
+        middleName:{
+            type: String,
+            min: 2,
+            max: 30,
+        },
+        lastName: {
+            type: String,
+            required: true,
+            min: 2,
+            max: 30,
+        },
+        profileSummary: {
+            type: String,
+            default: ''
         },
         address: {
             type:String,
@@ -47,7 +61,10 @@ const userSchema = new mongoose.Schema(
         pin: {
             type: Number,
         },
-        contact: {
+        countryCode: {
+            type: Number,
+        },
+        contactNumber: {
             type: Number,
         },
         profilePicture: {
@@ -58,10 +75,6 @@ const userSchema = new mongoose.Schema(
                 type: String,
                 default: 'https://yt3.ggpht.com/a/AATXAJyuoSvqXQn2lBeh1uo_CGeQtCtIEp4Ea76r2A=s900-c-k-c0xffffffff-no-rj-mo',
             }
-        },
-        occupation: {
-            type: String,
-            default: ''
         },
         role: {
             type: String,
