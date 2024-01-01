@@ -7,29 +7,29 @@ import crypto from 'crypto';
 import cloudinary from 'cloudinary';
 
 // 1) --------------| User Registration |--------------
-export const carRental_User_Registration = CatchAsync(async(req, res, next)=>{
+export const carRental_User_Registration = CatchAsync(async (req, res, next) => {
 
     // Destructuring of data
-    const {username, email, password} = req.body;
+    const { username, email, password } = req.body;
 
     // Checking if all required fields have been provided or not
-    if(!username || !email || !password) return next( new ErrorHandler('Please provide all details!', 400))
+    if (!username || !email || !password) return next(new ErrorHandler('Please provide all details!', 400))
 
     // Checking if user already exist
-    const isUserExist = await User.findOne({username: req.body.username, email: req.body.email})
-    if(isUserExist){
+    const isUserExist = await User.findOne({ username: req.body.username, email: req.body.email })
+    if (isUserExist) {
         return res.send('User already exist.');
     }
 
     // Checking if email already been in used by other user
-    const isEmailExist = await User.findOne({email})
-    if(isEmailExist){
+    const isEmailExist = await User.findOne({ email })
+    if (isEmailExist) {
         return res.send('User already exist.');
     }
 
     // Checking if username already been in used by other user
-    const isUsernameExist = await User.findOne({username: req.body.username.toLowerCase()})
-    if(isUsernameExist){
+    const isUsernameExist = await User.findOne({ username: req.body.username.toLowerCase() })
+    if (isUsernameExist) {
         return res.send('User already exist.');
     }
 
@@ -46,18 +46,18 @@ export const carRental_User_Registration = CatchAsync(async(req, res, next)=>{
 
 
 // 2) --------------| User Login |--------------
-export const carRental_User_Login = CatchAsync(async(req, res, next)=>{
-    
+export const carRental_User_Login = CatchAsync(async (req, res, next) => {
+
     // Checking if all details are provided
-    if(!req.body.email || !req.body.password){
+    if (!req.body.email || !req.body.password) {
         return next(new ErrorHandler(`Please enter email and password`, 400))
     }
 
     // Fetching User
-    const user  = await User.findOne({email}).select('+password');
+    const user = await User.findOne({ email }).select('+password');
 
     // a) Checking if user exist or password provided is correct or not
-    if(!user || !await user.correctPassword(password)){
+    if (!user || !await user.correctPassword(password)) {
         return next(new ErrorHandler('Invalid email and password', 401))
     }
     // b) Calling token function to set cookie
@@ -66,8 +66,8 @@ export const carRental_User_Login = CatchAsync(async(req, res, next)=>{
 
 
 // 3) --------------| User Logout |--------------
-export const carRental_User_Logout = CatchAsync(async(req, res, next)=>{
-    
+export const carRental_User_Logout = CatchAsync(async (req, res, next) => {
+
     // Removing the cookie 
     res.cookie('token', null, {
         expires: new Date(Date.now()),
@@ -82,7 +82,7 @@ export const carRental_User_Logout = CatchAsync(async(req, res, next)=>{
 
 
 // 4) --------------| User Profile |--------------
-export const carRental_User_Profile = CatchAsync(async(req, res) => {
+export const carRental_User_Profile = CatchAsync(async (req, res) => {
     const user = await User.findById(req.user.id).sort({ createdAt: -1 })
     return res.status(200).json({
         success: true,
@@ -92,7 +92,7 @@ export const carRental_User_Profile = CatchAsync(async(req, res) => {
 
 
 // 5) --------------| User Profile Update |--------------
-export const carRental_User_Profile_Update = CatchAsync(async(req, res, next)=>{
+export const carRental_User_Profile_Update = CatchAsync(async (req, res, next) => {
     const user = await User.findByIdAndUpdate(req.user.id, req.body, {
         new: true,
         runValidators: true,
@@ -106,13 +106,13 @@ export const carRental_User_Profile_Update = CatchAsync(async(req, res, next)=>{
 
 
 // 6) --------------| User Profile Update |--------------
-export const carRental_User_Profile_Image_Update = CatchAsync(async(req, res, next)=>{
+export const carRental_User_Profile_Image_Update = CatchAsync(async (req, res, next) => {
 
     const newUserData = {
         email: req.body.email,
     }
 
-    if(req.body.profilePicture !== "") {
+    if (req.body.profilePicture !== "") {
         const user = await User.findById(req.user.id);
 
         const imageId = user.profilePicture.public_id;
@@ -143,15 +143,15 @@ export const carRental_User_Profile_Image_Update = CatchAsync(async(req, res, ne
 })
 
 // 7) --------------| User Password Update |--------------
-export const carRental_User_Password_Update = CatchAsync(async(req, res, next) => {
+export const carRental_User_Password_Update = CatchAsync(async (req, res, next) => {
 
     const user = await User.findById(req.user.id).select('+password');
     const ispasswordMatch = await user.correctPassword(req.body.oldPassword, user.password);
-    if(!ispasswordMatch){
+    if (!ispasswordMatch) {
         return next(new ErrorHandler('Old password is incorrect', 400))
     }
     console.log(req.body)
-    if(req.body.newPassword !== req.body.confirmPassword){
+    if (req.body.newPassword !== req.body.confirmPassword) {
         return next(new ErrorHandler('Password not matched.', 400))
     }
     user.password = req.body.newPassword;
@@ -161,23 +161,23 @@ export const carRental_User_Password_Update = CatchAsync(async(req, res, next) =
 
 
 // 8) --------------| User forgot password |--------------
-export const carRental_User_Password_Forgot = CatchAsync(async(req, res, next)=>{
-    const user = await UserModel.findOne({email: req.body.email})
+export const carRental_User_Password_Forgot = CatchAsync(async (req, res, next) => {
+    const user = await UserModel.findOne({ email: req.body.email })
     console.log(user)
 
-    if(!user){
+    if (!user) {
         return next(new ErrorHandler("User not found", 404));
     }
     // Get ResetPasswordToken
     const resetToken = await user.getResetPasswordToken();
 
-    await user.save({validateBeforeSave: false});
+    await user.save({ validateBeforeSave: false });
 
     const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/password/reset/${resetToken}`;
 
     const message = `Your password reset token is:- \n\n ${resetPasswordUrl}, \n\n If you have not request this email then please ignore it.`;
 
-    try{
+    try {
         await mail.sendEmail({
             email: user.email,
             subject: 'Car Rental Account Password Reset',
@@ -187,45 +187,45 @@ export const carRental_User_Password_Forgot = CatchAsync(async(req, res, next)=>
             success: true,
             message: `Email sent to ${user.email} successfully`
         })
-    } catch(err){
+    } catch (err) {
         user.resetPasswordToken = undefined;
         user.resetPasswordExpire = undefined;
-        await user.save({validateBeforeSave: false});
+        await user.save({ validateBeforeSave: false });
         return next(new ErrorHandler(err.message, 500))
     }
 })
 
 // 9) --------------| User password Reset |--------------
-export const carRental_User_Password_Reset = CatchAsync(async(req, res, next)=>{
-    
-     // Creating token hash
-     const resetPasswordToken = crypto.createHash("sha256").update(req.params.token).digest("hex");
+export const carRental_User_Password_Reset = CatchAsync(async (req, res, next) => {
 
-     const user = await UserModel.findOne({
-         resetPasswordToken,
-         resetPasswordExpire: {$gt: Date.now()}
-     })
- 
-     if(!user){
-         return next(new ErrorHandler("Reset password token is invalid or has been expired", 404));
-     }
- 
-     if(req.body.password !== req.body.confirmPassword){
-         return next(new ErrorHandler("Password doesn't matched.", 404));
-     }
- 
-     user.password = req.body.password;
-     user.resetPasswordToken = undefined;
-     user.resetPasswordExpire = undefined;
- 
-     await user.save()
-     authToken.sendToken(user, 200, res)
+    // Creating token hash
+    const resetPasswordToken = crypto.createHash("sha256").update(req.params.token).digest("hex");
+
+    const user = await UserModel.findOne({
+        resetPasswordToken,
+        resetPasswordExpire: { $gt: Date.now() }
+    })
+
+    if (!user) {
+        return next(new ErrorHandler("Reset password token is invalid or has been expired", 404));
+    }
+
+    if (req.body.password !== req.body.confirmPassword) {
+        return next(new ErrorHandler("Password doesn't matched.", 404));
+    }
+
+    user.password = req.body.password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save()
+    authToken.sendToken(user, 200, res)
 })
 
 // 10) --------------| User Account Delete |--------------
-export const carRental_User_Profile_Delete = CatchAsync(async(req, res, next)=>{
+export const carRental_User_Profile_Delete = CatchAsync(async (req, res, next) => {
     const user = await User.findById(req.user.id);
-    if(!user){
+    if (!user) {
         return next(new ErrorHandler(`User does not exist.`))
     }
     res.cookie('token', null, {
@@ -233,7 +233,7 @@ export const carRental_User_Profile_Delete = CatchAsync(async(req, res, next)=>{
         httpOnly: true,
     })
     const deletedUser = await User.findByIdAndDelete(req.user.id)
-    req.user=undefined
+    req.user = undefined
     res.status(200).json({
         suncess: true,
         message: 'User Deleted',

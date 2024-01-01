@@ -15,17 +15,31 @@ const ShowUser = () => {
       </div>
       <div className={userProfileCSS.userCardRight}>
         <div className={userProfileCSS.userCardRightBox}>
-          <h1>First Last Name</h1>
-          <hr />
+
+          <div className={userProfileCSS.userCardRightDetails}>
+            <b>Username</b>
+            <p>Username</p>
+          </div>
+
+          <div className={userProfileCSS.userCardRightDetails}>
+            <b>Name</b>
+            <p>Name</p>
+          </div>
 
           <div className={userProfileCSS.userCardRightDetails}>
             <b>Email</b>
-            <p>em</p>
+            <p>Email</p>
           </div>
 
           <div className={userProfileCSS.userCardRightDetails}>
             <b>Mobile</b>
             <p>Contact</p>
+          </div>
+
+          
+          <div className={userProfileCSS.userCardRightDetails}>
+            <b>Birth date</b>
+            <p>Birth date</p>
           </div>
 
           <div className={userProfileCSS.userCardRightDetails}>
@@ -34,28 +48,8 @@ const ShowUser = () => {
           </div>
 
           <div className={userProfileCSS.userCardRightDetails}>
-            <b>City</b>
-            <p>City</p>
-          </div>
-
-          <div className={userProfileCSS.userCardRightDetails}>
-            <b>State</b>
-            <p>State</p>
-          </div>
-
-          <div className={userProfileCSS.userCardRightDetails}>
             <b>Country</b>
             <p>Country</p>
-          </div>
-
-          <div className={userProfileCSS.userCardRightDetails}>
-            <b>Pin</b>
-            <p>PIn</p>
-          </div>
-
-          <div className={userProfileCSS.userCardRightDetails}>
-            <b>Occupation</b>
-            <p>Occupation</p>
           </div>
 
         </div>

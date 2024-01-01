@@ -20,10 +20,10 @@ const UserPasswordUpdate = () => {
     <div className={ContainerCSS.carRentalPageContainer}> 
         <div className={passwordContainerCSS.passwordContainer}>
             <form className={passwordContainerCSS.inputFormContainer} onSubmit={handleOnSubmit}>
-                <h3>FirstLastName | Password Update</h3><hr/><br/>
-                <input type='password' onChange={handleOnChange} name='oldPassword' value={formData.oldPassword} placeholder='Old Password'/><br/>
-                <input type='password' onChange={handleOnChange} name='newPassword' value={formData.newPassword} placeholder='New Password'/><br/>
-                <input type='password' onChange={handleOnChange} name='confirmPassword' value={formData.confirmPassword} placeholder='Confirm Password'/><br/>
+                <h2>Password Update</h2><hr/><br/>
+                <input type='password' onChange={handleOnChange} name='oldPassword' value={formData?.oldPassword || ""} placeholder='Old Password'/><br/>
+                <input type='password' onChange={handleOnChange} name='newPassword' value={formData?.newPassword || ""} placeholder='New Password'/><br/>
+                <input type='password' onChange={handleOnChange} name='confirmPassword' value={formData?.confirmPassword || ""} placeholder='Confirm Password'/><br/>
                 <button>Save</button>
             </form>
         </div>

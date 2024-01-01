@@ -16,7 +16,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "express-fileupload": "^1.4.0",
+    "express-fileupload": "^1.4.3",
     "gridfs-stream": "^1.1.1",
     "helmet": "^7.0.0",
     "jsonwebtoken": "^9.0.0",
@@ -27,6 +27,8 @@
     "nodemailer": "^6.9.2",
     "nodemon": "^2.0.22",
     "paytmchecksum": "^1.5.0",
+    "sharp": "^0.33.1",
+    "socket.io": "^4.7.2",
     "uuid": "^9.0.0",
     "validator": "^13.9.0"
   },

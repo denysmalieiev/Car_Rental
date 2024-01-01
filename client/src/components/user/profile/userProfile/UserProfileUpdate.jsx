@@ -26,61 +26,82 @@ const UserProfileUpdate = () => {
       <div className={userProfileCSS.userCardContainer}>
         <div className={userProfileCSS.userCardLeft}>
           <div className={userProfileCSS.userCardLeftContentTop}>
-          <img src='' alt='User Profile' />
+            <img src='' alt='User Profile' />
           </div>
           <div className={userProfileCSS.userCardLeftContentBottom}>
             <button><Link>Upload Image</Link></button><br /><button><Link to='/user/profile'>Go To Profile</Link></button>
           </div>
         </div>
+
         <div className={userProfileCSS.userCardRight}>
           <div className={userProfileCSS.userCardRightBox}>
-            <h2>Email</h2>
-            <hr />
+
             <form onSubmit={handleOnSubmitForm}>
+
               <div className={userProfileCSS.userCardRightDetails}>
-                <b>First Name</b>
-                <input type='text' name='firstName' placeholder='First Name' />
+                <b>Username</b>
+                <input type='text' name='username' placeholder='User name' />
               </div>
 
               <div className={userProfileCSS.userCardRightDetails}>
-                <b>Last Name</b>
-                <input type='text' name='lastName' placeholder='Last Name' />
+                <b>Email</b>
+                <input type='email' name='email' placeholder='Email address' />
               </div>
 
               <div className={userProfileCSS.userCardRightDetails}>
-                <b>Mobile</b>
-                <input type='number' name='contact' placeholder='-' />
+                <b>First name</b>
+                <input type='text' name='firstname' placeholder='First name' />
+              </div>
+
+              <div className={userProfileCSS.userCardRightDetails}>
+                <b>Middle name</b>
+                <input type='text' name='middlename' placeholder='Middle name' />
+              </div>
+
+              <div className={userProfileCSS.userCardRightDetails}>
+                <b>Last name</b>
+                <input type='email' name='lastname' placeholder='Last name' />
+              </div>
+
+              <div className={userProfileCSS.userCardRightDetails}>
+                <b>Birth Date</b>
+                <input type='date' name='birthdate' placeholder='Birth Date' />
+              </div>
+
+              <div className={userProfileCSS.userCardRightDetails}>
+                <h4 style={{ padding: '0 2%' }}>Contact</h4>
+                <div style={{width: '102%', display:'flex', alignItems: 'center', justifyContent: 'start'}}>
+                  <input type='number' style={{ width: '15%' }} name='countrycode' placeholder='Code' />
+                  <input type='number' style={{ width: '85%', float: 'right', margin:'0 0 0 2%' }} name='phonenumber' placeholder='Phone number' />
+                </div>
+
               </div>
 
               <div className={userProfileCSS.userCardRightDetails}>
                 <b>Address</b>
-                <input type='text' name='address' placeholder='-' />
+                <input type='text' name='address' placeholder='Address' />
               </div>
 
               <div className={userProfileCSS.userCardRightDetails}>
                 <b>City</b>
-                <input type='text' name='city' placeholder='-' />
+                <input type='text' name='city' placeholder='City' />
               </div>
 
               <div className={userProfileCSS.userCardRightDetails}>
                 <b>State</b>
-                <input type='text' name='state' placeholder='-' />
+                <input type='text' name='state' placeholder='state' />
               </div>
 
               <div className={userProfileCSS.userCardRightDetails}>
                 <b>Country</b>
-                <input type='text' name='country' placeholder='-' />
+                <input type='text' name='country' placeholder='Country' />
               </div>
 
               <div className={userProfileCSS.userCardRightDetails}>
-                <b>Pin</b>
-                <input type='number' name='pin' placeholder='-' />
+                <b>Zip Code</b>
+                <input type='number' name='zipcode' placeholder='Zip Code' />
               </div>
 
-              <div className={userProfileCSS.userCardRightDetails}>
-                <b>Occupation</b>
-                <input type='text' name='occupation' placeholder='-' />
-              </div>
               <button>Save</button>
             </form>
           </div>
