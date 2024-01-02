@@ -1,0 +1,101 @@
+{
+    "cars": [
+        {
+            "_id": "car0001",
+            "category": "sedan",
+            "car_Images": [
+                {
+                    "public_id": "imghv0001",
+                    "url": "https://www.pngmart.com/files/22/Hyundai-Verna-PNG-Isolated-Photo.png"
+                },
+                {
+                    "public_id": "imghv0002",
+                    "url": "https://www.pngplay.com/wp-content/uploads/13/Hyundai-Verna-Transparent-Image.png"
+                }
+            ],
+            "company": "Hyundai",
+            "car_name": "Hyundai Verna",
+            "model": "EX",
+            "seats": 4,
+            "boot_space": "280 l",
+            "fuel": "Petrol",
+            "transmission": "Automatic",
+            "mileage": "18.5 kmpl",
+            "rent_price": "12 ₹/km",
+            "description": "Sedan Car"
+        },
+        {
+            "_id": "car0002",
+            "category": "sedan",
+            "car_Images": [
+                {
+                    "public_id": "imgmb0001",
+                    "url": "https://www.motortrend.com/uploads/sites/10/2018/11/2019-mercedes-benz-c-class-c300-sedan-angular-front.png"
+                },
+                {
+                    "public_id": "imgmb0002",
+                    "url": "https://st.automobilemag.com/uploads/sites/10/2017/08/2018-mercedes-benz-c-class-amg-63-s-sedan-rear-view.png"
+                }
+            ],
+            "company": "Mercedes",
+            "car_name": "Mercedes-Benz C-Class",
+            "model": "C 200",
+            "seats": 4,
+            "boot_space": "260 l",
+            "fuel": "Diesel",
+            "transmission": "Automatic",
+            "mileage": "15 kmpl",
+            "rent_price": "15 ₹/km",
+            "description": "Sedan Car"
+        },
+        {
+            "_id": "car0003",
+            "category": "sedan",
+            "car_Images": [
+                {
+                    "public_id": "imgss0001",
+                    "url": "https://kunskoda.com/assets/front/images/slavia/1.png"
+                },
+                {
+                    "public_id": "imgss0002",
+                    "url": "https://ackodrive-assets.s3.amazonaws.com/media/test_Je6PMUa.png"
+                }
+            ],
+            "company": "Skoda",
+            "car_name": "Skoda Slavia",
+            "model": "Ambition Plus",
+            "seats": 4,
+            "boot_space": "270 l",
+            "fuel": "Petrol",
+            "transmission": "Automatic",
+            "mileage": "16 kmpl",
+            "rent_price": "13 ₹/km",
+            "description": "Sedan Car"
+        },
+        {
+            "_id": "car0004",
+            "category": "suv",
+            "car_Images": [
+                {
+                    "public_id": "imgm70001",
+                    "url": "https://park.shifting-gears.com/wp-content/uploads/2022/03/MAHINDRA-XUV700-WHITE.png"
+                },
+                {
+                    "public_id": "imgm70002",
+                    "url": "https://mahindranelspruit.co.za/wp-content/uploads/2023/01/xuv700_car.png"
+                }
+            ],
+            "company": "Mahindra",
+            "car_name": "Mahindra XUV 700",
+            "model": "MX",
+            "seats": 6,
+            "boot_space": "300 l",
+            "fuel": "Petrol",
+            "transmission": "Automatic",
+            "mileage": "15.5 kmpl",
+            "rent_price": "14 ₹/km ",
+            "description": "SUV Car"
+        }
+    ],
+    "carOptions": ["sedan", "suv", "4x4"]
+}

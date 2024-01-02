@@ -7,7 +7,7 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    margin: 5% 0;
+    margin: 2% 0 10%;
 }
 
 .component_container p{
@@ -30,6 +30,7 @@
 
 .carOptionShowImage {
     width: 65%;
+    min-height: 32rem;
     height: max-content;
     float: left;
     display: flex;
