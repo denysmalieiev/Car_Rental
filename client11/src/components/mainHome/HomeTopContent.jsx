@@ -9,7 +9,7 @@ const HomeTopContent = () => {
       <div className={homeTopDetailCSS.homeTopBoxLeft}>
         <div className={homeTopDetailCSS.homeTopBoxLeftContent}>
           <div>
-            <h1>Self Drive</h1><br/>
+            <h1>Unlock Your Next Adventure</h1>
             <h2>Your next advanture is just a click away. <br/>To start, simply browse the car and pick the one that's right for you.</h2>
             <br/>
           </div>

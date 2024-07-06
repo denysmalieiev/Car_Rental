@@ -5,7 +5,9 @@ function App() {
 
   return (
     <>
-      <div className="h-screen bg-black text-white"><EntryPoint/></div>
+      <div className="select-false font-serif">
+        <EntryPoint/>
+      </div>
     </>
   )
 }
