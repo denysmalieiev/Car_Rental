@@ -19,11 +19,14 @@ export default class Authentication {
         // Cookie validation days setup
         const options = {
             expires: new Date(
-                Date.now() + parseInt(process.env.JWT_COOKIE_EXPIRES_IN!) * 24 * 60 * 60 * 1000
+                Date.now() + parseInt(process.env.JWT_COOKIE_EXPIRES_IN!) * 60 * 1000
             ),
             httpOnly: true,
         };
 
+        console.log(new Date(
+            Date.now() + parseInt(process.env.JWT_COOKIE_EXPIRES_IN!) * 60 * 1000
+        ).getTime())
         // Token setting in header
         res.cookie(userType, token, options);
 
