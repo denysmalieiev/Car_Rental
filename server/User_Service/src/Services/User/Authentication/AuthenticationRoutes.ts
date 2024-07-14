@@ -40,10 +40,4 @@ router.route("/forgot-password")
 router.route("/reset-password")
     .put(parseJsonOrUrlEncoded, handleData, UserController.resetPasswordUpdate);
 
-// // Admin Profile
-// router.route("/profile")
-//     .get(AdminController.adminProfileInformation)
-//     .put(AdminController.adminProfileUpdate)
-//     .delete(AdminController.adminProfileDelete)
-
 export default router;

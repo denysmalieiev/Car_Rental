@@ -1,4 +1,3 @@
-import AdminAccountModel from "../../Models/Admin/AdminAccount";
 import UserAccountModel from "../../Models/User/UserAccount";
 
 export default class utilityFunction {
@@ -16,26 +15,12 @@ export default class utilityFunction {
 
     async checkingUserDuplicate(email: string, username: string) {
         try {
-            const existingAdmin = await AdminAccountModel.findOne({
-                $or: [
-                    { username: { $regex: new RegExp(`^${username}$`, "i") } },
-                    { email: { $regex: new RegExp(`^${email}$`, "i") } }
-                ]
-            });
             const existingUser = await UserAccountModel.findOne({
                 $or: [
                     { username: { $regex: new RegExp(`^${username}$`, "i") } },
                     { email: { $regex: new RegExp(`^${email}$`, "i") } }
                 ]
             });
-            if (existingAdmin) {
-                const duplicateField = existingAdmin.username.toLowerCase() === username.toLowerCase() ? 'username' : 'email';
-                const errorMessage = `An account with the same ${duplicateField} already exists.`;
-                return {
-                    success: false,
-                    message: errorMessage
-                }
-            }
             if (existingUser) {
                 const duplicateField = existingUser.username.toLowerCase() === username.toLowerCase() ? 'username' : 'email';
                 const errorMessage = `An account with the same ${duplicateField} already exists.`;
