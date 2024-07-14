@@ -20,6 +20,15 @@ services:
       - "5005:5005"
     networks:
       - app-network
+      
+  payment_service:
+    build:
+      context: ./payment_service
+    container_name: payment_service
+    ports:
+      - "5007:5007"
+    networks:
+      - app-network
 
   nginx:
     build:
