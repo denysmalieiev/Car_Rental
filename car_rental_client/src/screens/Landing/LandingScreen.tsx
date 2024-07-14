@@ -1,11 +1,11 @@
 import HomePageCar from "../../assets/homeCarImage.png";
-import BookingSearch from "../Utils/BookingSearch";
+import BookingSearch from "../Bookings/BookingSearch";
 // bg-gradient-to-r from-white to-white-input-light
 const LandingScreen = () => {
   return (
     <>
       <div className="w-full h-auto overflow-auto float-left">
-        <div className="w-full h-[45rem] lg:w-11/12 lg:rounded-s-lg float-right bg-home-theme" style={{ backgroundImage: `url(${HomePageCar})`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "bottom right" }}>
+        <div className="w-full h-[45rem] lg:w-[96%] lg:rounded-s-lg float-right bg-home-theme" style={{ backgroundImage: `url(${HomePageCar})`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "bottom right" }}>
           <div className="w-full pb-32 lg:pl-28 h-full px-4 flex items-center justify-center">
             <div className="w-full h-auto float-left overflow-auto">
               <h1 className="text-white text-4xl lg:text-6xl font-extrabold my-2 break-words">Unlock Your Next Adventure</h1>

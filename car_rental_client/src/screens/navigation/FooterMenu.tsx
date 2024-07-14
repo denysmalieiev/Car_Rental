@@ -1,7 +1,7 @@
 const FooterMenu = () => {
     return (
         <div className="w-full overflow-auto">
-            <div className="w-full lg:w-11/12 lg:float-right h-auto p-8 lg:pl-16 lg:rounded-s-sm bg-home-theme">
+            <div className="w-full lg:w-[96%] lg:float-right h-auto p-8 lg:pl-16 lg:rounded-s-sm bg-home-theme">
                 <div className="w-full h-auto mb-4 grid grid-cols-2 lg:grid-cols-3 place-items-start">
                     <div className='w-full h-auto my-2'>
                         <p className='text-2xl lg:text-3xl text-white font-extrabold hover:text-white-input-light'>Car Rental</p>
@@ -45,7 +45,7 @@ const FooterMenu = () => {
             </div>
 
             <div className="w-full h-auto py-2 overflow-auto flex items-center justify-center">
-                <p className="text-sm text-gray text-ellipsis">All right reserver to @Car_Rental</p>
+                <p className="text-sm text-gray text-ellipsis">All right reserver to Car_Rental</p>
             </div>
         </div>
     )

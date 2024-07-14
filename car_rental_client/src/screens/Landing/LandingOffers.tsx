@@ -1,8 +1,8 @@
 
 const LandingOffers = () => {
     return (
-        <div className="w-full h-auto px-2 lg:px-24 lg:ml-[0.55rem] py-6 float-left overflow-hidden">
-            <div className="w-full h-auto p-2 bg-home-theme flex items-center justify-center rounded-md overflow-hidden">
+        <div className="w-full h-auto px-2 lg:px-16 lg:ml-[0.55rem] py-6 float-left overflow-hidden">
+            <div className="w-full h-auto px-2 py-4 bg-home-theme flex items-center justify-center rounded-md overflow-hidden">
                 <div className="w-9/12 h-full flex items-center justify-center">
                     <div className="w-full h-full flex items-center justify-start">
                         <div className="px-8 lg:px-16">

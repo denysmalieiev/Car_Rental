@@ -31,7 +31,7 @@ const Testimonials = () => {
     ];
 
     return (
-        <div className="w-full h-auto overflow-auto px:2 lg:px-28">
+        <div className="w-full h-auto overflow-auto px:2 lg:px-16">
             <h1 className="text-center text-3xl font-extrabold font-navy">Testimonials</h1>
             <div className="w-full h-auto flex flex-wrap items-center justify-center my-4">
                 {ratings.map((item, index) => (

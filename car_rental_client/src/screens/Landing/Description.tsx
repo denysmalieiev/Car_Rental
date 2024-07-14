@@ -2,7 +2,7 @@ import TravelGIF from "../../assets/tenor.gif"
 
 const Description = () => {
   return (
-    <div className="w-full h-auto px-2 lg:px-28 float-left overflow-auto">
+    <div className="w-full h-auto px-2 lg:px-16 float-left overflow-auto">
       <div className="w-full h-auto grid grid-cols-1 lg:grid-cols-2 gap-4 place-items-center overflow-auto float-left">
         <div className="w-full h-auto order-2 lg:order-1">
           <h1 className="text-5xl font-bold text-start break-words">Car Rental Made Easy</h1>
