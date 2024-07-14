@@ -1,0 +1,35 @@
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  user_service:
+    build:
+      context: ./user_service
+    container_name: user_service
+    ports:
+      - "5002:5002"
+    networks:
+      - app-network
+
+  car_service:
+    build:
+      context: ./car_service
+    container_name: car_service
+    ports:
+      - "5005:5005"
+    networks:
+      - app-network
+
+  nginx:
+    build:
+      context: ./nginx
+    container_name: nginx
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

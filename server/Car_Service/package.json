@@ -1,0 +1,23 @@
+{
+  "name": "car_service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev:server": "nodemon --verbose dist/index.js",
+    "dev:watch": "tsc --watch & concurrently \"npm run build\"",
+    "build": "tsc",
+    "build:watch": "tsc --watch && nodemon --verbose dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/graphql": "^14.5.0",
+    "@types/node": "^20.14.10",
+    "apollo-server": "^3.13.0",
+    "graphql": "^16.9.0",
+    "ts-node": "^10.9.2"
+  }
+}
