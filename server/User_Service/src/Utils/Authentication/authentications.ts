@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken";
 import { Response, NextFunction } from "express";
 import {CustomRequest} from "./authenticationInterface";
 import UserAccountModel from "../../Models/User/UserAccount";
-import AdminAccountModel from "../../Models/Admin/AdminAccount";
 
 export default class Authentication {
     constructor() { }
@@ -76,56 +75,6 @@ export default class Authentication {
                     id: user._id,
                     username: user.username,
                     accountVerified: user.accountVerified
-                };
-                next();
-            }
-        } catch (err) {
-            return next(new Error("Unauthorized"));
-        }
-    }
-    async verifyAdminAuthorization(req: CustomRequest, res: Response, next: NextFunction): Promise<void | object> {
-        // Fetching token
-        let token: string | undefined = undefined;
-        if (req.cookies.adminToken) {
-            token = req.cookies.adminToken;
-        } else if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
-            const authHeader = req.headers.authorization.split(" ");
-            if (authHeader.length === 2 && authHeader[1].toLowerCase() !== "null") {
-                token = authHeader[1];
-            }
-        }
-
-        // Returning if no token
-        if (!token) {
-            return res.status(401).json({
-                success: false,
-                message: `Please login.`,
-            });
-        }
-
-        // Decoding user using token
-        function verifyToken(token: string): Promise<any> {
-            return new Promise((resolve, reject) => {
-                jwt.verify(token, process.env.JWT_SECRET!, (err, decoded) => {
-                    if (err) {
-                        reject(new Error("Invalid token"));
-                    } else {
-                        resolve(decoded);
-                    }
-                });
-            });
-        }
-
-        try {
-            const decoded = await verifyToken(token);
-            const admin:any = await AdminAccountModel.findById({_id: decoded.id});
-
-            if (!admin) {
-                return next(new Error("Please login again"));
-            } else {
-                req.admin = {
-                    id: admin._id,
-                    username: admin.username,
                 };
                 next();
             }
